@@ -5,10 +5,9 @@
 <meta http-equiv="Content-Type" content="text/html; charset=gbk">
 
 <link rel="stylesheet" href="css/style3.css" type="text/css"></link>
-<link rel="stylesheet" href="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/themes/smoothness/jquery-ui.css" />
-<script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/jquery-ui.min.js"></script>
-<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-
+<link href="css/jquery-ui.css" rel="stylesheet" />
+<script src="js/jquery.js"></script>
+<script src="js/jquery-ui.js"></script>
 
 <script type="text/javascript">
 
@@ -17,9 +16,16 @@
       	initOppoflife();
       	initBattletext();
         initNumbers();
+        initAIButton();
        if(self_AI){
        	setTimeout("callSelfAI()",500);
+
+		$(".leftcol7").empty().append("<div class='scorenum'>AI</div>");
        }
+       if(oppo_AI){
+		$(".leftcol1").empty().append("<div class='scorenum'>AI</div>");
+       }
+       
     });
 
     var ui_lock=false;
@@ -32,7 +38,7 @@
     var self_score=0;
     var oppo_score=0;
     var oppo_AI=true;
-    var self_AI=true;
+    var self_AI=false;
      	function initOppoflife(){
  		$( "#oppolife" ).progressbar({max: max_health,value: 30,change:function(){ 
  			var selector = "#" + this.id + " > div";
@@ -675,7 +681,22 @@ $( "#oppolife" ).progressbar({value: curr_oppo_hp}).children('.ui-progressbar-va
 });
 
 }
-
+function initAIButton(){
+		$('.leftcol1').click(function(){
+		oppo_AI=!oppo_AI;
+		if(oppo_AI){
+		$(this).empty().append("<div class='scorenum'>AI</div>");}else{
+			$(this).empty().append("<div class='scorenum'></div>");
+		}
+	});
+	$('.leftcol7').click(function(){
+		self_AI=!self_AI;
+		if(self_AI){
+		$(this).empty().append("<div class='scorenum'>AI</div>");}else{
+			$(this).empty().append("<div class='scorenum'></div>");
+		}
+	});
+}
 ;!(function ($) {
     $.fn.classes = function (callback) {
         var classes = [];
