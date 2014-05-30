@@ -48,7 +48,7 @@ border:2px solid #fff;
 border-radius: 5pt;
 -moz-border-radius:5px;
 -webkit-border-radius:5px;
-
+-webkit-transform: translateZ(0);
 -moz-box-shadow:2px 2px 5px #333333; -webkit-box-shadow:2px 2px 5px #333333; box-shadow:2px 2px 5px #333333;
 }
 .self{
