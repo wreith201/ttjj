@@ -1,8 +1,19 @@
-﻿.game{
+﻿h3{
+  text-align: center;
+}
+footer{
+  text-align: center;
+}
+.game{
     margin:0 auto; width:455px; height:615px; 
     
         background: #eee;
-
+   -webkit-touch-callout: none;
+-webkit-user-select: none;
+-khtml-user-select: none;
+-moz-user-select: none;
+-ms-user-select: none;
+user-select: none;
           -webkit-box-shadow: 
         0 1px 1px rgba(0,0,0,0.15), 
         0 10px 0 -5px #eee, 
@@ -72,6 +83,7 @@ position: relative;
    height:48px;
    background-color: #8ee5ee;
    border: 2px solid white;
+   border-style: outset;
    border-radius: 5pt;
    -moz-border-radius:5px;
    -webkit-border-radius:5px;
@@ -126,6 +138,7 @@ position: relative;
    height:48px;
    background-color: #8ee5ee;
    border: 2px solid white;
+   border-style: outset;
    border-radius: 5pt;
    -moz-border-radius:5px;
    -webkit-border-radius:5px;
@@ -148,6 +161,7 @@ position: relative;
    background-color: #8ee5ee;
    border: 2px solid white;
    border-radius: 5pt;
+   border-style: outset;
    -moz-border-radius:5px;
    -webkit-border-radius:5px;
 }
@@ -201,6 +215,7 @@ position: relative;
    height:48px;
    background-color: #8ee5ee;
    border: 2px solid white;
+   border-style: outset;
    border-radius: 5pt;
    -moz-border-radius:5px;
    -webkit-border-radius:5px;
@@ -303,21 +318,7 @@ position: relative;
    float: left;
    left: 30px;
 }
-body {
 
-   border-width: 0px;
-   padding: 0px;
-   margin: 0px;
-   font-size: 90%;
-   background-color: #e7e7de;
-   text-align:center;
-   -webkit-touch-callout: none;
--webkit-user-select: none;
--khtml-user-select: none;
--moz-user-select: none;
--ms-user-select: none;
-user-select: none;
-}
 @font-face {
    font-family: AgentOrange;
    src: url('AgentOrange.ttf');
