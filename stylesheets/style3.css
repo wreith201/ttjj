@@ -1,9 +1,11 @@
-﻿h3{
+﻿h1,h2{
+  text-align: left;
+}
+
+.inner{
   text-align: center;
 }
-footer{
-  text-align: center;
-}
+
 .game{
     margin:0 auto; width:455px; height:615px; 
     
