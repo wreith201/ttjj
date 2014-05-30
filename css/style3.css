@@ -1,4 +1,7 @@
-﻿.game{
+﻿h1,h2{
+  text-align: left;
+}
+.game{
     margin:0 auto; width:455px; height:615px; 
     
         background: #eee;
