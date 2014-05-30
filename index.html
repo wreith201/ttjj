@@ -4,11 +4,31 @@
   <head>
     <meta charset='utf-8' />
     <meta http-equiv="X-UA-Compatible" content="chrome=1" />
-    <meta name="description" content="No.war : Dr. X&#39;s No.War" />
+    <meta name="description" content="No.war : No.War" />
 
     <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
 
-    <title>No.war</title>
+<link rel="stylesheet" href="stylesheets/style3.css" type="text/css"></link>
+<link href="stylesheets/jquery-ui.css" rel="stylesheet" />
+<script src="js/jquery.js"></script>
+<script src="js/jquery-ui.js"></script>
+<script src="js/game-min.js"></script>
+<script type="text/javascript">
+       $(document).ready(function() {
+    	activateSelfAI();
+    	 initSelflife();
+      	initOppoflife();
+      	initBattletext();
+        initNumbers();
+        initAIButton();
+       
+       
+    });
+
+
+
+</script>
+    <title style='text-align:left;'>No.war</title>
   </head>
 
   <body>
@@ -19,7 +39,7 @@
           <a id="forkme_banner" href="https://github.com/wreith201/No.War">View on GitHub</a>
 
           <h1 id="project_title">No.war</h1>
-          <h2 id="project_tagline">Dr. X&#39;s No.War</h2>
+          <h2 id="project_tagline">No.war designed by Yu Xu.</h2>
 
             <section id="downloads">
               <a class="zip_download_link" href="https://github.com/wreith201/No.War/zipball/master">Download this project as a .zip file</a>
@@ -32,13 +52,160 @@
     <div id="main_content_wrap" class="outer">
       <section id="main_content" class="inner">
         <h3>
-<a name="welcome-to-github-pages" class="anchor" href="#welcome-to-github-pages"><span class="octicon octicon-link"></span></a>Welcome to Dr.X's No. War.</h3>
+<a name="welcome-to-github-pages" class="anchor" href="#welcome-to-github-pages"><span class="octicon octicon-link"></span></a>Welcome to No. War.</h3>
 
 <p>This is a link to the <a href="https://wreith201.github.io/No.War/right.htm">demo</a>.</p>
 
-
-
-<p>If you're using the GitHub for Mac, simply sync your repository and you'll see the new branch.</p>
+ 
+<p><div class="game">
+<div class='leftcol'>
+	<div class='leftcol1'></div>
+	<div class='leftcol2'></div>
+	
+	<div class='leftcol4'></div>
+	
+	<div class='leftcol6'></div>
+	<div class='leftcol7'></div>
+</div>
+<div class='gamepanel'>
+<div clss="outline"><div class="wrapper " id="oppolife" style="height:50px"></div></div>
+<div class="outline">
+	<div class="wrapper oppo">
+	     <div class="col1 row1 grid oppo">
+	     </div>
+	     <div class="col2 row1 grid oppo">
+	     </div>
+	     <div class="col3 row1 grid oppo">
+	     </div>
+	     <div class="col4 row1 grid oppo">
+	     </div>
+	     <div class="col5 row1 grid oppo">
+	     </div>
+	     <div class="col6 row1 grid oppo">
+	     </div>
+	 </div> 
+</div>
+<div class="outline">
+	<div class="wrapper oppo">
+	     <div class="col1 row2 grid oppo">
+	     </div>
+	     <div class="col2 row2 grid oppo">
+	     </div>
+	     <div class="col3 row2 grid oppo">
+	     </div>
+	     <div class="col4 row2 grid oppo">
+	     </div>
+	     <div class="col5 row2 grid oppo">
+	     </div>
+	     <div class="col6 row2 grid oppo">
+	     </div>
+	 </div> 
+</div><div class="outline">
+	<div class="wrapper oppo">
+	     <div class="col1 row3 grid oppo">
+	     </div>
+	     <div class="col2 row3 grid oppo">
+	     </div>
+	     <div class="col3 row3 grid oppo">
+	     </div>
+	     <div class="col4 row3 grid oppo">
+	     </div>
+	     <div class="col5 row3 grid oppo">
+	     </div>
+	     <div class="col6 row3 grid oppo">
+	     </div>
+	 </div> 
+</div><div class="outline">
+	<div class="wrapper oppo">
+	     <div class="col1 row4 grid oppo">
+	     </div>
+	     <div class="col2 row4 grid oppo">
+	     </div>
+	     <div class="col3 row4 grid oppo">
+	     </div>
+	     <div class="col4 row4 grid oppo">
+	     </div>
+	     <div class="col5 row4 grid oppo">
+	     </div>
+	     <div class="col6 row4 grid oppo">
+	     </div>
+	 </div> 
+</div>
+<div clss="outline"><div class="wrapper " style="height:50px" id="battletext"></div></div>
+<div class="outline">
+	<div class="wrapper self">
+	     <div class="cols1 row5 grid self">
+	     </div>
+	     <div class="cols2 row5 grid self">
+	     </div>
+	     <div class="cols3 row5 grid self">
+	     </div>
+	     <div class="cols4 row5 grid self">
+	     </div>
+	     <div class="cols5 row5 grid self">
+	     </div>
+	     <div class="cols6 row5 grid self">
+	     </div>
+	 </div> 
+</div><div class="outline">
+	<div class="wrapper self">
+	     <div class="cols1 row6 grid self">
+	     </div>
+	     <div class="cols2 row6 grid self">
+	     </div>
+	     <div class="cols3 row6 grid self">
+	     </div>
+	     <div class="cols4 row6 grid self">
+	     </div>
+	     <div class="cols5 row6 grid self">
+	     </div>
+	     <div class="cols6 row6 grid self">
+	     </div>
+	 </div> 
+</div><div class="outline">
+	<div class="wrapper self">
+	     <div class="cols1 row7 grid self">
+	     </div>
+	     <div class="cols2 row7 grid self">
+	     </div>
+	     <div class="cols3 row7 grid self">
+	     </div>
+	     <div class="cols4 row7 grid self">
+	     </div>
+	     <div class="cols5 row7 grid self">
+	     </div>
+	     <div class="cols6 row7 grid self">
+	     </div>
+	 </div> 
+</div><div class="outline">
+	<div class="wrapper self">
+	     <div class="cols1 row8 grid self">
+	     </div>
+	     <div class="cols2 row8 grid self">
+	     </div>
+	     <div class="cols3 row8 grid self">
+	     </div>
+	     <div class="cols4 row8 grid self">
+	     </div>
+	     <div class="cols5 row8 grid self">
+	     </div>
+	     <div class="cols6 row8 grid self">
+	     </div>
+	 </div> 
+</div>
+<div clss="outline">
+<div class="wrapper " id="selflife" style="height:50px"></div></div>
+</div>
+<div class='rightcol'>
+		<div class='rightcol1'></div>
+	<div class='rightcol2'></div>
+	
+	<div class='rightcol4'></div>
+	
+	<div class='rightcol6'></div>
+	<div class='rightcol7'></div>
+</div>
+</div></p>
 
 <h3>
 <a name="designer-templates" class="anchor" href="#designer-templates"><span class="octicon octicon-link"></span></a>Designer Templates</h3>
