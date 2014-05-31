@@ -1,27 +1,28 @@
  $(document).ready(function() {
     	 initSelflife();
       	initOppoflife();
-      	initBattletext();
+      	initTimer();
         initNumbers();
         initAIButton();
        initHelpButton();
        initMenuButton()
-       inittest();
+       setupHelpwindow();
     });
 
     var ui_lock=false;
     var oppo_turn=false;
     var self_turn=true;
     var max_health=300;
-    var turn_interval=10000;
+    var turn_interval=20000;
     var curr_oppo_hp=max_health;
     var curr_self_hp=max_health;
     var self_score=0;
     var oppo_score=0;
     var oppo_AI=true;
-    var self_AI=false;
+    var self_AI=true;
     var self_first=true;
-   
+   	var switch_turn=false;
+   	var duel_mode=false;
      	function initOppoflife(){
  		$( "#oppolife" ).progressbar({max: max_health,value: 30,change:function(){ 
  			var selector = "#" + this.id + " > div";
@@ -40,7 +41,7 @@
         $( "#oppolife > div" ).css({'border':'0px','border-radius':'5pt','height':'45px'});
   $( "#oppolife" ).progressbar({value: curr_oppo_hp});
  	}
- 	 	function initBattletext(){
+ 	 	function initTimer(){
  		$( "#battletext" ).progressbar({value:100}).children('.ui-progressbar-value')
     
     .css({"display": "block","text-align":"center","padding-top":"5px","font-size":"30px"});
@@ -48,9 +49,15 @@
 var pGress = setInterval(function() {
 	i++;
         var pVal = $('#battletext').progressbar('option', 'value');
-        var pCnt = !isNaN(pVal) ? (pVal-10*i) : 1;
-
-        if (pCnt < 0) {
+        var pCnt = !isNaN(pVal) ? (pVal-100000/turn_interval*i) : 1;
+        if(pCnt < 0)switch_turn=true;
+        if (switch_turn) {
+        	if(oppo_turn)
+        	$(".gridnum.rotatetext").removeClass("rotatetext");
+        	else{var grids=$(".gridnum");
+        	grids.addClass("rotatetext");}
+        	switch_turn=false;
+        	if(!duel_mode)ui_lock=false;
             clearInterval(pGress);
             if(self_turn){
             	
@@ -70,16 +77,17 @@ var pGress = setInterval(function() {
             }
          self_turn=!self_turn;
         oppo_turn=!oppo_turn;
+
         if(self_turn&&self_AI){
-        	callSelfAI();
+        	setTimeout("callSelfAI()",1000);
         }
         if(oppo_turn&&oppo_AI){
-        	callOppoAI();
+        	setTimeout("callOppoAI()",1000);
         }
-            initBattletext();
+            initTimer();
         } else {
 
-            $('#battletext').children('.ui-progressbar-value').html(""+(10-i)).stop(true).animate({width: pCnt + '%'},500, 'easeOutBounce').css({'height':'45px'});;
+            $('#battletext').children('.ui-progressbar-value').html(""+(turn_interval/1000)-i).stop(true).animate({width: pCnt + '%'},500, 'easeOutBounce').css({'height':'45px'});;
         }
     },1000);
  		 $( "#battletext > div" ).css({'border':'0px','border-radius':'5pt'});
@@ -104,20 +112,33 @@ var pGress = setInterval(function() {
   $( "#selflife > div" ).css({'border':'0px','border-radius':'5pt','height':'45px'});
  	}
 function callOppoAI(){
-	var i=5;
+	if(duel_mode){
+	var i=turn_interval/2000;
 var oAI=setInterval(function(){
 oppoAIOperation();
 i--;
 if(i<0)clearInterval(oAI);
 },1600);
 }
+else{
+	oppoAIOperation();
+	setTimeout("switch_turn=true;",500);
+}
+}
 function callSelfAI(){
-	var i=5;
+
+	if(duel_mode){
+	var i=turn_interval/2000;
 var oAI=setInterval(function(){
 	selfAIOperation();
 i--;
 if(i<0)clearInterval(oAI);
 },1600);
+}
+else{
+	selfAIOperation();
+	setTimeout("switch_turn=true;",500);
+}
 }
 function oppoAIOperation(){
 	var colnum=Math.floor((Math.random() * 6))+1;
@@ -168,14 +189,14 @@ function oppoAIOperation(){
 			}
 			curr_grid.classes(function(c){
 				
-				if(c!='grid'&&c!='self'&&c!='oppo'){
+				if(c!='grid'&&c!='self'&&c!='oppo'&&c!='rotatetext'){
 					$("."+c).each(function(){
 						var this_num=parseInt($(this).text());
-						$(this).empty().append($("<div class='gridnum'>+"+this_num+"</div>"));
+						$(this).empty().append($("<div class='gridnum rotatetext'>+"+this_num+"</div>"));
 						sum+=this_num;
 						$(this).effect('puff',{},1000,callback);
 							function callback() {
-								$(this).removeAttr( "style" ).empty().append($("<div class='gridnum'>"+Math.floor((Math.random() * 10))+"</div>")).hide().fadeIn(500); 
+								$(this).removeAttr( "style" ).empty().append($("<div class='gridnum rotatetext'>"+Math.floor((Math.random() * 10))+"</div>")).hide().fadeIn(500); 
 								
                             }
 					});
@@ -191,11 +212,11 @@ function oppoAIOperation(){
 				$("."+oppocol).each(function(){
 					var this_num=parseInt($(this).text());
 					$(this).effect('puff',{},1000,callback);
-					$(this).empty().append($("<div class='gridnum'>-"+this_num+"</div>"));
+					$(this).empty().append($("<div class='gridnum rotatetext'>-"+this_num+"</div>"));
 					sum-=this_num;
 					if(sum<0)sum=0
 					function callback() {
-								$(this).removeAttr( "style" ).empty().append($("<div class='gridnum'>"+Math.floor((Math.random() * 10))+"</div>")).hide().fadeIn(500);
+								$(this).removeAttr( "style" ).empty().append($("<div class='gridnum rotatetext'>"+Math.floor((Math.random() * 10))+"</div>")).hide().fadeIn(500);
 								if(self){
 								curr_grid.css({'color':'black','background': '#e0eeee','width':'48px','margin-left':'0px'});
                             }else{
@@ -205,12 +226,12 @@ function oppoAIOperation(){
                             }
 				});
 			}
-			curr_grid.empty().append($("<div class='gridnum'>"+sum+"</div>"));
+			curr_grid.empty().append($("<div class='gridnum rotatetext'>"+sum+"</div>"));
 
 			curr_grid.css('z-index','998');
 			curr_grid.animate({'margin-top':margin_value},500).fadeOut(500,function(){
 
-					$(this).css({'margin-top':'0','z-index':'0'}).empty().append($("<div class='gridnum'>"+Math.floor((Math.random() * 10))+"</div>")).fadeIn(500);
+					$(this).css({'margin-top':'0','z-index':'0'}).empty().append($("<div class='gridnum rotatetext'>"+Math.floor((Math.random() * 10))+"</div>")).fadeIn(500);
 				
 			
 			});
@@ -301,7 +322,7 @@ var curr_grid=$(".cols"+colnum+".row"+rownum);
 			}
 			curr_grid.classes(function(c){
 				
-				if(c!='grid'&&c!='self'&&c!='oppo'){
+				if(c!='grid'&&c!='self'&&c!='oppo'&&c!='rotatetext'){
 					$("."+c).each(function(){
 						var this_num=parseInt($(this).text());
 						$(this).empty().append($("<div class='gridnum'>+"+this_num+"</div>"));
@@ -440,7 +461,7 @@ function initNumbers(){
 			}
 			curr_grid.classes(function(c){
 				
-				if(c!='grid'&&c!='self'&&c!='oppo'){
+				if(c!='grid'&&c!='self'&&c!='oppo'&&c!='rotatetext'){
 					$("."+c).each(function(){
 						var this_num=parseInt($(this).text());
 						$(this).empty().append($("<div class='gridnum'>+"+this_num+"</div>"));
@@ -448,7 +469,7 @@ function initNumbers(){
 						$(this).effect('puff',{},1000,callback);
 							function callback() {
 								$(this).removeAttr( "style" ).empty().append($("<div class='gridnum'>"+Math.floor((Math.random() * 10))+"</div>")).hide().fadeIn(500); 
-								setTimeout("ui_lock=false",500);
+								
                             }
 					});
 
@@ -463,11 +484,11 @@ function initNumbers(){
 				$("."+oppocol).each(function(){
 					var this_num=parseInt($(this).text());
 					$(this).effect('puff',{},1000,callback);
-					$(this).empty().append($("<div class='gridnum'>-"+this_num+"</div>"));
+					$(this).empty().append($("<div class='gridnum rotatetext'>-"+this_num+"</div>"));
 					sum-=this_num;
 					if(sum<0)sum=0
 					function callback() {
-								$(this).removeAttr( "style" ).empty().append($("<div class='gridnum'>"+Math.floor((Math.random() * 10))+"</div>")).hide().fadeIn(500);
+								$(this).removeAttr( "style" ).empty().append($("<div class='gridnum rotatetext'>"+Math.floor((Math.random() * 10))+"</div>")).hide().fadeIn(500);
 								if(self){
 								curr_grid.css({'color':'black','background': '#e0eeee','width':'48px','margin-left':'0px'});
                             }else{
@@ -477,12 +498,18 @@ function initNumbers(){
                             }
 				});
 			}
-			curr_grid.empty().append($("<div class='gridnum'>"+sum+"</div>"));
+			curr_grid.empty().append($("<div class='gridnum rotatetext'>"+sum+"</div>"));
 
 			curr_grid.css('z-index','998');
 			curr_grid.animate({'margin-top':margin_value},500).fadeOut(500,function(){
 
-					$(this).css({'margin-top':'0','z-index':'0'}).empty().append($("<div class='gridnum'>"+Math.floor((Math.random() * 10))+"</div>")).fadeIn(500);
+					$(this).css({'margin-top':'0','z-index':'0'}).empty().append($("<div class='gridnum rotatetext'>"+Math.floor((Math.random() * 10))+"</div>")).fadeIn(500,function(){
+						if(!duel_mode){
+							switch_turn=true;
+						}else{
+						ui_lock=false;
+					}
+					});
 				
 			
 			});
@@ -577,7 +604,7 @@ $( "#oppolife" ).progressbar({value: curr_oppo_hp}).children('.ui-progressbar-va
 			}
 			curr_grid.classes(function(c){
 				
-				if(c!='grid'&&c!='self'&&c!='oppo'){
+				if(c!='grid'&&c!='self'&&c!='oppo'&&c!='rotatetext'){
 					$("."+c).each(function(){
 						var this_num=parseInt($(this).text());
 						$(this).empty().append($("<div class='gridnum'>+"+this_num+"</div>"));
@@ -585,7 +612,7 @@ $( "#oppolife" ).progressbar({value: curr_oppo_hp}).children('.ui-progressbar-va
 						$(this).effect('puff',{},1000,callback);
 							function callback() {
 								$(this).removeAttr( "style" ).empty().append($("<div class='gridnum'>"+Math.floor((Math.random() * 10))+"</div>")).hide().fadeIn(500); 
-								setTimeout("ui_lock=false",500);
+								
                             }
 					});
 
@@ -619,7 +646,13 @@ $( "#oppolife" ).progressbar({value: curr_oppo_hp}).children('.ui-progressbar-va
 			curr_grid.css('z-index','998');
 			curr_grid.animate({'margin-top':margin_value},500).fadeOut(500,function(){
 
-					$(this).css({'margin-top':'0','z-index':'0'}).empty().append($("<div class='gridnum'>"+Math.floor((Math.random() * 10))+"</div>")).fadeIn(500);
+					$(this).css({'margin-top':'0','z-index':'0'}).empty().append($("<div class='gridnum'>"+Math.floor((Math.random() * 10))+"</div>")).fadeIn(500,function(){
+						if(!duel_mode){
+							switch_turn=true;
+						}else{
+							ui_lock=false;
+						}
+					});
 				
 			
 			});
@@ -717,7 +750,7 @@ function initHelpButton(){
 			
 		});
 }
-function inittest(){
+function setupHelpwindow(){
 
 	$("#sideshow").click(function(){
 				
