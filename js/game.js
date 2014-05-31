@@ -6,7 +6,7 @@
         initAIButton();
        initHelpButton();
        initMenuButton()
-       
+       inittest();
     });
 
     var ui_lock=false;
@@ -702,6 +702,8 @@ function initHelpButton(){
 		helpbtn.click(function(e){
 			if(!helpwindow.hasClass("on")){
 			helpwindow.addClass("on");
+
+
 			helpbtn.css("z-index","1002");
 			helpbtn.addClass("active");
 		}
@@ -715,10 +717,29 @@ function initHelpButton(){
 			
 		});
 }
+function inittest(){
+
+	$("#sideshow").click(function(){
+				
+				$(".side").addClass("show");
+				$(".mid").addClass("off");
+			});
+		$("#sideshow2").click(function(){
+				
+				$(".side").addClass("show");
+				$(".mid").addClass("off");
+			});
+
+		$("#midshow").click(function(){
+				
+				$(".side").removeClass("show");
+				$(".mid").removeClass("off");
+			});
+}
 function initMenuButton(){
 	var menubtn=$(".rightcol7");
 	var menuwindow=$(".menuwindow");
-		menubtn.click(function(){
+		menubtn.click(function(e){
 			
 			if(!menuwindow.hasClass("on")){
 			menuwindow.addClass("on");
