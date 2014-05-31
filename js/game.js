@@ -4,14 +4,8 @@
       	initBattletext();
         initNumbers();
         initAIButton();
-       if(self_AI){
-       	setTimeout("callSelfAI()",500);
-
-		$(".leftcol7").empty().append("<div class='scorenum'>AI</div>");
-       }
-       if(oppo_AI){
-		$(".leftcol1").empty().append("<div class='scorenum'>AI</div>");
-       }
+       initHelpButton();
+       initMenuButton()
        
     });
 
@@ -26,6 +20,8 @@
     var oppo_score=0;
     var oppo_AI=true;
     var self_AI=false;
+    var self_first=true;
+   
      	function initOppoflife(){
  		$( "#oppolife" ).progressbar({max: max_health,value: 30,change:function(){ 
  			var selector = "#" + this.id + " > div";
@@ -211,7 +207,7 @@ function oppoAIOperation(){
 			}
 			curr_grid.empty().append($("<div class='gridnum'>"+sum+"</div>"));
 
-			curr_grid.css('z-index','9998');
+			curr_grid.css('z-index','998');
 			curr_grid.animate({'margin-top':margin_value},500).fadeOut(500,function(){
 
 					$(this).css({'margin-top':'0','z-index':'0'}).empty().append($("<div class='gridnum'>"+Math.floor((Math.random() * 10))+"</div>")).fadeIn(500);
@@ -344,7 +340,7 @@ var curr_grid=$(".cols"+colnum+".row"+rownum);
 			}
 			curr_grid.empty().append($("<div class='gridnum'>"+sum+"</div>"));
 
-			curr_grid.css('z-index','9998');
+			curr_grid.css('z-index','998');
 			curr_grid.animate({'margin-top':margin_value},500).fadeOut(500,function(){
 
 					$(this).css({'margin-top':'0','z-index':'0'}).empty().append($("<div class='gridnum'>"+Math.floor((Math.random() * 10))+"</div>")).fadeIn(500);
@@ -483,7 +479,7 @@ function initNumbers(){
 			}
 			curr_grid.empty().append($("<div class='gridnum'>"+sum+"</div>"));
 
-			curr_grid.css('z-index','9998');
+			curr_grid.css('z-index','998');
 			curr_grid.animate({'margin-top':margin_value},500).fadeOut(500,function(){
 
 					$(this).css({'margin-top':'0','z-index':'0'}).empty().append($("<div class='gridnum'>"+Math.floor((Math.random() * 10))+"</div>")).fadeIn(500);
@@ -620,7 +616,7 @@ $( "#oppolife" ).progressbar({value: curr_oppo_hp}).children('.ui-progressbar-va
 			}
 			curr_grid.empty().append($("<div class='gridnum'>"+sum+"</div>"));
 
-			curr_grid.css('z-index','9998');
+			curr_grid.css('z-index','998');
 			curr_grid.animate({'margin-top':margin_value},500).fadeOut(500,function(){
 
 					$(this).css({'margin-top':'0','z-index':'0'}).empty().append($("<div class='gridnum'>"+Math.floor((Math.random() * 10))+"</div>")).fadeIn(500);
@@ -669,20 +665,74 @@ $( "#oppolife" ).progressbar({value: curr_oppo_hp}).children('.ui-progressbar-va
 
 }
 function initAIButton(){
-		$('.leftcol1').click(function(){
+	var oppoAIbtn=$('.leftcol1');
+	var selfAIbtn=$('.leftcol7');
+		oppoAIbtn.click(function(){
 		oppo_AI=!oppo_AI;
 		if(oppo_AI){
-		$(this).empty().append("<div class='scorenum'>AI</div>");}else{
-			$(this).empty().append("<div class='scorenum'></div>");
+		 oppoAIbtn.empty().append("<div class='ai'>AI</div>");}else{
+			 oppoAIbtn.empty().append("<div class='ai'>P2</div>");
 		}
 	});
-	$('.leftcol7').click(function(){
+	selfAIbtn.click(function(){
 		self_AI=!self_AI;
 		if(self_AI){
-		$(this).empty().append("<div class='scorenum'>AI</div>");}else{
-			$(this).empty().append("<div class='scorenum'></div>");
+		selfAIbtn.empty().append("<div class='ai'>AI</div>");}else{
+			selfAIbtn.empty().append("<div class='ai'>P1</div>");
 		}
 	});
+
+	if(self_AI){
+		if(self_first)setTimeout("callSelfAI()",500);
+
+		selfAIbtn.empty().append("<div class='ai'>AI</div>");
+       }else{
+       	selfAIbtn.empty().append("<div class='ai'>P1</div>");
+       }
+       if(oppo_AI){
+       	if(!self_first)setTimeout("callSelfAI()",500);
+		oppoAIbtn.empty().append("<div class='ai'>AI</div>");
+       }else{
+       		oppoAIbtn.empty().append("<div class='ai'>P2</div>");
+       }
+}
+function initHelpButton(){
+	var helpbtn=$(".rightcol1");
+	var helpwindow=$(".helpwindow");
+		helpbtn.click(function(e){
+			if(!helpwindow.hasClass("on")){
+			helpwindow.addClass("on");
+			helpbtn.css("z-index","1002");
+			helpbtn.addClass("active");
+		}
+			else{
+				helpwindow.removeClass("on");
+			helpbtn.css("z-index","1");
+		helpbtn.removeClass("active");
+	}
+			
+			e.stopPropagation();
+			
+		});
+}
+function initMenuButton(){
+	var menubtn=$(".rightcol7");
+	var menuwindow=$(".menuwindow");
+		menubtn.click(function(){
+			
+			if(!menuwindow.hasClass("on")){
+			menuwindow.addClass("on");
+			menubtn.css("z-index","1002");
+			menubtn.addClass("active");
+		}
+			else{
+				menuwindow.removeClass("on");
+			menubtn.css("z-index","1");
+		menubtn.removeClass("active");
+	}
+			
+			e.stopPropagation();
+		});
 }
 ;!(function ($) {
     $.fn.classes = function (callback) {

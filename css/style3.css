@@ -1,11 +1,18 @@
 ﻿h1,h2{
   text-align: left;
 }
+
+
 .game{
     margin:0 auto; width:455px; height:615px; 
     
         background: #eee;
-
+   -webkit-touch-callout: none;
+-webkit-user-select: none;
+-khtml-user-select: none;
+-moz-user-select: none;
+-ms-user-select: none;
+user-select: none;
           -webkit-box-shadow: 
         0 1px 1px rgba(0,0,0,0.15), 
         0 10px 0 -5px #eee, 
@@ -28,8 +35,56 @@
         0 20px 1px -9px rgba(0,0,0,0.15); 
     
 }
+.game:hover {
+  cursor: default;
+}
+.menuwindow{
+ position: relative;
+  display: none;
+}
+.helpwindow{
+   position: relative;
+    display: none;
+}
+.menuwindow.on{
+ position: relative;
+   display: block;
+}
+.menuwindow.on:after {
+  content: " ";
+  z-index: 1000;
+  display: block;
+  position: absolute;
+  width: 455px;
+  height: 615px;
+  top: 0;
+  left: 0;
+  right: 0;
+  background: rgba(0, 0, 0, 0.5);
+  border-radius: 5pt;
+-moz-border-radius:5px;
+-webkit-border-radius:5px;
+}
+.helpwindow.on{
+ position: relative;
+ display: block;
+}
+.helpwindow.on:after {
+  content: " ";
+  z-index: 1000;
+  display: block;
+  position: absolute;
+  width: 455px;
+  height: 615px;
+  top: 0;
+  left: 0;
+  right: 0;
+  background: rgba(0, 0, 0, 0.5);
 
-
+  border-radius: 5pt;
+-moz-border-radius:5px;
+-webkit-border-radius:5px;
+}
 .grid{
    width: 46px;
    height:46px;
@@ -197,6 +252,7 @@ position: relative;
    border-radius: 5pt;
    -moz-border-radius:5px;
    -webkit-border-radius:5px;
+
 }
 .rightcol7{
    position: relative;
@@ -318,12 +374,7 @@ body {
    font-size: 90%;
    background-color: #e7e7de;
    text-align:center;
-   -webkit-touch-callout: none;
--webkit-user-select: none;
--khtml-user-select: none;
--moz-user-select: none;
--ms-user-select: none;
-user-select: none;
+
 }
 @font-face {
    font-family: AgentOrange;
@@ -344,4 +395,60 @@ font-size: 22px;
 font-family: AgentOrange;
 color:red;
 font-weight:900;
+
+}
+.ai{
+  padding-top: 6px;
+   text-align: center;
+   vertical-align: text-bottom;
+font-size: 22px;
+font-family: AgentOrange;
+color:white;
+font-weight:900;
+-webkit-text-shadow: 0px 0px 5px yellow;
+-moz-text-shadow: 0px 0px 5px yellow;
+text-shadow: 0px 0px 5px yellow;
+
+}
+.menu{
+  margin-top: -3px;
+ text-align: center;
+ font-size: 35px;
+color: white;
+
+-webkit-transform: rotate(-90deg); 
+-moz-transform: rotate(-90deg); 
+filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=3);
+}
+.active{
+  -webkit-text-shadow: 0px 0px 5px yellow;
+-moz-text-shadow: 0px 0px 5px yellow;
+text-shadow: 0px 0px 5px yellow;
+border-color: yellow;
+-moz-box-shadow:0px 0px 5px yellow; -webkit-box-shadow:0px 0px 5px yellow; box-shadow:0px 0px 5px yellow;
+}
+.help{
+   padding-top: 3px;
+   text-align: center;
+   vertical-align: text-bottom;
+font-size: 28px;
+font-family: AgentOrange;
+color:white;
+font-weight:900;
+
+}
+
+.overlay{
+ z-index: 1001;
+  position: absolute;
+     padding-top: 3px;
+   text-align: center;
+   vertical-align: text-bottom;
+font-size: 28px;
+font-family: AgentOrange;
+color:white;
+font-weight:900;
+-webkit-text-shadow: 0px 0px 5px yellow;
+-moz-text-shadow: 0px 0px 5px yellow;
+text-shadow: 0px 0px 5px yellow;
 }

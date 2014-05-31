@@ -12,19 +12,9 @@
 <link href="css/jquery-ui.css" rel="stylesheet" />
 <script src="js/jquery.js"></script>
 <script src="js/jquery-ui.js"></script>
-<script src="js/game-min.js"></script>
+<script src="js/game.js"></script>
 
 <script type="text/javascript">
-       $(document).ready(function() {
-    	activateSelfAI();
-    	 initSelflife();
-      	initOppoflife();
-      	initBattletext();
-        initNumbers();
-        initAIButton();
-       
-       
-    });
 
 
 
@@ -59,6 +49,9 @@
 
  
 <p><div class="game">
+<div class='helpwindow'><div class='overlay'>blablabla</div></div>
+<div class='menuwindow'></div>
+
 <div class='leftcol'>
 	<div class='leftcol1'></div>
 	<div class='leftcol2'></div>
@@ -198,15 +191,17 @@
 <div class="wrapper " id="selflife" style="height:50px"></div></div>
 </div>
 <div class='rightcol'>
-		<div class='rightcol1'></div>
+		<div class='rightcol1'><div id='curvedarrow1'></div><div class='help'>?</div></div>
 	<div class='rightcol2'></div>
 	
 	<div class='rightcol4'></div>
 	
 	<div class='rightcol6'></div>
-	<div class='rightcol7'></div>
+	<div class='rightcol7'><div class='menu'>iii</div></div>
 </div>
-</div></p>
+</div>
+
+</p>
 
 <h3>
 <a name="how-to-play" id="instructions" class="anchor" href="#how-to-play"><span class="octicon octicon-link"></span></a>How to Play</h3>
