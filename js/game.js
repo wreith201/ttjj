@@ -6,7 +6,7 @@ $(document).ready(function() {
     initAIButton();
     initHelpButton();
     initMenuButton();
-     setupHelpwindow();
+    setupHelpwindow();
 });
 
 var ui_lock = false;
@@ -19,7 +19,7 @@ var curr_self_hp = max_health;
 var self_score = 0;
 var oppo_score = 0;
 var oppo_AI = true;
-var self_AI = true;
+var self_AI = false;
 var self_first = true;
 var switch_turn = false;
 var duel_mode = false;
