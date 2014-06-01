@@ -7,6 +7,7 @@ $(document).ready(function() {
     initHelpButton();
     initMenuButton();
     setupHelpwindow();
+    initResetButton();
 });
 
 var ui_lock = false;
@@ -25,7 +26,34 @@ var switch_turn = false;
 var duel_mode = false;
 var rt_enable = true;
 var rt_class = "rotatetext";
+var reset_timer=false;
+var pause=false;
 
+function restart(){
+    pause=true;
+    reset_timer=true;
+
+     self_score = 0;
+      oppo_score = 0;
+       $(".leftcol4").empty().append("<div class='scorenum'>" + oppo_score + "</div>");
+        $(".rightcol4").empty().append("<div class='scorenum'>" + self_score + "</div>");
+      curr_oppo_hp = max_health;
+      curr_self_hp = max_health;
+      $("#cdt").html("Resetting");
+
+       $("#oppolife").progressbar({
+            value: curr_oppo_hp
+        });
+        $("#oppolifevalue").empty().html(curr_oppo_hp);
+
+         $("#selflife").progressbar({
+            value: curr_oppo_hp
+        });
+        $("#selflifevalue").empty().html(curr_oppo_hp);
+
+        setTimeout("pause=false;", 1000);
+      
+}
 function initTimer() {
     $("#battletext").progressbar({
         value: 100
@@ -35,10 +63,10 @@ function initTimer() {
         "padding-top": "5px",
         "font-size": "30px"
     });
-    runTimer();
+   newTimer();
 }
 
-function runTimer() {
+function newTimer() {
     $("#battletext").progressbar({
         value: 100
     });
@@ -46,6 +74,12 @@ function runTimer() {
 
     var i = 0;
     var pGress = setInterval(function() {
+        if(reset_timer){
+            i=0;
+            reset_timer=false;
+        }
+       
+        if(!pause)
         i++;
         var pCnt = !isNaN(pVal) ? (pVal - 100000 / turn_interval * i) : 1;
         if (pCnt < 0) switch_turn = true;
@@ -105,7 +139,7 @@ function runTimer() {
             if (oppo_turn && oppo_AI) {
                 setTimeout("callOppoAI()", 1000);
             }
-            runTimer();
+            newTimer();
         } else {
             var value = (turn_interval / 1000) - i;
             $("#cdt").html(value);
@@ -211,12 +245,16 @@ function initSelflife() {
     });
 }
 function callOppoAI() {
+    
     if (duel_mode) {
         var i = turn_interval / 2000;
         var oAI = setInterval(function() {
-            oppoAIOperation();
+            if(!pause&&oppo_AI){
+             oppoAIOperation();
             i--;
+        }
             if (i < 0) clearInterval(oAI);
+             
         },
         1600);
     } else {
@@ -225,16 +263,20 @@ function callOppoAI() {
     }
 }
 function callSelfAI() {
-
+    
     if (duel_mode) {
         var i = turn_interval / 2000;
         var oAI = setInterval(function() {
+           if(!pause&&self_AI){
             selfAIOperation();
             i--;
+        }
             if (i < 0) clearInterval(oAI);
+           
         },
         1600);
     } else {
+
         selfAIOperation();
         setTimeout("switch_turn=true;", 500);
     }
@@ -667,6 +709,7 @@ function initNumbers() {
         $(this).click(sum);
         function sum() {
             if (ui_lock) return;
+            if(pause)return;
             if (self_AI) return;
             var sum = 0;
             var curr_grid = $(this);
@@ -888,6 +931,7 @@ function initNumbers() {
         $(this).click(sum);
         function sum() {
             if (ui_lock) return;
+            if(pause)return;
             if (oppo_AI) return;
             var sum = 0;
             var curr_grid = $(this);
@@ -1138,19 +1182,31 @@ function initAIButton() {
         oppoAIbtn.empty().append("<div class='ai'>P2</div>");
     }
 }
+function initResetButton(){
+var resetbtn1 = $(".leftcol4");
+var resetbtn2 = $(".rightcol4");
+resetbtn1.click(function(){
+   restart();
+});
+resetbtn2.click(function(){
+  restart();
+
+});
+}
 function initHelpButton() {
     var helpbtn = $(".rightcol1");
     var helpwindow = $(".helpwindow");
     helpbtn.click(function(e) {
         if (!helpwindow.hasClass("on")) {
             helpwindow.addClass("on");
-
+            pause=true;
             helpbtn.css("z-index", "1002");
             helpbtn.addClass("active");
         } else {
             helpwindow.removeClass("on");
             helpbtn.css("z-index", "1");
             helpbtn.removeClass("active");
+             pause=false;
         }
 
         e.stopPropagation();
@@ -1185,10 +1241,12 @@ function initMenuButton() {
             menuwindow.addClass("on");
             menubtn.css("z-index", "1002");
             menubtn.addClass("active");
+             pause=true;
         } else {
             menuwindow.removeClass("on");
             menubtn.css("z-index", "1");
             menubtn.removeClass("active");
+             pause=false;
         }
 
         e.stopPropagation();
