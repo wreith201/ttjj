@@ -5,7 +5,7 @@
 
 .game{
     margin:0 auto; width:455px; height:615px; 
-    
+    font-family: 'Myriad Pro', Calibri, Helvetica, Arial, sans-serif;
         background: #eee;
    -webkit-touch-callout: none;
 -webkit-user-select: none;
