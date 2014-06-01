@@ -699,3 +699,30 @@ transform: rotate(180deg);
     -o-transition: 0.5s ease-in;
     transition: 0.5s ease-in;
 }
+
+.scorenum{
+  -webkit-transform: rotate(0deg);
+-o-transform: rotate(0deg);
+-moz-transform: rotate(0deg);
+transform: rotate(0deg);
+   -webkit-transition: 0.5s ease-in;
+    -moz-transition: 0.5s ease-in;
+    -o-transition: 0.5s ease-in;
+    transition: 0.5s ease-in;
+}
+.scorenum.rotatetext{
+-webkit-transform: rotate(180deg);
+-o-transform: rotate(180deg);
+-moz-transform: rotate(180deg);
+transform: rotate(180deg);
+    -webkit-transition: 0.5s ease-in;
+    -moz-transition: 0.5s ease-in;
+    -o-transition: 0.5s ease-in;
+    transition: 0.5s ease-in;
+}
+.rtfixed{
+  -webkit-transform: rotate(180deg);
+-o-transform: rotate(180deg);
+-moz-transform: rotate(180deg);
+transform: rotate(180deg);
+}
