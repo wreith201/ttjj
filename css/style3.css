@@ -5,7 +5,7 @@
 
 .game{
     margin:0 auto; width:455px; height:615px; 
-    font-family: 'Myriad Pro', Calibri, Helvetica, Arial, sans-serif;
+   
         background: #eee;
    -webkit-touch-callout: none;
 -webkit-user-select: none;
@@ -411,11 +411,12 @@ text-shadow: 0px 0px 5px yellow;
 
 }
 .menu{
-  margin-top: -3px;
+  text-align: center;
+  margin-top: 0px;
  text-align: center;
  font-size: 35px;
 color: white;
-
+ font-family: 'Myriad Pro', Calibri, Helvetica, Arial, sans-serif;
 -webkit-transform: rotate(-90deg); 
 -moz-transform: rotate(-90deg); 
 filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=3);
