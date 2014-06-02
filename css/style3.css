@@ -374,6 +374,7 @@ body {
    font-size: 90%;
    background-color: #e7e7de;
    text-align:center;
+   overflow:hidden;
 
 }
 @font-face {

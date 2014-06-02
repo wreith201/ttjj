@@ -9,6 +9,7 @@ $(document).ready(function() {
     setupHelpwindow();
     initResetButton();
     setupMenuWindow();
+    document.body.addEventListener('touchstart', function(e){ e.preventDefault(); });
 });
 
 var ui_lock = false;
