@@ -10,18 +10,6 @@
 <script src="js/jquery-ui.js"></script>
 <script src="js/game-min.js"></script>
 <script type="text/javascript">
-      $(document).ready(function() {
-    	
-    	 initSelflife();
-      	initOppoflife();
-      	initBattletext();
-        initNumbers();
-        initAIButton();
-       
-       
-    });
-
-   
 
 
 </script>
@@ -31,6 +19,188 @@
 
 <body >
 <div class="game">
+<div class='helpwindow'>
+	<div id="sideshow" class='overlay mid descr'></div>
+	<div id="sideshow2" class='overlay mid descr'></div>
+	<div id="midshow" class='overlay side descr'></div>
+
+	<div id="turnswitch" class='overlay descr side'><div class="rightbubble" style="top:50px;width:300px">Player2's Turn State</div></div>
+	<div id="turnswitch2" class='overlay descr side'></div>
+	<div id="turnswitch3" class='overlay descr side'><div class="rightbubble" style="top:50px;width:300px">Player1's Turn State</div></div>
+	<div id="turnswitch4" class='overlay descr side'></div>
+
+	<div id="aiswitch" class='overlay descr side'><div class="rightbubble">AI/Player2 Switch</div></div>
+	<div id="aiswitch2" class='overlay descr side'><div class="rightbubble">AI/Player1 Switch</div></div>
+	<div id="helpbtn" class='overlay descr side'></div>
+	<div id="menubtn" class='overlay descr side'><div class="leftbubble" style="top:-60px;left:-225px">MenuButton</div></div>
+	
+
+	<div id="score" class='overlay descr side'><div class="rightbubble">Player2's Score</div></div>
+	<div id="score2" class='overlay descr side'><div class="leftbubble" style="top:-60px;left:-225px">Player1's Score</div></div>
+
+
+	<div id="timer" class='overlay descr mid'>Count Down Timer</div>
+	<div id="numberpad" class='overlay descr mid' >Player1's Number Pad</div>
+	<div id="numberpad2" class='overlay descr mid'>Player2's Number Pad</div>
+	<div id="hpbar" class='overlay descr mid'>Player1's Health Bar</div>
+	<div id="hpbar2" class='overlay descr mid'>Player2's Health Bar</div>
+
+</div>
+<div class='menuwindow'>
+	<div id="gamemode" class='overlay descr menuoption'>Game Mode: <span id="mode"></span></div>
+		<div id="rotationsetting" class='overlay descr menuoption'>Roatation: <span id="rota"></span></div>
+	<div id="timersetting" class='overlay descr menuoption'>Timer Setting: <span id="ts"></span></div>
+	
+</div>
+
+<div class='leftcol'>
+	<div class='leftcol1'></div>
+	<div class='leftcol2'></div>
+	
+	<div class='leftcol4'></div>
+	
+	<div class='leftcol6'></div>
+	<div class='leftcol7'></div>
+</div>
+<div class='gamepanel'>
+<div clss="outline"><div class="wrapper " id="oppolife" style="height:50px"></div></div>
+<div class="outline">
+	<div class="wrapper oppo">
+	     <div class="col1 row1 grid oppo">
+	     </div>
+	     <div class="col2 row1 grid oppo">
+	     </div>
+	     <div class="col3 row1 grid oppo">
+	     </div>
+	     <div class="col4 row1 grid oppo">
+	     </div>
+	     <div class="col5 row1 grid oppo">
+	     </div>
+	     <div class="col6 row1 grid oppo">
+	     </div>
+	 </div> 
+</div>
+<div class="outline">
+	<div class="wrapper oppo">
+	     <div class="col1 row2 grid oppo">
+	     </div>
+	     <div class="col2 row2 grid oppo">
+	     </div>
+	     <div class="col3 row2 grid oppo">
+	     </div>
+	     <div class="col4 row2 grid oppo">
+	     </div>
+	     <div class="col5 row2 grid oppo">
+	     </div>
+	     <div class="col6 row2 grid oppo">
+	     </div>
+	 </div> 
+</div><div class="outline">
+	<div class="wrapper oppo">
+	     <div class="col1 row3 grid oppo">
+	     </div>
+	     <div class="col2 row3 grid oppo">
+	     </div>
+	     <div class="col3 row3 grid oppo">
+	     </div>
+	     <div class="col4 row3 grid oppo">
+	     </div>
+	     <div class="col5 row3 grid oppo">
+	     </div>
+	     <div class="col6 row3 grid oppo">
+	     </div>
+	 </div> 
+</div><div class="outline">
+	<div class="wrapper oppo">
+	     <div class="col1 row4 grid oppo">
+	     </div>
+	     <div class="col2 row4 grid oppo">
+	     </div>
+	     <div class="col3 row4 grid oppo">
+	     </div>
+	     <div class="col4 row4 grid oppo">
+	     </div>
+	     <div class="col5 row4 grid oppo">
+	     </div>
+	     <div class="col6 row4 grid oppo">
+	     </div>
+	 </div> 
+</div>
+<div clss="outline"><div class="wrapper " style="height:50px" id="battletext"></div></div>
+<div class="outline">
+	<div class="wrapper self">
+	     <div class="cols1 row5 grid self">
+	     </div>
+	     <div class="cols2 row5 grid self">
+	     </div>
+	     <div class="cols3 row5 grid self">
+	     </div>
+	     <div class="cols4 row5 grid self">
+	     </div>
+	     <div class="cols5 row5 grid self">
+	     </div>
+	     <div class="cols6 row5 grid self">
+	     </div>
+	 </div> 
+</div><div class="outline">
+	<div class="wrapper self">
+	     <div class="cols1 row6 grid self">
+	     </div>
+	     <div class="cols2 row6 grid self">
+	     </div>
+	     <div class="cols3 row6 grid self">
+	     </div>
+	     <div class="cols4 row6 grid self">
+	     </div>
+	     <div class="cols5 row6 grid self">
+	     </div>
+	     <div class="cols6 row6 grid self">
+	     </div>
+	 </div> 
+</div><div class="outline">
+	<div class="wrapper self">
+	     <div class="cols1 row7 grid self">
+	     </div>
+	     <div class="cols2 row7 grid self">
+	     </div>
+	     <div class="cols3 row7 grid self">
+	     </div>
+	     <div class="cols4 row7 grid self">
+	     </div>
+	     <div class="cols5 row7 grid self">
+	     </div>
+	     <div class="cols6 row7 grid self">
+	     </div>
+	 </div> 
+</div><div class="outline">
+	<div class="wrapper self">
+	     <div class="cols1 row8 grid self">
+	     </div>
+	     <div class="cols2 row8 grid self">
+	     </div>
+	     <div class="cols3 row8 grid self">
+	     </div>
+	     <div class="cols4 row8 grid self">
+	     </div>
+	     <div class="cols5 row8 grid self">
+	     </div>
+	     <div class="cols6 row8 grid self">
+	     </div>
+	 </div> 
+</div>
+<div clss="outline">
+<div class="wrapper " id="selflife" style="height:50px"></div></div>
+</div>
+<div class='rightcol'>
+		<div class='rightcol1'><div id='curvedarrow1'></div><div class='help'>?</div></div>
+	<div class='rightcol2'></div>
+	
+	<div class='rightcol4'></div>
+	
+	<div class='rightcol6'></div>
+	<div class='rightcol7'><div class='menu'>iii</div></div>
+</div>
+</div>
 <div class='leftcol'>
 	<div class='leftcol1'></div>
 	<div class='leftcol2'></div>
