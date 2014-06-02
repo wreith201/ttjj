@@ -1324,10 +1324,10 @@ function setupMenuWindow(){
     var rotationbtn=$("#rotationsetting");
    
    
-        $("#mode").html(duel_mode?"Fast Duel":"One Move/Turn");
+        $("#mode").html(duel_mode?"Fast Duel":"1 Move/Turn");
     gamemodebtn.click(function(){
         duel_mode=!duel_mode;
-        $("#mode").html(duel_mode?"Fast Duel":"One Move/Turn");
+        $("#mode").html(duel_mode?"Fast Duel":"1 Move/Turn");
         setting_changed=true;
     });
 
