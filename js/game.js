@@ -8,6 +8,7 @@ $(document).ready(function() {
     initMenuButton();
     setupHelpwindow();
     initResetButton();
+    setupMenuWindow();
 });
 
 var ui_lock = false;
@@ -28,11 +29,12 @@ var rt_enable = true;
 var rt_class = "rotatetext";
 var reset_timer=false;
 var pause=false;
-
+var setting_changed=false;
+var ai_reset=false;
 function restart(){
     pause=true;
     reset_timer=true;
-
+    ai_reset=true;
      self_score = 0;
       oppo_score = 0;
        $(".leftcol4").empty().append("<div class='scorenum'>" + oppo_score + "</div>");
@@ -50,10 +52,20 @@ function restart(){
             value: curr_oppo_hp
         });
         $("#selflifevalue").empty().html(curr_oppo_hp);
-
+        if (!rt_enable) {
+            $(".gridnum.rotatetext").removeClass("rotatetext");
+            $(".scorenum.rotatetext").removeClass("rotatetext");
+        }
         setTimeout("pause=false;", 1000);
+       
+        setTimeout("resetAI()", 1700);
       
 }
+ function resetAI(){
+            ai_reset=false;
+            if(self_AI&&self_turn)callSelfAI();
+            if(oppo_AI&&oppo_turn)callOppoAI();
+        }
 function initTimer() {
     $("#battletext").progressbar({
         value: 100
@@ -94,6 +106,9 @@ function newTimer() {
                     $(".scorenum").addClass("rotatetext");
 
                 }
+            }else{
+                   $(".gridnum.rotatetext").removeClass("rotatetext");
+                    $(".scorenum.rotatetext").removeClass("rotatetext");
             }
             switch_turn = false;
             if (!duel_mode) ui_lock = false;
@@ -247,39 +262,72 @@ function initSelflife() {
 function callOppoAI() {
     
     if (duel_mode) {
-        var i = turn_interval / 2000;
+        var i = turn_interval / 2000-1;
         var oAI = setInterval(function() {
             if(!pause&&oppo_AI){
              oppoAIOperation();
             i--;
         }
+        if(ai_reset)clearInterval(oAI);
             if (i < 0) clearInterval(oAI);
              
         },
         1600);
     } else {
-        oppoAIOperation();
-        setTimeout("switch_turn=true;", 500);
+
+   var i =0;
+        var oAI = setInterval(function() {
+           if(!pause&&oppo_AI){
+            oppoAIOperation();
+            i--;
+        }
+        if(ai_reset)clearInterval(oAI);
+            if (i < 0) 
+                {
+                    clearInterval(oAI);
+                      setTimeout("switch_turn=true;", 1000);
+           }
+        },
+        1600);
+      
+       
+       
+        
     }
 }
 function callSelfAI() {
     
     if (duel_mode) {
-        var i = turn_interval / 2000;
+        var i = turn_interval / 2000-1;
         var oAI = setInterval(function() {
            if(!pause&&self_AI){
             selfAIOperation();
             i--;
         }
+       
             if (i < 0) clearInterval(oAI);
-           
+            if(ai_reset)clearInterval(oAI);
         },
         1600);
     } else {
-
-        selfAIOperation();
-        setTimeout("switch_turn=true;", 500);
+   var i =0;
+        var oAI = setInterval(function() {
+           if(!pause&&self_AI){
+            selfAIOperation();
+            i--;
+        }
+        if(ai_reset)clearInterval(oAI);
+            if (i < 0) 
+                {
+                    clearInterval(oAI);
+                    setTimeout("switch_turn=true;", 1000);
+           }
+        },
+        1600);
+      
+       
     }
+    
 }
 function oppoAIOperation() {
     var colnum = Math.floor((Math.random() * 6)) + 1;
@@ -1240,18 +1288,70 @@ function initMenuButton() {
         if (!menuwindow.hasClass("on")) {
             menuwindow.addClass("on");
             menubtn.css("z-index", "1002");
+            $(".leftcol7").css("z-index", "1002");
+             $(".leftcol1").css("z-index", "1002");
             menubtn.addClass("active");
              pause=true;
+             setting_changed=false;
+
         } else {
             menuwindow.removeClass("on");
             menubtn.css("z-index", "1");
+            $(".leftcol7").css("z-index", "1");
+             $(".leftcol1").css("z-index", "1");
             menubtn.removeClass("active");
              pause=false;
+             if(setting_changed)restart();
+
+          
         }
 
         e.stopPropagation();
     });
-}; ! (function($) {
+}
+
+function setupMenuWindow(){
+    var gamemodebtn=$("#gamemode");
+    var timersettingbtn=$("#timersetting");
+    var rotationbtn=$("#rotationsetting");
+   
+   
+        $("#mode").html(duel_mode?"Fast Duel":"One Move/Turn");
+    gamemodebtn.click(function(){
+        duel_mode=!duel_mode;
+        $("#mode").html(duel_mode?"Fast Duel":"One Move/Turn");
+        setting_changed=true;
+    });
+
+        $("#ts").html(turn_interval/1000);
+timersettingbtn.click(function(){
+        turn_interval+=10000;
+    if(turn_interval>30000){
+        turn_interval=10000;
+    }
+    $("#ts").html(turn_interval/1000);
+    setting_changed=true;
+});
+
+
+    $("#rota").html(rt_enable?"On":"Off");
+    rotationbtn.click(function(){
+        if(rt_enable){
+            rt_class="";
+            rt_enable=false;
+        }else{
+             rt_class="rotatetext";
+            rt_enable=true;
+        }
+        $("#rota").html(rt_enable?"On":"Off");
+        setting_changed=true;
+    });
+     
+
+}
+
+
+; ! (function($) {
     $.fn.classes = function(callback) {
         var classes = [];
         $.each(this,
