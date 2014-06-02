@@ -53,14 +53,14 @@ function restart(){
         });
         $("#selflifevalue").empty().html(curr_oppo_hp);
         if (!rt_enable) {
-            
+
             $(".gridnum.rotatetext").removeClass("rotatetext");
             $(".scorenum.rotatetext").removeClass("rotatetext");
         }else
         if(oppo_turn){
            
                $(".gridnum").addClass("rotatetext");
-            $(".scorenum").addClass("rotatetext";
+            $(".scorenum").addClass("rotatetext");
 
         }
         
