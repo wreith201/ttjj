@@ -53,9 +53,17 @@ function restart(){
         });
         $("#selflifevalue").empty().html(curr_oppo_hp);
         if (!rt_enable) {
+            
             $(".gridnum.rotatetext").removeClass("rotatetext");
             $(".scorenum.rotatetext").removeClass("rotatetext");
+        }else
+        if(oppo_turn){
+           
+               $(".gridnum").addClass("rotatetext");
+            $(".scorenum").addClass("rotatetext";
+
         }
+        
         setTimeout("pause=false;", 1000);
        
         setTimeout("resetAI()", 1700);
@@ -101,8 +109,8 @@ function newTimer() {
                     $(".gridnum.rotatetext").removeClass("rotatetext");
                     $(".scorenum.rotatetext").removeClass("rotatetext");
                 } else {
-                    var grids = $(".gridnum");
-                    grids.addClass("rotatetext");
+                  
+                    $(".gridnum").addClass("rotatetext");
                     $(".scorenum").addClass("rotatetext");
 
                 }
