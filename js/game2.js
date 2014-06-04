@@ -158,10 +158,10 @@ function newTimer() {
             oppo_turn = !oppo_turn;
 
             if (self_turn && self_AI) {
-                setTimeout("callSelfAI()", 1000);
+                setTimeout("callSelfAI()", 500);
             }
             if (oppo_turn && oppo_AI) {
-                setTimeout("callOppoAI()", 1000);
+                setTimeout("callOppoAI()", 500);
             }
             newTimer();
         } else {
@@ -415,12 +415,13 @@ function oppoAIOperation() {
                     });
                 //self col ---
             sum = sum - selfvalue;
+             curr_grid.stop(true);
             curr_grid.css({
                 'color': 'white',
                 'background': 'orangered',
                
             });
-            curr_grid.stop(true);
+           
 
           
                $(".self."+classes[0])
