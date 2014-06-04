@@ -397,7 +397,7 @@ function oppoAIOperation() {
                         sum += this_num;
                         $(this).transition({scale:1.1,delay: 300},400).transition({ scale: 0},300,callback).transition({ scale: 1},500);
                         function callback() {
-                            $(this).removeAttr("style").children(".gridnum").empty().html(Math.floor((Math.random() * 10)));
+                            $(this).children(".gridnum").empty().html(Math.floor((Math.random() * 10)));
 
                         }
                     });
@@ -409,7 +409,7 @@ function oppoAIOperation() {
                         sum += this_num;
                        $(this).transition({scale:1.1,delay: 300},400).transition({ scale: 0},300,callback).transition({ scale: 1},500);
                         function callback() {
-                            $(this).removeAttr("style").children('.gridnum').empty().html(Math.floor((Math.random() * 10)));
+                            $(this).children('.gridnum').empty().html(Math.floor((Math.random() * 10)));
 
                         }
                     });
@@ -433,7 +433,7 @@ function oppoAIOperation() {
                     sum -= this_num;
                     if (sum < 0) sum = 0
                     function callback() {
-                        $(this).removeAttr("style").children('.gridnum').empty().html(Math.floor((Math.random() * 10)));  
+                        $(this).children('.gridnum').empty().html(Math.floor((Math.random() * 10)));  
                 }
                });
             curr_grid.children('.gridnum').empty().html(sum );
@@ -539,7 +539,7 @@ function selfAIOperation() {
                         sum += this_num;
                          $(this).transition({scale:1.1,delay: 300},400).transition({ scale: 0},300,callback).transition({ scale: 1},500);
                         function callback() {
-                            $(this).removeAttr("style").children('.gridnum').empty().html(Math.floor((Math.random() * 10)));
+                            $(this).children('.gridnum').empty().html(Math.floor((Math.random() * 10)));
 
                         }
                     });
@@ -551,7 +551,7 @@ function selfAIOperation() {
                         sum += this_num;
                         $(this).transition({scale:1.1,delay: 300},400).transition({ scale: 0},300,callback).transition({ scale: 1},500);
                         function callback() {
-                            $(this).removeAttr("style").children('.gridnum').empty().html(Math.floor((Math.random() * 10)));
+                            $(this).children('.gridnum').empty().html(Math.floor((Math.random() * 10)));
 
                         }
                     });
@@ -574,7 +574,7 @@ function selfAIOperation() {
                     sum -= this_num;
                     if (sum < 0) sum = 0
                     function callback() {
-                        $(this).removeAttr("style").children('.gridnum').empty().html(Math.floor((Math.random() * 10)));
+                        $(this).children('.gridnum').empty().html(Math.floor((Math.random() * 10)));
              
                     }
                 });
@@ -717,7 +717,7 @@ function initGridListner(){
                         sum += this_num;
                            $(this).transition({scale:1.1,delay: 300},400).transition({ scale: 0},300,callback).transition({ scale: 1},500);
                         function callback() {
-                            $(this).removeAttr("style").children('.gridnum').empty().html(Math.floor((Math.random() * 10)));
+                            $(this).children('.gridnum').empty().html(Math.floor((Math.random() * 10)));
 
                         }
                     });
@@ -729,7 +729,7 @@ function initGridListner(){
                         sum += this_num;
                             $(this).transition({scale:1.1,delay: 300},400).transition({ scale: 0},300,callback).transition({ scale: 1},500);
                         function callback() {
-                            $(this).removeAttr("style").children('.gridnum').empty().html(Math.floor((Math.random() * 10)));
+                            $(this).children('.gridnum').empty().html(Math.floor((Math.random() * 10)));
 
                         }
                     });
@@ -754,7 +754,7 @@ function initGridListner(){
                     if (sum < 0) sum = 0
                     function callback() {
                         
-              $(this).removeAttr("style").children('.gridnum').empty().html(Math.floor((Math.random() * 10)));
+              $(this).children('.gridnum').empty().html(Math.floor((Math.random() * 10)));
                      
                         
                     }
@@ -897,7 +897,7 @@ function initGridListner(){
                         sum += this_num;
                         $(this).transition({scale:1.1,delay: 300},400).transition({ scale: 0},300,callback).transition({ scale: 1},500);
                         function callback() {
-                            $(this).removeAttr("style").children(".gridnum").empty().html(Math.floor((Math.random() * 10)));
+                            $(this).children(".gridnum").empty().html(Math.floor((Math.random() * 10)));
 
                         }
                     });
@@ -909,7 +909,7 @@ function initGridListner(){
                         sum += this_num;
                         $(this).transition({scale:1.1,delay: 300},400).transition({ scale: 0},300,callback).transition({ scale: 1},500);
                         function callback() {
-                            $(this).removeAttr("style").children('.gridnum').empty().html(Math.floor((Math.random() * 10)));
+                            $(this).children('.gridnum').empty().html(Math.floor((Math.random() * 10)));
 
                         }
                     });
@@ -932,7 +932,7 @@ function initGridListner(){
                     sum -= this_num;
                     if (sum < 0) sum = 0
                     function callback() {
-                        $(this).removeAttr("style").children('.gridnum').empty().html(Math.floor((Math.random() * 10)));
+                        $(this).children('.gridnum').empty().html(Math.floor((Math.random() * 10)));
              
                 }
                });
