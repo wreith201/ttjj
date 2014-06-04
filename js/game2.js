@@ -395,7 +395,7 @@ function oppoAIOperation() {
                         var this_num = parseInt($(this).text());
                         $(this).children(".gridnum").empty().html("+" + this_num );
                         sum += this_num;
-                        $(this).transition({opacity:0.8,scale:1.1},500).transition({ scale: 0},500,callback);
+                        $(this).transition({scale:1.1,delay: 300},400).transition({ scale: 0},300,callback).transition({ scale: 1},500);
                         function callback() {
                             $(this).removeAttr("style").children(".gridnum").empty().html(Math.floor((Math.random() * 10)));
 
@@ -407,7 +407,7 @@ function oppoAIOperation() {
                         var this_num = parseInt($(this).text());
                         $(this).children('.gridnum').empty().html("+" + this_num);
                         sum += this_num;
-                        $(this).transition({opacity:0.8,scale:1.1},500).transition({ scale: 0},500,callback);
+                       $(this).transition({scale:1.1,delay: 300},400).transition({ scale: 0},300,callback).transition({ scale: 1},500);
                         function callback() {
                             $(this).removeAttr("style").children('.gridnum').empty().html(Math.floor((Math.random() * 10)));
 
@@ -427,23 +427,12 @@ function oppoAIOperation() {
           
                .each(function() {
                     var this_num = parseInt($(this).text());
-                   $(this).transition({opacity:0.8,scale:1.1},500).transition({ scale: 0},500,callback);
+                    $(this).transition({scale:1.1,delay: 300},400).transition({ scale: 0},300,callback).transition({ scale: 1},500);
                     $(this).children('.gridnum').empty().html("-" + this_num );
                     sum -= this_num;
                     if (sum < 0) sum = 0
                     function callback() {
-                        $(this).removeAttr("style").children('.gridnum').empty().html(Math.floor((Math.random() * 10)));
-               //change current grid back
-           
-                        
-                            curr_grid.removeAttr("style").css({
-                                'color': 'black',
-                                'background': '#fef5ca',
-                               
-                            });
-                        
-                        
-                    
+                        $(this).removeAttr("style").children('.gridnum').empty().html(Math.floor((Math.random() * 10)));  
                 }
                });
             curr_grid.children('.gridnum').empty().html(sum );
@@ -451,12 +440,15 @@ function oppoAIOperation() {
             curr_grid.css('z-index', '998');
 
             curr_grid.transition({
+            	scale:1.2,
                 marginTop: margin_value
             },
-            500).transition({scale:0},500,
+            1000,"snap").transition({scale:0},500,
             function() {
 
                 curr_grid.removeAttr("style").css({
+                	 'color': 'black',
+                    'background': '#fef5ca',
                     'margin-top': '0',
                     'z-index': '0'
                 }).children('.gridnum').empty().html(Math.floor((Math.random() * 10)));
@@ -464,7 +456,7 @@ function oppoAIOperation() {
                    
                
 
-            }).transition({scale:1},500);;
+            });
 
             curr_self_hp -= sum;
                 if (curr_self_hp < 0) {
@@ -544,7 +536,7 @@ function selfAIOperation() {
                         var this_num = parseInt($(this).text());
                         $(this).children('.gridnum').empty().html("+" + this_num);
                         sum += this_num;
-                       $(this).transition({opacity:0.8,scale:1.1},500).transition({ scale: 0},500,callback);
+                         $(this).transition({scale:1.1,delay: 300},400).transition({ scale: 0},300,callback).transition({ scale: 1},500);
                         function callback() {
                             $(this).removeAttr("style").children('.gridnum').empty().html(Math.floor((Math.random() * 10)));
 
@@ -556,7 +548,7 @@ function selfAIOperation() {
                         var this_num = parseInt($(this).text());
                         $(this).children('.gridnum').empty().html("+" + this_num);
                         sum += this_num;
-                        $(this).transition({opacity:0.8,scale:1.1},500).transition({ scale: 0},500,callback);
+                        $(this).transition({scale:1.1,delay: 300},400).transition({ scale: 0},300,callback).transition({ scale: 1},500);
                         function callback() {
                             $(this).removeAttr("style").children('.gridnum').empty().html(Math.floor((Math.random() * 10)));
 
@@ -576,49 +568,39 @@ function selfAIOperation() {
           
                .each(function() {
                     var this_num = parseInt($(this).text());
-                   $(this).transition({opacity:0.8,scale:1.1},500).transition({ scale: 0},500,callback);
+                    $(this).transition({scale:1.1,delay: 300},400).transition({ scale: 0},300,callback).transition({ scale: 1},500);
                     $(this).children('.gridnum').empty().html("-" + this_num );
                     sum -= this_num;
                     if (sum < 0) sum = 0
                     function callback() {
                         $(this).removeAttr("style").children('.gridnum').empty().html(Math.floor((Math.random() * 10)));
-               //change current grid back
-               curr_grid.removeAttr("style").css({
-                                'color': 'black',
-                                'background': '#e0eeee',
-                                
-                            });
-                        /*
-                            curr_grid.css({
-                                'color': 'black',
-                                'background': '#fef5ca',
-                                'width': '48px',
-                                'margin-left': '0px'
-                            });
-                        */
-                        
+             
                     }
                 });
             
             curr_grid.children('.gridnum').empty().html(sum);
 
             curr_grid.css('z-index', '998');
-            curr_grid.transtion({
+            curr_grid.transition({
+            	scale:1.2,
                 marginTop: margin_value
             },
-            500).transition({scale:0},500,
+            1000,'snap').transition({scale:0},500,
             function() {
 
-                curr_grid.css({
+                curr_grid.removeAttr("style").css({
+                	 'color': 'black',
+                    'background': '#e0eeee',
                     'margin-top': '0',
                     'z-index': '0'
+
                 }).children('.gridnum').empty().html( Math.floor((Math.random() * 10)));
                 
                
                   
                
 
-            }).transition({scale:1},500);
+            });
             curr_oppo_hp -= sum;
                 if (curr_oppo_hp < 0) {
                     curr_oppo_hp = max_health;
@@ -732,7 +714,7 @@ function initGridListner(){
                         var this_num = parseInt($(this).text());
                         $(this).children('.gridnum').empty().html("+" + this_num);
                         sum += this_num;
-                          $(this).transition({opacity:0.8,scale:1.1},500).transition({ scale: 0},500,callback);
+                           $(this).transition({scale:1.1,delay: 300},400).transition({ scale: 0},300,callback).transition({ scale: 1},500);
                         function callback() {
                             $(this).removeAttr("style").children('.gridnum').empty().html(Math.floor((Math.random() * 10)));
 
@@ -744,7 +726,7 @@ function initGridListner(){
                         var this_num = parseInt($(this).text());
                         $(this).children('.gridnum').empty().html("+" + this_num);
                         sum += this_num;
-                          $(this).transition({opacity:0.8,scale:1.1},500).transition({ scale: 0},500,callback);
+                            $(this).transition({scale:1.1,delay: 300},400).transition({ scale: 0},300,callback).transition({ scale: 1},500);
                         function callback() {
                             $(this).removeAttr("style").children('.gridnum').empty().html(Math.floor((Math.random() * 10)));
 
@@ -765,18 +747,14 @@ function initGridListner(){
                .each(function() {
                 var cogrid=$(this);
                     var this_num = parseInt($(this).text());
-                      $(this).transition({opacity:0.8,scale:1.1},500).transition({ scale: 0},500,callback);
+                       $(this).transition({scale:1.1,delay: 300},400).transition({ scale: 0},300,callback).transition({ scale: 1},500);
                      cogrid.children('.gridnum').empty().html("-" + this_num );
                     sum -= this_num;
                     if (sum < 0) sum = 0
                     function callback() {
                         
               $(this).removeAttr("style").children('.gridnum').empty().html(Math.floor((Math.random() * 10)));
-                         curr_grid.removeAttr("style").css({
-                                'color': 'black',
-                                'background': '#e0eeee',
-                               
-                            });
+                     
                         
                     }
                 });
@@ -785,12 +763,15 @@ function initGridListner(){
 
             curr_grid.css('z-index', '998');
             curr_grid.transition({
+            	scale:1.2,
                 marginTop: margin_value
             },
-            500).transition({scale:0},500,
+            1000,'snap').transition({scale:0},500,
             function() {
 
                 curr_grid.removeAttr("style").css({
+                	 'color': 'black',
+                      'background': '#e0eeee',
                     'margin-top': '0',
                     'z-index': '0'
                 }).children('.gridnum').empty().html( Math.floor((Math.random() * 10)));
@@ -804,7 +785,7 @@ function initGridListner(){
                   
                
 
-            }).transition({scale:1},500);
+            });
                
                
 
@@ -913,7 +894,7 @@ function initGridListner(){
                         var this_num = parseInt($(this).text());
                         $(this).children(".gridnum").empty().html("+" + this_num );
                         sum += this_num;
-                        $(this).transition({opacity:0.8,scale:1.1},500).transition({ scale: 0},500,callback);
+                        $(this).transition({scale:1.1,delay: 300},400).transition({ scale: 0},300,callback).transition({ scale: 1},500);
                         function callback() {
                             $(this).removeAttr("style").children(".gridnum").empty().html(Math.floor((Math.random() * 10)));
 
@@ -925,7 +906,7 @@ function initGridListner(){
                         var this_num = parseInt($(this).text());
                         $(this).children('.gridnum').empty().html("+" + this_num);
                         sum += this_num;
-                        $(this).transition({opacity:0.8,scale:1.1},500).transition({ scale: 0},500,callback);
+                        $(this).transition({scale:1.1,delay: 300},400).transition({ scale: 0},300,callback).transition({ scale: 1},500);
                         function callback() {
                             $(this).removeAttr("style").children('.gridnum').empty().html(Math.floor((Math.random() * 10)));
 
@@ -945,35 +926,28 @@ function initGridListner(){
           
                .each(function() {
                     var this_num = parseInt($(this).text());
-                    $(this).transition({opacity:0.8,scale:1.1},500).transition({ scale: 0},500,callback);
+                   $(this).transition({scale:1.1,delay: 300},400).transition({ scale: 0},300,callback).transition({ scale: 1},500);
                     $(this).children('.gridnum').empty().html("-" + this_num );
                     sum -= this_num;
                     if (sum < 0) sum = 0
                     function callback() {
                         $(this).removeAttr("style").children('.gridnum').empty().html(Math.floor((Math.random() * 10)));
-               //change current grid back
-           
-                        
-                            curr_grid.removeAttr("style").css({
-                                'color': 'black',
-                                'background': '#fef5ca',
-                               
-                            });
-                        
-                        
-                    
+             
                 }
                });
             curr_grid.children('.gridnum').empty().html(sum );
 
             curr_grid.css('z-index', '998');
-            curr_grid.trannsition({
+            curr_grid.transition({
+            	scale:1.2,
                 marginTop: margin_value
             },
-            500).transition({scale:0},500,
+            1000,'snap').transition({scale:0},500,
             function() {
 
-                curr_grid.css({
+                curr_grid.removeAttr("style").css({
+                	'color': 'black',
+                    'background': '#fef5ca',
                     'margin-top': '0',
                     'z-index': '0'
                 }).children('.gridnum').empty().html(Math.floor((Math.random() * 10)));
@@ -985,7 +959,7 @@ function initGridListner(){
                     }
                
 
-            }).transition({scale:1},500);
+            });
 
             curr_self_hp -= sum;
                 if (curr_self_hp < 0) {
