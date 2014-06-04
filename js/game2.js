@@ -65,12 +65,12 @@ function restart(){
 
         }
         
-        setTimeout("pause=false;", 1000);
-       
-        setTimeout("resetAI()", 1700);
+
+        setTimeout("resetAI()", 1900);
       
 }
  function resetAI(){
+           pause=false;
             ai_reset=false;
             if(self_AI&&self_turn)callSelfAI();
             if(oppo_AI&&oppo_turn)callOppoAI();
@@ -281,7 +281,7 @@ function callOppoAI() {
             if (i < 0) clearInterval(oAI);
              
         },
-        1600);
+        1800);
     } else {
 
    var i =0;
@@ -297,7 +297,7 @@ function callOppoAI() {
                       setTimeout("switch_turn=true;", 1000);
            }
         },
-        1600);
+        1800);
       
        
        
@@ -317,7 +317,7 @@ function callSelfAI() {
             if (i < 0) clearInterval(oAI);
             if(ai_reset)clearInterval(oAI);
         },
-        1600);
+        1800);
     } else {
    var i =0;
         var oAI = setInterval(function() {
@@ -332,7 +332,7 @@ function callSelfAI() {
                     setTimeout("switch_turn=true;", 1000);
            }
         },
-        1600);
+        1800);
       
        
     }
@@ -779,9 +779,11 @@ function initGridListner(){
                 
                
                     if (!duel_mode) {
+                      
                         switch_turn = true;
                     } else {
-                        ui_lock = false;
+                        setTimeout("ui_lock = false;",500);
+                      
                     }
                   
                
@@ -956,7 +958,7 @@ function initGridListner(){
                     if (!duel_mode) {
                         switch_turn = true;
                     } else {
-                        ui_lock = false;
+                         setTimeout("ui_lock = false;",500);
                     }
                
 
