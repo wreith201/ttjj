@@ -3,13 +3,16 @@
 <head>
 
 <meta http-equiv="Content-Type" content="text/html; charset=gbk">
-
+<meta name="viewport" content="width=455, initial-scale=0.8, maximum-scale=2.0, user-scalable=yes, minimum-scale=0.5" />
 <link rel="stylesheet" href="css/style3.css" type="text/css"></link>
 <link href="css/jquery-ui.css" rel="stylesheet" />
 <script src="js/jquery.js"></script>
 <script src="js/jquery-ui.js"></script>
-<script src="js/game-min.js"></script>
+<script src="js/jquery.transit.min.js"></script>
+<script src="js/game2.js"></script>
 <script type="text/javascript">
+
+   
 
 
 </script>
@@ -48,7 +51,7 @@
 </div>
 <div class='menuwindow'>
 	<div id="gamemode" class='overlay descr menuoption'>Game Mode: <span id="mode"></span></div>
-		<div id="rotationsetting" class='overlay descr menuoption'>Roatation: <span id="rota"></span></div>
+	<div id="rotationsetting" class='overlay descr menuoption'>Roatation: <span id="rota"></span></div>
 	<div id="timersetting" class='overlay descr menuoption'>Timer Setting: <span id="ts"></span></div>
 	
 </div>
@@ -95,7 +98,8 @@
 	     <div class="col6 row2 grid oppo">
 	     </div>
 	 </div> 
-</div><div class="outline">
+</div>
+<div class="outline">
 	<div class="wrapper oppo">
 	     <div class="col1 row3 grid oppo">
 	     </div>
@@ -110,7 +114,8 @@
 	     <div class="col6 row3 grid oppo">
 	     </div>
 	 </div> 
-</div><div class="outline">
+</div>
+<div class="outline">
 	<div class="wrapper oppo">
 	     <div class="col1 row4 grid oppo">
 	     </div>
@@ -129,62 +134,65 @@
 <div clss="outline"><div class="wrapper " style="height:50px" id="battletext"></div></div>
 <div class="outline">
 	<div class="wrapper self">
-	     <div class="cols1 row5 grid self">
+	     <div class="col1 row5 grid self">
 	     </div>
-	     <div class="cols2 row5 grid self">
+	     <div class="col2 row5 grid self">
 	     </div>
-	     <div class="cols3 row5 grid self">
+	     <div class="col3 row5 grid self">
 	     </div>
-	     <div class="cols4 row5 grid self">
+	     <div class="col4 row5 grid self">
 	     </div>
-	     <div class="cols5 row5 grid self">
+	     <div class="col5 row5 grid self">
 	     </div>
-	     <div class="cols6 row5 grid self">
-	     </div>
-	 </div> 
-</div><div class="outline">
-	<div class="wrapper self">
-	     <div class="cols1 row6 grid self">
-	     </div>
-	     <div class="cols2 row6 grid self">
-	     </div>
-	     <div class="cols3 row6 grid self">
-	     </div>
-	     <div class="cols4 row6 grid self">
-	     </div>
-	     <div class="cols5 row6 grid self">
-	     </div>
-	     <div class="cols6 row6 grid self">
+	     <div class="col6 row5 grid self">
 	     </div>
 	 </div> 
-</div><div class="outline">
+</div>
+<div class="outline">
 	<div class="wrapper self">
-	     <div class="cols1 row7 grid self">
+	     <div class="col1 row6 grid self">
 	     </div>
-	     <div class="cols2 row7 grid self">
+	     <div class="col2 row6 grid self">
 	     </div>
-	     <div class="cols3 row7 grid self">
+	     <div class="col3 row6 grid self">
 	     </div>
-	     <div class="cols4 row7 grid self">
+	     <div class="col4 row6 grid self">
 	     </div>
-	     <div class="cols5 row7 grid self">
+	     <div class="col5 row6 grid self">
 	     </div>
-	     <div class="cols6 row7 grid self">
+	     <div class="col6 row6 grid self">
 	     </div>
 	 </div> 
-</div><div class="outline">
+</div>
+<div class="outline">
 	<div class="wrapper self">
-	     <div class="cols1 row8 grid self">
+	     <div class="col1 row7 grid self">
 	     </div>
-	     <div class="cols2 row8 grid self">
+	     <div class="col2 row7 grid self">
 	     </div>
-	     <div class="cols3 row8 grid self">
+	     <div class="col3 row7 grid self">
 	     </div>
-	     <div class="cols4 row8 grid self">
+	     <div class="col4 row7 grid self">
 	     </div>
-	     <div class="cols5 row8 grid self">
+	     <div class="col5 row7 grid self">
 	     </div>
-	     <div class="cols6 row8 grid self">
+	     <div class="col6 row7 grid self">
+	     </div>
+	 </div> 
+</div>
+<div class="outline">
+	<div class="wrapper self">
+	     <div class="col1 row8 grid self">
+	     </div>
+	     <div class="col2 row8 grid self">
+	     </div>
+	     <div class="col3 row8 grid self">
+	     </div>
+	     <div class="col4 row8 grid self">
+	     </div>
+	     <div class="col5 row8 grid self">
+	     </div>
+	     <div class="col6 row8 grid self">
 	     </div>
 	 </div> 
 </div>
@@ -201,154 +209,9 @@
 	<div class='rightcol7'><div class='menu'>iii</div></div>
 </div>
 </div>
-<div class='leftcol'>
-	<div class='leftcol1'></div>
-	<div class='leftcol2'></div>
-	
-	<div class='leftcol4'></div>
-	
-	<div class='leftcol6'></div>
-	<div class='leftcol7'></div>
-</div>
-<div class='gamepanel'>
-<div clss="outline"><div class="wrapper " id="oppolife" style="height:50px"></div></div>
-<div class="outline">
-	<div class="wrapper oppo">
-	     <div class="col1 row1 grid oppo">
-	     </div>
-	     <div class="col2 row1 grid oppo">
-	     </div>
-	     <div class="col3 row1 grid oppo">
-	     </div>
-	     <div class="col4 row1 grid oppo">
-	     </div>
-	     <div class="col5 row1 grid oppo">
-	     </div>
-	     <div class="col6 row1 grid oppo">
-	     </div>
-	 </div> 
-</div>
-<div class="outline">
-	<div class="wrapper oppo">
-	     <div class="col1 row2 grid oppo">
-	     </div>
-	     <div class="col2 row2 grid oppo">
-	     </div>
-	     <div class="col3 row2 grid oppo">
-	     </div>
-	     <div class="col4 row2 grid oppo">
-	     </div>
-	     <div class="col5 row2 grid oppo">
-	     </div>
-	     <div class="col6 row2 grid oppo">
-	     </div>
-	 </div> 
-</div><div class="outline">
-	<div class="wrapper oppo">
-	     <div class="col1 row3 grid oppo">
-	     </div>
-	     <div class="col2 row3 grid oppo">
-	     </div>
-	     <div class="col3 row3 grid oppo">
-	     </div>
-	     <div class="col4 row3 grid oppo">
-	     </div>
-	     <div class="col5 row3 grid oppo">
-	     </div>
-	     <div class="col6 row3 grid oppo">
-	     </div>
-	 </div> 
-</div><div class="outline">
-	<div class="wrapper oppo">
-	     <div class="col1 row4 grid oppo">
-	     </div>
-	     <div class="col2 row4 grid oppo">
-	     </div>
-	     <div class="col3 row4 grid oppo">
-	     </div>
-	     <div class="col4 row4 grid oppo">
-	     </div>
-	     <div class="col5 row4 grid oppo">
-	     </div>
-	     <div class="col6 row4 grid oppo">
-	     </div>
-	 </div> 
-</div>
-<div clss="outline"><div class="wrapper " style="height:50px" id="battletext"></div></div>
-<div class="outline">
-	<div class="wrapper self">
-	     <div class="cols1 row5 grid self">
-	     </div>
-	     <div class="cols2 row5 grid self">
-	     </div>
-	     <div class="cols3 row5 grid self">
-	     </div>
-	     <div class="cols4 row5 grid self">
-	     </div>
-	     <div class="cols5 row5 grid self">
-	     </div>
-	     <div class="cols6 row5 grid self">
-	     </div>
-	 </div> 
-</div><div class="outline">
-	<div class="wrapper self">
-	     <div class="cols1 row6 grid self">
-	     </div>
-	     <div class="cols2 row6 grid self">
-	     </div>
-	     <div class="cols3 row6 grid self">
-	     </div>
-	     <div class="cols4 row6 grid self">
-	     </div>
-	     <div class="cols5 row6 grid self">
-	     </div>
-	     <div class="cols6 row6 grid self">
-	     </div>
-	 </div> 
-</div><div class="outline">
-	<div class="wrapper self">
-	     <div class="cols1 row7 grid self">
-	     </div>
-	     <div class="cols2 row7 grid self">
-	     </div>
-	     <div class="cols3 row7 grid self">
-	     </div>
-	     <div class="cols4 row7 grid self">
-	     </div>
-	     <div class="cols5 row7 grid self">
-	     </div>
-	     <div class="cols6 row7 grid self">
-	     </div>
-	 </div> 
-</div><div class="outline">
-	<div class="wrapper self">
-	     <div class="cols1 row8 grid self">
-	     </div>
-	     <div class="cols2 row8 grid self">
-	     </div>
-	     <div class="cols3 row8 grid self">
-	     </div>
-	     <div class="cols4 row8 grid self">
-	     </div>
-	     <div class="cols5 row8 grid self">
-	     </div>
-	     <div class="cols6 row8 grid self">
-	     </div>
-	 </div> 
-</div>
-<div clss="outline">
-<div class="wrapper " id="selflife" style="height:50px"></div></div>
-</div>
-<div class='rightcol'>
-		<div class='rightcol1'></div>
-	<div class='rightcol2'></div>
-	
-	<div class='rightcol4'></div>
-	
-	<div class='rightcol6'></div>
-	<div class='rightcol7'></div>
-</div>
-</div>
+
+
+
 </body>
 
 </html>
