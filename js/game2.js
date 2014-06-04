@@ -167,12 +167,7 @@ function newTimer() {
         } else {
             var value = (turn_interval / 1000) - i;
             $("#cdt").html(value);
-            $('#battletext').children('.ui-progressbar-value').stop(true).animate({
-                width: pCnt + '%'
-            },
-            500, 'easeOutBounce').css({
-                'height': '45px'
-            });;
+     
         }
     },
     1000);
