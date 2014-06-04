@@ -289,83 +289,45 @@ position: relative;
 
 }
 .col1{
-   position: relative;
-   float: left;
+   position: absolute;
+   
    left: 5px;
  
 }
 .col2{
-   position: relative;
-   float: left;
-   left: 10px;
+   position: absolute;
+  
+   left: 60px;
   
   
 }
 .col3{
-   position: relative;
-   float: left;
-   left: 15px;
+    position: absolute;
+   left: 115px;
   
 }
 .col4{
-   position: relative;
-   float: left;
-   left: 20px;
+  position: absolute;
+  
+   left: 170px;
   
   
 }
 .col5{
-   position: relative;
-   float: left;
-   left: 25px;
+   position: absolute;
+  
+   left: 225px;
 
   
 }
 .col6{
-   position: relative;
-   float: left;
-   left: 30px;
+  position: absolute;
+  
+   left: 280px;
 
   
 }
-.cols1{
-   position: relative;
-   float: left;
-   left: 5px;
- 
-  
-}
-.cols2{
-   position: relative;
-   float: left;
-   left: 10px;
- 
-  
-}
-.cols3{
-   position: relative;
-   float: left;
-   left: 15px;
 
-}
-.cols4{
-   position: relative;
-   float: left;
-   left: 20px;
-  
- 
-}
-.cols5{
-   position: relative;
-   float: left;
-   left: 25px;
-  
-}
-.cols6{
-   position: relative;
-   float: left;
-   left: 30px;
-}
 body {
   
    border-width: 0px;
