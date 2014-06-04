@@ -447,7 +447,7 @@ function oppoAIOperation() {
             1000,"snap").transition({scale:0},500,
             function() {
 
-                curr_grid.removeAttr("style").css({
+                curr_grid.css({
                 	 'color': 'black',
                     'background': '#fef5ca',
                     'margin-top': '0',
@@ -457,7 +457,7 @@ function oppoAIOperation() {
                    
                
 
-            });
+            }).transition({ scale: 1,delay:200},500);
 
             curr_self_hp -= sum;
                 if (curr_self_hp < 0) {
@@ -589,7 +589,7 @@ function selfAIOperation() {
             1000,'snap').transition({scale:0},500,
             function() {
 
-                curr_grid.removeAttr("style").css({
+                curr_grid.css({
                 	 'color': 'black',
                     'background': '#e0eeee',
                     'margin-top': '0',
@@ -601,7 +601,7 @@ function selfAIOperation() {
                   
                
 
-            });
+            }).transition({ scale: 1,delay:200},500);
             curr_oppo_hp -= sum;
                 if (curr_oppo_hp < 0) {
                     curr_oppo_hp = max_health;
@@ -736,7 +736,7 @@ function initGridListner(){
            
             sum = sum - selfvalue;
             //change current grid
-            curr_grid.removeAttr("style").css({
+            curr_grid.css({
                 'color': 'white',
                 'background': 'orangered',
                 
@@ -770,7 +770,7 @@ function initGridListner(){
             1000,'snap').transition({scale:0},500,
             function() {
 
-                curr_grid.removeAttr("style").css({
+                curr_grid.css({
                 	 'color': 'black',
                       'background': '#e0eeee',
                     'margin-top': '0',
@@ -786,7 +786,7 @@ function initGridListner(){
                   
                
 
-            });
+            }).transition({ scale: 1,delay:200},500);
                
                
 
@@ -946,7 +946,7 @@ function initGridListner(){
             1000,'snap').transition({scale:0},500,
             function() {
 
-                curr_grid.removeAttr("style").css({
+                curr_grid.css({
                 	'color': 'black',
                     'background': '#fef5ca',
                     'margin-top': '0',
@@ -960,7 +960,7 @@ function initGridListner(){
                     }
                
 
-            });
+            }).transition({ scale: 1,delay:200},500);
 
             curr_self_hp -= sum;
                 if (curr_self_hp < 0) {
