@@ -32,6 +32,31 @@ var reset_timer=false;
 var pause=false;
 var setting_changed=false;
 var ai_reset=false;
+function progressBar(value,max, $element) {
+    
+    var progressBarWidth = value/max * $element.width();
+    var selector=$element.find('div');
+    selector.stop(true).animate({ width: progressBarWidth }, 500,"easeOutBounce").html(value + "&nbsp;");
+
+     if (value < 0.1 * max_health) {
+                selector.css({
+                    'background': 'Red'
+                });
+            } else if (value < 0.3 * max_health) {
+                selector.css({
+                    'background': 'Orange'
+                });
+            } else if (value < 0.5 * max_health) {
+                selector.css({
+                    'background': 'Yellow'
+                });
+            } else {
+                selector.css({
+                    'background': 'LightGreen'
+                });
+            }
+
+}
 function restart(){
     pause=true;
     reset_timer=true;
@@ -44,15 +69,11 @@ function restart(){
       curr_self_hp = max_health;
       $("#cdt").html("Resetting");
 
-       $("#oppolife").progressbar({
-            value: curr_oppo_hp
-        });
-        $("#oppolifevalue").empty().html(curr_oppo_hp);
+      progressBar(curr_self_hp,max_health, $('#selflife'));
+  
 
-         $("#selflife").progressbar({
-            value: curr_oppo_hp
-        });
-        $("#selflifevalue").empty().html(curr_oppo_hp);
+       progressBar(curr_oppo_hp,max_health, $('#oppolife'));
+  
         if (!rt_enable) {
 
             $(".gridnum.rotatetext").removeClass("rotatetext");
@@ -76,22 +97,14 @@ function restart(){
             if(oppo_AI&&oppo_turn)callOppoAI();
         }
 function initTimer() {
-    $("#battletext").progressbar({
-        value: 100
-    }).children('.ui-progressbar-value').html("<div id='cdt' class='gridnum'>" + turn_interval / 1000 + "</div>").css({
-        "display": "block",
-        "text-align": "center",
-        "padding-top": "5px",
-        "font-size": "30px"
-    });
+   progressBar(turn_interval/1000,turn_interval/1000, $('#battletext'));
+  
    newTimer();
 }
 
 function newTimer() {
-    $("#battletext").progressbar({
-        value: 100
-    });
-    var pVal = $('#battletext').progressbar('option', 'value');
+    progressBar(turn_interval/1000,turn_interval/1000, $('#battletext'));
+    var pVal = turn_interval/1000;
 
     var i = 0;
     var pGress = setInterval(function() {
@@ -102,7 +115,7 @@ function newTimer() {
        
         if(!pause)
         i++;
-        var pCnt = !isNaN(pVal) ? (pVal - 100000 / turn_interval * i) : 1;
+        var pCnt = !isNaN(pVal) ? (pVal - i) : 1;
         if (pCnt < 0) switch_turn = true;
         if (switch_turn) {
             if (rt_enable) {
@@ -115,9 +128,6 @@ function newTimer() {
                     $(".scorenum").addClass("rotatetext");
 
                 }
-            }else{
-                   $(".gridnum.rotatetext").removeClass("rotatetext");
-                    $(".scorenum.rotatetext").removeClass("rotatetext");
             }
             switch_turn = false;
             if (!duel_mode) ui_lock = false;
@@ -165,12 +175,8 @@ function newTimer() {
             }
             newTimer();
         } else {
-            var value = (turn_interval / 1000) - i;
-            $("#cdt").html(value);
-            $('#battletext').children('.ui-progressbar-value').stop(true).animate({
-                width: pCnt + '%'
-            },
-            500, 'easeOutBounce');;
+             progressBar(pCnt,turn_interval/1000, $('#battletext'));
+          
         }
     },
     1000);
@@ -182,89 +188,12 @@ function newTimer() {
 }
 
 function initOppoflife() {
-    $("#oppolife").progressbar({
-        max: max_health,
-        value: 30,
-        change: function() {
-            var selector = "#" + this.id + " > div";
-            var value = this.getAttribute("aria-valuenow");
-            if (value < 0.1 * max_health) {
-                $(selector).css({
-                    'background': 'Red'
-                });
-            } else if (value < 0.3 * max_health) {
-                $(selector).css({
-                    'background': 'Orange'
-                });
-            } else if (value < 0.5 * max_health) {
-                $(selector).css({
-                    'background': 'Yellow'
-                });
-            } else {
-                $(selector).css({
-                    'background': 'LightGreen'
-                });
-            }
-        }
-    }).children('.ui-progressbar-value').html("<div id='oppolifevalue' class='gridnum'>" + curr_oppo_hp + "</div>").css({
-        "display": "block",
-        "text-align": "center",
-        "padding-top": "5px",
-        "font-size": "25px",
-        "font-family": "AgentOrange",
-        "color": "chocolate"
-    });;
-    $("#oppolife > div").css({
-        'border': '0px',
-        'border-radius': '5pt',
-        'height': '45px'
-    });
-    $("#oppolife").progressbar({
-        value: curr_oppo_hp
-    });
+progressBar(max_health,max_health, $('#oppolife'));
+  
 }
 
 function initSelflife() {
-    $("#selflife").progressbar({
-        max: max_health,
-        value: 30,
-        change: function() {
-            var selector = "#" + this.id + " > div";
-            var value = this.getAttribute("aria-valuenow");
-            if (value < 0.1 * max_health) {
-                $(selector).css({
-                    'background': 'Red'
-                });
-            } else if (value < 0.3 * max_health) {
-                $(selector).css({
-                    'background': 'Orange'
-                });
-            } else if (value < 0.5 * max_health) {
-                $(selector).css({
-                    'background': 'Yellow'
-                });
-            } else {
-                $(selector).css({
-                    'background': 'LightGreen'
-                });
-            }
-        }
-    });
-    $("#selflife").progressbar({
-        value: curr_self_hp
-    }).children('.ui-progressbar-value').html("<div id='selflifevalue' class='gridnum '>" + curr_self_hp + "</div>").css({
-        "display": "block",
-        "text-align": "center",
-        "padding-top": "5px",
-        "font-size": "25px",
-        "font-family": "AgentOrange",
-        "color": "Blue"
-    });
-    $("#selflife > div").css({
-        'border': '0px',
-        'border-radius': '5pt',
-        'height': '45px'
-    });
+progressBar(max_health,max_health, $('#selflife'));
 }
 function callOppoAI() {
     
@@ -439,7 +368,7 @@ function oppoAIOperation() {
             curr_grid.css('z-index', '998');
 
             curr_grid.transition({
-            	scale:1.2,
+            	scale:(1+Math.floor(sum/10)/10),
                 marginTop: margin_value
             },
             1000,"snap").transition({scale:0},500,
@@ -466,15 +395,11 @@ function oppoAIOperation() {
                     }
                     oppo_score++;
                     $(".leftcol4").empty().append("<div class='scorenum " + rt_class + "'>" + oppo_score + "</div>");
-                    $("#oppolife").progressbar({
-                        value: curr_oppo_hp
-                    });
-                    $("#oppolifevalue").empty().html(curr_oppo_hp);
+                  progressBar(curr_oppo_hp,max_health, $('#oppolife'));
+  
                 }
-                $("#selflife").progressbar({
-                    value: curr_self_hp
-                });
-                $("#selflifevalue").empty().html(curr_self_hp);
+               progressBar(curr_self_hp,max_health, $('#selflife'));
+  
 
 }
 function selfAIOperation() {
@@ -581,7 +506,7 @@ function selfAIOperation() {
 
             curr_grid.css('z-index', '998');
             curr_grid.transition({
-            	scale:1.2,
+            	scale:(1+Math.floor(sum/10)/10),
                 marginTop: margin_value
             },
             1000,'snap').transition({scale:0},500,
@@ -610,15 +535,11 @@ function selfAIOperation() {
                     }
                     self_score++;
                     $(".rightcol4").children('.scorenum').empty().html(self_score);
-                    $("#selflife").progressbar({
-                        value: curr_self_hp
-                    });
-                    $("#selflifevalue").empty().html(curr_self_hp);
+                   progressBar(curr_self_hp,max_health, $('#selflife'));
+  
                 }
-                $("#oppolife").progressbar({
-                    value: curr_oppo_hp
-                });
-                $("#oppolifevalue").empty().html(curr_oppo_hp);
+               progressBar(curr_oppo_hp,max_health, $('#oppolife'));
+  
 
                 /*
              curr_self_hp -= sum;
@@ -762,7 +683,7 @@ function initGridListner(){
 
             curr_grid.css('z-index', '998');
             curr_grid.transition({
-            	scale:1.2,
+            	scale:(1+Math.floor(sum/10)/10),
                 marginTop: margin_value
             },
             1000,'snap').transition({scale:0},500,
@@ -801,15 +722,11 @@ function initGridListner(){
                     }
                     self_score++;
                     $(".rightcol4").children('.scorenum').empty().html(self_score);
-                    $("#selflife").progressbar({
-                        value: curr_self_hp
-                    });
-                    $("#selflifevalue").empty().html(curr_self_hp);
+                   progressBar(curr_self_hp,max_health, $('#selflife'));
+  
                 }
-                $("#oppolife").progressbar({
-                    value: curr_oppo_hp
-                });
-                $("#oppolifevalue").empty().html(curr_oppo_hp);
+              progressBar(curr_oppo_hp,max_health, $('#oppolife'));
+  
 
                 /*
              curr_self_hp -= sum;
@@ -940,7 +857,7 @@ function initGridListner(){
 
             curr_grid.css('z-index', '998');
             curr_grid.transition({
-            	scale:1.2,
+            	scale:(1+Math.floor(sum/10)/10),
                 marginTop: margin_value
             },
             1000,'snap').transition({scale:0},500,
@@ -971,15 +888,11 @@ function initGridListner(){
                     }
                     oppo_score++;
                     $(".leftcol4").empty().append("<div class='scorenum " + rt_class + "'>" + oppo_score + "</div>");
-                    $("#oppolife").progressbar({
-                        value: curr_oppo_hp
-                    });
-                    $("#oppolifevalue").empty().html(curr_oppo_hp);
+                  progressBar(curr_oppo_hp,max_health, $('#oppolife'));
+  
                 }
-                $("#selflife").progressbar({
-                    value: curr_self_hp
-                });
-                $("#selflifevalue").empty().html(curr_self_hp);
+             progressBar(curr_self_hp,max_health, $('#selflife'));
+  
 
         }
 
