@@ -32,11 +32,33 @@ var pause=false;
 var setting_changed=false;
 var ai_reset=false;
 
+var token0=0;
+var token1=0;
+var token2=0;
+var token3=0;
+var token4=0;
+var token5=0;
+var token6=0;
+var token7=0;
+var token8=0;
+function tokenswitch(token){
 
+    switch(token){
+        case 0:token0++;return 'greenyellow';
+        case 1:token0++;return 'greenyellow';
+        case 2:token0++;return 'greenyellow';
+        case 3:token0++;return 'skyblue';
+        case 4:token0++;return 'skyblue';
+        case 5:token0++;return 'skyblue';
+        case 6:token0++;return 'orangered';
+        case 7:token0++;return 'orangered';
+        case 8:token0++;return '#800080';
+    }
+}
 function progressBar(value,max, $element) {
    var progressBarWidth = value/max * $element.width();
-    var selector=$element.find('.innerbar');
-    selector.stop(true).transition({ width: progressBarWidth }, 500,'easeOutExpo' ).find('.barnum').html(value + "&nbsp;");
+    var selector=$element.children('.innerbar');
+    selector.stop(true).transition({ width: progressBarWidth }, 500,'easeOutExpo' ).children('.barnum').html(value + "&nbsp;");
     if(max>100){
      if (value < 0.1 * max_health) {
                 selector.css({
@@ -69,7 +91,7 @@ function restart(){
         $(".rightcol4").empty().append("<div class='scorenum'>" + self_score + "</div>");
       curr_oppo_hp = max_health;
       curr_self_hp = max_health;
-      $("#battletext").find('.barnum').empty().html("Resetting");
+      $("#battletext").children('.barnum').empty().html("Resetting");
 
       progressBar(curr_self_hp,max_health, $('#selflife'));
   
@@ -363,11 +385,7 @@ function oppoAIOperation() {
                 //self col ---
             sum = sum - selfvalue;
              curr_grid.stop(true);
-            curr_grid.css({
-                'color': 'white',
-                'background': 'orangered',
-               
-            });
+          
            
 
           
@@ -383,7 +401,12 @@ function oppoAIOperation() {
                         $(this).children('.gridnum').empty().html(Math.floor((Math.random() * 10)));  
                 }
                });
-            curr_grid.children('.gridnum').empty().html(sum );
+                var c=tokenswitch(Math.floor(sum/10));
+            curr_grid.css({
+                'background': c,
+            }).children('.gridnum').css({
+                'color': 'white',
+            }).empty().html(sum );
 
             curr_grid.css('z-index', '998');
 
@@ -395,11 +418,11 @@ function oppoAIOperation() {
             function() {
 
                 curr_grid.css({
-                	 'color': 'black',
+                	
                     'background': '#fef5ca',
                     'margin-top': '0',
                     'z-index': '0'
-                }).children('.gridnum').empty().html(Math.floor((Math.random() * 10)));
+                }).children('.gridnum').css({ 'color': 'black',}).empty().html(Math.floor((Math.random() * 10)));
                 
                    curr_grid.transition({ scale: 1},300)
                
@@ -414,7 +437,7 @@ function oppoAIOperation() {
                         curr_oppo_hp = max_health;
                     }
                     oppo_score++;
-                    $(".leftcol4").find(".scorenum").html(oppo_score);
+                    $(".leftcol4").children(".scorenum").html(oppo_score);
                   progressBar(curr_oppo_hp,max_health, $('#oppolife'));
   
                 }
@@ -501,11 +524,7 @@ function selfAIOperation() {
            
             sum = sum - selfvalue;
             //change current grid
-            curr_grid.css({
-                'color': 'white',
-                'background': 'orangered',
-               
-            });
+           
             curr_grid.stop(true);
             //oppo col ---
             $(".oppo."+classes[0])
@@ -521,8 +540,14 @@ function selfAIOperation() {
              
                     }
                 });
-            
-            curr_grid.children('.gridnum').empty().html(sum);
+             var c=tokenswitch(Math.floor(sum/10));
+            curr_grid.css({
+               
+                'background': c,
+               
+            }).children('.gridnum').css({
+                'color': 'white',
+            }).empty().html(sum);
 
             curr_grid.css('z-index', '998');
             curr_grid.transition({
@@ -533,12 +558,12 @@ function selfAIOperation() {
             function() {
 
                 curr_grid.css({
-                	 'color': 'black',
+                	
                     'background': '#e0eeee',
                     'margin-top': '0',
                     'z-index': '0'
 
-                }).children('.gridnum').empty().html( Math.floor((Math.random() * 10)));
+                }).children('.gridnum').css({ 'color': 'black',}).empty().html( Math.floor((Math.random() * 10)));
                  curr_grid.transition({ scale: 1},300)
                
                   
@@ -675,11 +700,7 @@ function initGridListner(){
            
             sum = sum - selfvalue;
             //change current grid
-            curr_grid.css({
-                'color': 'white',
-                'background': 'orangered',
-                
-            });
+          
             curr_grid.stop(true);
             //oppo col ---
             $(".oppo."+classes[0])
@@ -698,8 +719,12 @@ function initGridListner(){
                         
                     }
                 });
-            
-            curr_grid.children('.gridnum').empty().html(sum);
+             var c=tokenswitch(Math.floor(sum/10));
+            curr_grid.css({
+                
+                'background': c,
+               
+            }).children('.gridnum').css({'color': 'white',}).empty().html(sum);
 
             curr_grid.css('z-index', '998');
             curr_grid.transition({
@@ -710,11 +735,11 @@ function initGridListner(){
             function() {
 
                 curr_grid.css({
-                	 'color': 'black',
+                	 
                       'background': '#e0eeee',
                     'margin-top': '0',
                     'z-index': '0'
-                }).children('.gridnum').empty().html( Math.floor((Math.random() * 10)));
+                }).children('.gridnum').css({'color': 'black',}).empty().html( Math.floor((Math.random() * 10)));
                 
                 curr_grid.transition({ scale: 1},300)
                     if (!duel_mode) {
@@ -852,11 +877,7 @@ function initGridListner(){
                     });
                 //self col ---
             sum = sum - selfvalue;
-            curr_grid.css({
-                'color': 'white',
-                'background': 'orangered',
-               
-            });
+         
             curr_grid.stop(true);
 
           
@@ -873,7 +894,14 @@ function initGridListner(){
              
                 }
                });
-            curr_grid.children('.gridnum').empty().html(sum );
+                  var c=tokenswitch(Math.floor(sum/10));
+            curr_grid.css({
+                
+                'background': c,
+               
+            }).children('.gridnum').css({
+                'color': 'white',
+            }).empty().html(sum );
 
             curr_grid.css('z-index', '998');
             curr_grid.transition({
@@ -884,11 +912,14 @@ function initGridListner(){
             function() {
 
                 curr_grid.css({
-                	'color': 'black',
+                	
                     'background': '#fef5ca',
                     'margin-top': '0',
                     'z-index': '0'
-                }).children('.gridnum').empty().html(Math.floor((Math.random() * 10)));
+                }).children('.gridnum').css({
+                'color': 'black',
+               
+            }).empty().html(Math.floor((Math.random() * 10)));
                  curr_grid.transition({ scale: 1},300)
                     if (!duel_mode) {
                         switch_turn = true;
@@ -907,7 +938,7 @@ function initGridListner(){
                         curr_oppo_hp = max_health;
                     }
                     oppo_score++;
-                    $(".leftcol4").find('.scorenum').html(oppo_score);
+                    $(".leftcol4").children('.scorenum').html(oppo_score);
                   progressBar(curr_oppo_hp,max_health, $('#oppolife'));
   
                 }
