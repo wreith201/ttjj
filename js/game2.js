@@ -7,7 +7,7 @@ $(document).ready(function() {
     initHelpButton();
     initMenuButton();
     setupHelpwindow();
-    initResetButton();
+    initScoreButton();
     setupMenuWindow();
     initGridListner();
 });
@@ -31,7 +31,7 @@ var reset_timer=false;
 var pause=false;
 var setting_changed=false;
 var ai_reset=false;
-
+var logic_time=0;
 var token0=0;
 var token1=0;
 var token2=0;
@@ -44,14 +44,14 @@ var token8=0;
 function tokenswitch(token){
 
     switch(token){
-        case 0:token0++;return 'greenyellow';
-        case 1:token0++;return 'greenyellow';
-        case 2:token0++;return 'greenyellow';
-        case 3:token0++;return 'skyblue';
-        case 4:token0++;return 'skyblue';
-        case 5:token0++;return 'skyblue';
-        case 6:token0++;return 'orangered';
-        case 7:token0++;return 'orangered';
+        case 0:token0++;return 'orangered';
+        case 1:token0++;return 'orangered';
+        case 2:token0++;return 'orangered';
+        case 3:token0++;return 'darkgreen';
+        case 4:token0++;return 'darkgreen';
+        case 5:token0++;return 'darkgreen';
+        case 6:token0++;return 'mediumblue';
+        case 7:token0++;return 'mediumblue';
         case 8:token0++;return '#800080';
     }
 }
@@ -82,6 +82,7 @@ function progressBar(value,max, $element) {
 
 }
 function restart(){
+    logic_time++;
     pause=true;
     reset_timer=true;
     ai_reset=true;
@@ -241,7 +242,9 @@ function callOppoAI() {
     
     if (duel_mode) {
         var i = turn_interval / 2000-1;
+        var my_time=logic_time;
         var oAI = setInterval(function() {
+            if(my_time<logic_time)clearInterval(oAI);
             if(!pause&&oppo_AI){
              oppoAIOperation();
             i--;
@@ -254,7 +257,9 @@ function callOppoAI() {
     } else {
 
    var i =0;
+   var my_time=logic_time;
         var oAI = setInterval(function() {
+           if(my_time<logic_time)clearInterval(oAI);
            if(!pause&&oppo_AI){
             oppoAIOperation();
             i--;
@@ -277,7 +282,9 @@ function callSelfAI() {
     
     if (duel_mode) {
         var i = turn_interval / 2000-1;
+         var my_time=logic_time;
         var oAI = setInterval(function() {
+           if(my_time<logic_time)clearInterval(oAI);
            if(!pause&&self_AI){
             selfAIOperation();
             i--;
@@ -289,7 +296,9 @@ function callSelfAI() {
         1800);
     } else {
    var i =0;
+    var my_time=logic_time;
         var oAI = setInterval(function() {
+           if(my_time<logic_time)clearInterval(oAI);
            if(!pause&&self_AI){
             selfAIOperation();
             i--;
@@ -404,6 +413,7 @@ function oppoAIOperation() {
                 var c=tokenswitch(Math.floor(sum/10));
             curr_grid.css({
                 'background': c,
+                'border':'2px solid white'
             }).children('.gridnum').css({
                 'color': 'white',
             }).empty().html(sum );
@@ -418,7 +428,7 @@ function oppoAIOperation() {
             function() {
 
                 curr_grid.css({
-                	
+                	'border':'0',
                     'background': '#fef5ca',
                     'margin-top': '0',
                     'z-index': '0'
@@ -430,7 +440,7 @@ function oppoAIOperation() {
             });
 
             curr_self_hp -= sum;
-                if (curr_self_hp < 0) {
+                if (curr_self_hp <= 0) {
                     curr_self_hp = max_health;
                     curr_oppo_hp += 150;
                     if (curr_oppo_hp > max_health) {
@@ -544,7 +554,7 @@ function selfAIOperation() {
             curr_grid.css({
                
                 'background': c,
-               
+               'border':'2px solid white'
             }).children('.gridnum').css({
                 'color': 'white',
             }).empty().html(sum);
@@ -558,7 +568,7 @@ function selfAIOperation() {
             function() {
 
                 curr_grid.css({
-                	
+                	'border':'0',
                     'background': '#e0eeee',
                     'margin-top': '0',
                     'z-index': '0'
@@ -571,7 +581,7 @@ function selfAIOperation() {
 
             });
             curr_oppo_hp -= sum;
-                if (curr_oppo_hp < 0) {
+                if (curr_oppo_hp <= 0) {
                     curr_oppo_hp = max_health;
 
                     curr_self_hp += 150;
@@ -719,11 +729,12 @@ function initGridListner(){
                         
                     }
                 });
+
              var c=tokenswitch(Math.floor(sum/10));
             curr_grid.css({
                 
                 'background': c,
-               
+               'border':'2px solid white'
             }).children('.gridnum').css({'color': 'white',}).empty().html(sum);
 
             curr_grid.css('z-index', '998');
@@ -735,7 +746,7 @@ function initGridListner(){
             function() {
 
                 curr_grid.css({
-                	 
+                	 'border':'0',
                       'background': '#e0eeee',
                     'margin-top': '0',
                     'z-index': '0'
@@ -758,7 +769,7 @@ function initGridListner(){
 
             
             curr_oppo_hp -= sum;
-                if (curr_oppo_hp < 0) {
+                if (curr_oppo_hp <= 0) {
                     curr_oppo_hp = max_health;
 
                     curr_self_hp += 150;
@@ -896,7 +907,7 @@ function initGridListner(){
                });
                   var c=tokenswitch(Math.floor(sum/10));
             curr_grid.css({
-                
+                'border':'2px solid white',
                 'background': c,
                
             }).children('.gridnum').css({
@@ -912,7 +923,7 @@ function initGridListner(){
             function() {
 
                 curr_grid.css({
-                	
+                	'border':'0',
                     'background': '#fef5ca',
                     'margin-top': '0',
                     'z-index': '0'
@@ -931,7 +942,7 @@ function initGridListner(){
             });
 
             curr_self_hp -= sum;
-                if (curr_self_hp < 0) {
+                if (curr_self_hp <= 0) {
                     curr_self_hp = max_health;
                     curr_oppo_hp += 150;
                     if (curr_oppo_hp > max_health) {
@@ -984,15 +995,43 @@ function initAIButton() {
         oppoAIbtn.empty().append("<div class='ai'>P2</div>");
     }
 }
-function initResetButton(){
+function initScoreButton(){
 var resetbtn1 = $(".leftcol4");
 var resetbtn2 = $(".rightcol4");
+var scboard=$(".scoreboard");
 resetbtn1.bind('tap',function(){
-   restart();
+ if (!scboard.hasClass("on")) {
+            scboard.addClass("on");
+            pause=true;
+            resetbtn1.css("z-index", "1002");
+            resetbtn1.addClass("active");
+            resetbtn2.css("z-index", "1002");
+            resetbtn2.addClass("active");
+        } else {
+            scboard.removeClass("on");
+            resetbtn1.css("z-index", "1");
+           resetbtn1.removeClass("active");
+            resetbtn2.css("z-index", "1");
+            resetbtn2.removeClass("active");
+             pause=false;
+        }
 });
 resetbtn2.bind('tap',function(){
-  restart();
-
+ if (!scboard.hasClass("on")) {
+            scboard.addClass("on");
+            pause=true;
+            resetbtn1.css("z-index", "1002");
+            resetbtn1.addClass("active");
+            resetbtn2.css("z-index", "1002");
+            resetbtn2.addClass("active");
+        } else {
+            scboard.removeClass("on");
+            resetbtn1.css("z-index", "1");
+           resetbtn1.removeClass("active");
+            resetbtn2.css("z-index", "1");
+            resetbtn2.removeClass("active");
+             pause=false;
+        }
 });
 }
 function initHelpButton() {
@@ -1041,19 +1080,19 @@ function initMenuButton() {
 
         if (!menuwindow.hasClass("on")) {
             menuwindow.addClass("on");
-            menubtn.css("z-index", "1002");
+            menubtn.css("z-index", "1002").addClass("active");
             $(".leftcol7").css("z-index", "1002");
              $(".leftcol1").css("z-index", "1002");
-            menubtn.addClass("active");
+           
              pause=true;
              setting_changed=false;
 
         } else {
             menuwindow.removeClass("on");
-            menubtn.css("z-index", "1");
+            menubtn.css("z-index", "1").removeClass("active");
             $(".leftcol7").css("z-index", "1");
              $(".leftcol1").css("z-index", "1");
-            menubtn.removeClass("active");
+           
              pause=false;
              if(setting_changed)restart();
 
@@ -1068,7 +1107,7 @@ function setupMenuWindow(){
     var gamemodebtn=$("#gamemode");
     var timersettingbtn=$("#timersetting");
     var rotationbtn=$("#rotationsetting");
-   
+   var resetbtn=$("#reset");
    
         $("#mode").html(duel_mode?"n Move/Turn":"1 Move/Turn");
     gamemodebtn.bind('tap',function(){
@@ -1097,7 +1136,16 @@ timersettingbtn.bind('tap',function(){
         $("#rota").html(rt_enable?"On":"Off");
         setting_changed=true;
     });
-     
+     resetbtn.bind('tap',function(){
+        setting_changed=true;
+         $(".menuwindow").removeClass("on");
+          
+            $(".leftcol7").css("z-index", "1");
+             $(".leftcol1").css("z-index", "1");
+           $(".rightcol7").css("z-index", "1").removeClass("active");
+             pause=false;
+             if(setting_changed)restart();
+     });
 
 }
 

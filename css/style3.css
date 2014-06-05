@@ -27,7 +27,7 @@
    border-radius: 5pt;
 -moz-border-radius:5px;
 -webkit-border-radius:5px;
-    font-family: AgentOrange;
+    
   background: orange; 
 
 }
@@ -70,6 +70,29 @@ user-select: none;
 .helpwindow{
    position: relative;
     display: none;
+}
+.scoreboard{
+   position: relative;
+    display: none;
+}
+.scoreboard.on{
+ position: relative;
+   display: block;
+}
+.scoreboard.on:after {
+  content: " ";
+  z-index: 1000;
+  display: block;
+  position: absolute;
+  width: 455px;
+  height: 615px;
+  top: 0;
+  left: 0;
+  right: 0;
+  background: rgba(0, 0, 0, 0.5);
+  border-radius: 5pt;
+-moz-border-radius:5px;
+-webkit-border-radius:5px;
 }
 .menuwindow.on{
  position: relative;
@@ -128,6 +151,7 @@ border-radius: 5pt;
   box-shadow: 
         0 1px 5px rgba(0,0,0,0.15); 
 }
+
 .self{
 background-color:#e0eeee;
 }
@@ -480,8 +504,21 @@ font-family: AgentOrange;
 color:white;
 font-weight:900;
 }
+.boardnum{
+  line-height: 45px;
+   text-align: center;
+   color:white;
+   vertical-align: text-bottom;
+font-size: 22px;
+font-family: AgentOrange;
+}
 .ai{
-  line-height: 50px;
+  line-height: 50px;  line-height: 45px;
+   text-align: center;
+   color:black;
+   vertical-align: text-bottom;
+font-size: 22px;
+font-family: AgentOrange;
    text-align: center;
    vertical-align: text-bottom;
 font-size: 22px;
@@ -525,7 +562,7 @@ font-weight:900;
 .overlay{
 
   position: absolute;
- 
+ font-family: 'Myriad Pro', Calibri, Helvetica, Arial, sans-serif;
    text-align: center;
    vertical-align: text-bottom;
 font-size: 28px;
@@ -563,6 +600,7 @@ border: 2px solid white;
   background: rgba(0, 155, 255, 0.6);
 z-index:1001;
 }
+
 
 #aiswitch{
 
@@ -706,6 +744,14 @@ z-index:1001;
   height:50px;
 
 }
+#reset{
+        left:45px;
+  top:425px;
+  width:360px;
+  height:50px;
+
+}
+
 
 .rightbubble 
 {
@@ -789,6 +835,27 @@ z-index: 0;
 bottom: -20px;
 left: 224px;
 }
+#oscb{
+   position: absolute;
+ left:55px;
+  top:35px;
+  width:335px;
+  height:200px;
+ 
+ background: rgba(254, 245, 202, 0.8);
+z-index:1001;
+}
+#sscb{
+  left:55px;
+  top:340px;
+  width:335px;
+  height:200px;
+   position: absolute;
+ background: rgba(224, 238, 238, 0.8);
+ 
+z-index:1001;
+}
+
 .gridnum{
   -webkit-transform: rotate(0deg);
 -o-transform: rotate(0deg);
