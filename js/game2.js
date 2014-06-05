@@ -32,11 +32,24 @@ var reset_timer=false;
 var pause=false;
 var setting_changed=false;
 var ai_reset=false;
+
+jQuery.extend( jQuery.easing, {
+    easeOutBounce: function (x, t, b, c, d) {
+        if ((t/=d) < (1/2.75)) {
+            return c*(7.5625*t*t) + b;
+        } else if (t < (2/2.75)) {
+            return c*(7.5625*(t-=(1.5/2.75))*t + .75) + b;
+        } else if (t < (2.5/2.75)) {
+            return c*(7.5625*(t-=(2.25/2.75))*t + .9375) + b;
+        } else {
+            return c*(7.5625*(t-=(2.625/2.75))*t + .984375) + b;
+        }
+    }
+});
 function progressBar(value,max, $element) {
-    
-    var progressBarWidth = value/max * $element.width();
+   var progressBarWidth = value/max * $element.width();
     var selector=$element.find('div');
-    selector.stop(true).transition({ width: progressBarWidth }, 500).html(value + "&nbsp;");
+    selector.stop(true).animate({ width: progressBarWidth }, 500,'easeOutBounce' ).html(value + "&nbsp;");
     if(max>100){
      if (value < 0.1 * max_health) {
                 selector.css({
