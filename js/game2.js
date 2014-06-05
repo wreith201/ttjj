@@ -396,10 +396,10 @@ function oppoAIOperation() {
                     'z-index': '0'
                 }).children('.gridnum').empty().html(Math.floor((Math.random() * 10)));
                 
-                   
+                   curr_grid.transition({ scale: 1},300)
                
 
-            }).transition({ scale: 1,delay:200},500);
+            });
 
             curr_self_hp -= sum;
                 if (curr_self_hp < 0) {
@@ -534,12 +534,12 @@ function selfAIOperation() {
                     'z-index': '0'
 
                 }).children('.gridnum').empty().html( Math.floor((Math.random() * 10)));
-                
+                 curr_grid.transition({ scale: 1},300)
                
                   
                
 
-            }).transition({ scale: 1,delay:200},500);
+            });
             curr_oppo_hp -= sum;
                 if (curr_oppo_hp < 0) {
                     curr_oppo_hp = max_health;
@@ -711,7 +711,7 @@ function initGridListner(){
                     'z-index': '0'
                 }).children('.gridnum').empty().html( Math.floor((Math.random() * 10)));
                 
-               
+                curr_grid.transition({ scale: 1},300)
                     if (!duel_mode) {
                       
                         switch_turn = true;
@@ -722,7 +722,7 @@ function initGridListner(){
                   
                
 
-            }).transition({ scale: 1,delay:200},500);
+            });
                
                
 
@@ -884,7 +884,7 @@ function initGridListner(){
                     'margin-top': '0',
                     'z-index': '0'
                 }).children('.gridnum').empty().html(Math.floor((Math.random() * 10)));
-                
+                 curr_grid.transition({ scale: 1},300)
                     if (!duel_mode) {
                         switch_turn = true;
                     } else {
@@ -892,7 +892,7 @@ function initGridListner(){
                     }
                
 
-            }).transition({ scale: 1,delay:200},500);
+            });
 
             curr_self_hp -= sum;
                 if (curr_self_hp < 0) {
