@@ -27,7 +27,6 @@ var self_first = true;
 var switch_turn = false;
 var duel_mode = false;
 var rt_enable = true;
-var rt_class = "rotatetext";
 var reset_timer=false;
 var pause=false;
 var setting_changed=false;
@@ -82,17 +81,20 @@ function restart(){
 
        progressBar(curr_oppo_hp,max_health, $('#oppolife'));
   
-        if (!rt_enable) {
-
-            $(".gridnum.rotatetext").removeClass("rotatetext");
-            $(".scorenum.rotatetext").removeClass("rotatetext");
-        }else
-        if(oppo_turn){
-           
-               $(".gridnum").addClass("rotatetext");
-            $(".scorenum").addClass("rotatetext");
-
+        if (rt_enable) {
+            if(oppo_turn){
+                $(".gridnum").transition({ perspective: '100px',  rotateY:'180deg',rotateX: '180deg' }, 500 );
+                $(".scorenum").transition({ perspective: '100px',  rotateY:'180deg',rotateX: '180deg' }, 500 );
+            }
+            if(self_turn){
+                 $(".gridnum").transition({ perspective: '100px',  rotateY:'0deg',rotateX: '0deg' }, 500 );
+            $(".scorenum").transition({ perspective: '100px',  rotateY:'0deg',rotateX: '0deg' }, 500 );
+            }
         }
+      
+           
+
+       
         
 
         setTimeout("resetAI()", 1900);
@@ -127,17 +129,7 @@ function newTimer() {
         var pCnt = !isNaN(pVal) ? (pVal - i) : 1;
         if (pCnt < 0) switch_turn = true;
         if (switch_turn) {
-            if (rt_enable) {
-                if (oppo_turn) {
-                    $(".gridnum.rotatetext").removeClass("rotatetext");
-                    $(".scorenum.rotatetext").removeClass("rotatetext");
-                } else {
-                  
-                    $(".gridnum").addClass("rotatetext");
-                    $(".scorenum").addClass("rotatetext");
-
-                }
-            }
+            
             switch_turn = false;
             if (!duel_mode) ui_lock = false;
             clearInterval(pGress);
@@ -176,6 +168,17 @@ function newTimer() {
             self_turn = !self_turn;
             oppo_turn = !oppo_turn;
 
+
+ if (rt_enable) {
+            if(oppo_turn){
+                $(".gridnum").transition({ perspective: '100px',  rotateY:'180deg',rotateX: '180deg' }, 500 );
+                $(".scorenum").transition({ perspective: '100px',  rotateY:'180deg',rotateX: '180deg' }, 500 );
+            }
+            if(self_turn){
+                 $(".gridnum").transition({ perspective: '100px',  rotateY:'0deg',rotateX: '0deg' }, 500 );
+            $(".scorenum").transition({ perspective: '100px',  rotateY:'0deg',rotateX: '0deg' }, 500 );
+            }
+        }
             if (self_turn && self_AI) {
                 setTimeout("callSelfAI()", 500);
             }
@@ -407,7 +410,7 @@ function oppoAIOperation() {
                         curr_oppo_hp = max_health;
                     }
                     oppo_score++;
-                    $(".leftcol4").empty().append("<div class='scorenum " + rt_class + "'>" + oppo_score + "</div>");
+                    $(".leftcol4").find(".scorenum").html(oppo_score);
                   progressBar(curr_oppo_hp,max_health, $('#oppolife'));
   
                 }
@@ -900,7 +903,7 @@ function initGridListner(){
                         curr_oppo_hp = max_health;
                     }
                     oppo_score++;
-                    $(".leftcol4").empty().append("<div class='scorenum " + rt_class + "'>" + oppo_score + "</div>");
+                    $(".leftcol4").find('.scorenum').html(oppo_score);
                   progressBar(curr_oppo_hp,max_health, $('#oppolife'));
   
                 }
@@ -1052,13 +1055,10 @@ timersettingbtn.click(function(){
 
     $("#rota").html(rt_enable?"On":"Off");
     rotationbtn.click(function(){
-        if(rt_enable){
-            rt_class="";
-            rt_enable=false;
-        }else{
-             rt_class="rotatetext";
-            rt_enable=true;
-        }
+       
+           
+            rt_enable=!rt_enable;
+       
         $("#rota").html(rt_enable?"On":"Off");
         setting_changed=true;
     });
