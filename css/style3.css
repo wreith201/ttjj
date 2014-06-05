@@ -24,15 +24,7 @@
 }
 .game{
     margin:0 auto; width:455px; height:615px; 
-     -webkit-transform: translateZ(0);
-   -moz-transform: translateZ(0);
-   -ms-transform: translateZ(0);
-   -o-transform: translateZ(0);
-   transform: translateZ(0);
-     -webkit-backface-visibility: hidden;
-   -moz-backface-visibility: hidden;
-   -ms-backface-visibility: hidden;
-   backface-visibility: hidden;
+
 
    -webkit-perspective: 1000;
    -moz-perspective: 1000;
@@ -55,6 +47,17 @@ user-select: none;
   box-shadow: 
         0 1px 5px rgba(0,0,0,0.15); 
     
+}
+.acceleration{
+   -webkit-transform: translateZ(0);
+   -moz-transform: translateZ(0);
+   -ms-transform: translateZ(0);
+   -o-transform: translateZ(0);
+   transform: translateZ(0);
+     -webkit-backface-visibility: hidden;
+   -moz-backface-visibility: hidden;
+   -ms-backface-visibility: hidden;
+   backface-visibility: hidden;
 }
 .game:hover {
   cursor: default;

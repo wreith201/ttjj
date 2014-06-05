@@ -384,7 +384,7 @@ function oppoAIOperation() {
             	scale:(1+Math.floor(sum/10)/10),
                 marginTop: margin_value
             },
-            1000,"easeOutExpo").transition({scale:0},500,
+            1000,"snap").transition({scale:0},500,
             function() {
 
                 curr_grid.css({
@@ -522,7 +522,7 @@ function selfAIOperation() {
             	scale:(1+Math.floor(sum/10)/10),
                 marginTop: margin_value
             },
-            1000,'easeOutExpo').transition({scale:0},500,
+            1000,'snap').transition({scale:0},500,
             function() {
 
                 curr_grid.css({
@@ -699,7 +699,7 @@ function initGridListner(){
             	scale:(1+Math.floor(sum/10)/10),
                 marginTop: margin_value
             },
-            1000,'easeOutExpo').transition({scale:0},500,
+            1000,'snap').transition({scale:0},500,
             function() {
 
                 curr_grid.css({
@@ -873,7 +873,7 @@ function initGridListner(){
             	scale:(1+Math.floor(sum/10)/10),
                 marginTop: margin_value
             },
-            1000,'easeOutExpo').transition({scale:0},500,
+            1000,'snap').transition({scale:0},500,
             function() {
 
                 curr_grid.css({
