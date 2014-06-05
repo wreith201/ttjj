@@ -14,7 +14,7 @@
 .progressbar div {
   height:100%;
     font-size: 25px;
-    padding-top: 5px;
+   
     font-family: AgentOrange;
   background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#0099FF), to(#1a82f7)); 
   background: -webkit-linear-gradient(top, #0099FF, #1a82f7); 
@@ -360,14 +360,14 @@ body {
    src: url('AgentOrange.ttf');
 }
 .gridnum{
-
+  line-height: 45px;
    text-align: center;
    vertical-align: text-bottom;
 font-size: 22px;
 font-family: AgentOrange;
 }
 .scorenum{
-
+ line-height: 45px;
    text-align: center;
    vertical-align: text-bottom;
 font-size: 22px;
@@ -377,7 +377,7 @@ font-weight:900;
 
 }
 .barnum{
-
+ line-height: 45px;
    text-align: center;
    vertical-align: text-bottom;
 font-size: 22px;
@@ -695,7 +695,7 @@ bottom: -20px;
 left: 224px;
 }
 .barnum{
-  line-height: 30px;
+ 
    -webkit-transform: rotate(0deg);
 -o-transform: rotate(0deg);
 -moz-transform: rotate(0deg);
@@ -706,7 +706,7 @@ transform: rotate(0deg);
     transition: 0.5s ease-in;
 }
 .barnum.rotatetext{
-  line-height: 60px;
+
 -webkit-transform: rotate(180deg);
 -o-transform: rotate(180deg);
 -moz-transform: rotate(180deg);
@@ -717,7 +717,7 @@ transform: rotate(180deg);
     transition: 0.5s ease-in;
 }
 .gridnum{
-  line-height: 45px;
+  
   -webkit-transform: rotate(0deg);
 -o-transform: rotate(0deg);
 -moz-transform: rotate(0deg);
