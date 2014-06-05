@@ -33,23 +33,11 @@ var pause=false;
 var setting_changed=false;
 var ai_reset=false;
 
-jQuery.extend( jQuery.easing, {
-    easeOutBounce: function (x, t, b, c, d) {
-        if ((t/=d) < (1/2.75)) {
-            return c*(7.5625*t*t) + b;
-        } else if (t < (2/2.75)) {
-            return c*(7.5625*(t-=(1.5/2.75))*t + .75) + b;
-        } else if (t < (2.5/2.75)) {
-            return c*(7.5625*(t-=(2.25/2.75))*t + .9375) + b;
-        } else {
-            return c*(7.5625*(t-=(2.625/2.75))*t + .984375) + b;
-        }
-    }
-});
+
 function progressBar(value,max, $element) {
    var progressBarWidth = value/max * $element.width();
     var selector=$element.find('div');
-    selector.stop(true).animate({ width: progressBarWidth }, 500,'easeOutBounce' ).html(value + "&nbsp;");
+    selector.stop(true).transition({ width: progressBarWidth }, 500,'easeOutExpo' ).html(value + "&nbsp;");
     if(max>100){
      if (value < 0.1 * max_health) {
                 selector.css({
@@ -87,8 +75,8 @@ function restart(){
         $(".rightcol4").empty().append("<div class='scorenum'>" + self_score + "</div>");
       curr_oppo_hp = max_health;
       curr_self_hp = max_health;
-      $("#cdt").html("Resetting");
-
+      $("#battletext > div").empty().html("Resetting");
+  progressBar(turn_interval/1000,turn_interval/1000, $('#battletext'));
       progressBar(curr_self_hp,max_health, $('#selflife'));
   
 
@@ -394,7 +382,7 @@ function oppoAIOperation() {
             	scale:(1+Math.floor(sum/10)/10),
                 marginTop: margin_value
             },
-            1000,"snap").transition({scale:0},500,
+            1000,"easeOutExpo").transition({scale:0},500,
             function() {
 
                 curr_grid.css({
@@ -532,7 +520,7 @@ function selfAIOperation() {
             	scale:(1+Math.floor(sum/10)/10),
                 marginTop: margin_value
             },
-            1000,'snap').transition({scale:0},500,
+            1000,'easeOutExpo').transition({scale:0},500,
             function() {
 
                 curr_grid.css({
@@ -709,7 +697,7 @@ function initGridListner(){
             	scale:(1+Math.floor(sum/10)/10),
                 marginTop: margin_value
             },
-            1000,'snap').transition({scale:0},500,
+            1000,'easeOutExpo').transition({scale:0},500,
             function() {
 
                 curr_grid.css({
@@ -883,7 +871,7 @@ function initGridListner(){
             	scale:(1+Math.floor(sum/10)/10),
                 marginTop: margin_value
             },
-            1000,'snap').transition({scale:0},500,
+            1000,'easeOutExpo').transition({scale:0},500,
             function() {
 
                 curr_grid.css({
