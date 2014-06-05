@@ -35,7 +35,7 @@ var ai_reset=false;
 
 function progressBar(value,max, $element) {
    var progressBarWidth = value/max * $element.width();
-    var selector=$element.find('div');
+    var selector=$element.find('.innerbar');
     selector.stop(true).transition({ width: progressBarWidth }, 500,'easeOutExpo' ).find('.barnum').html(value + "&nbsp;");
     if(max>100){
      if (value < 0.1 * max_health) {
@@ -56,12 +56,7 @@ function progressBar(value,max, $element) {
                 });
             }
     }
-    else{
-        selector.css({
-                    'background': 'orange',
-                    'color':'white'
-                });
-    }
+    
 
 }
 function restart(){
@@ -74,7 +69,7 @@ function restart(){
         $(".rightcol4").empty().append("<div class='scorenum'>" + self_score + "</div>");
       curr_oppo_hp = max_health;
       curr_self_hp = max_health;
-      $("#battletext > div").empty().html("Resetting");
+      $("#battletext").find('.barnum').empty().html("Resetting");
 
       progressBar(curr_self_hp,max_health, $('#selflife'));
   
@@ -203,7 +198,7 @@ function newTimer() {
 
 function initOppoflife() {
 progressBar(max_health,max_health, $('#oppolife'));
-$('#oppolife >div').find('.barnum').css({
+$('#oppolife').find('.barnum').css({
                     'color': 'chocolate'
                 });
   
@@ -211,7 +206,7 @@ $('#oppolife >div').find('.barnum').css({
 
 function initSelflife() {
 progressBar(max_health,max_health, $('#selflife'));
-$('#selflife >div').find('.barnum').css({
+$('#selflife').find('.barnum').css({
                     'color': 'blue'
                 });
 }
