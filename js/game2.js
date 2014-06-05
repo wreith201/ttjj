@@ -36,8 +36,8 @@ function progressBar(value,max, $element) {
     
     var progressBarWidth = value/max * $element.width();
     var selector=$element.find('div');
-    selector.stop(true).animate({ width: progressBarWidth }, 500,"easeOutBounce").html(value + "&nbsp;");
-
+    selector.stop(true).transition({ width: progressBarWidth }, 500).html(value + "&nbsp;");
+    if(max>100){
      if (value < 0.1 * max_health) {
                 selector.css({
                     'background': 'Red'
@@ -55,6 +55,13 @@ function progressBar(value,max, $element) {
                     'background': 'LightGreen'
                 });
             }
+    }
+    else{
+        selector.css({
+                    'background': 'orange',
+                    'color':'white'
+                });
+    }
 
 }
 function restart(){
@@ -180,20 +187,23 @@ function newTimer() {
         }
     },
     1000);
-    $("#battletext > div").css({
-        'border': '0px',
-        'border-radius': '5pt'
-    });
+   
 
 }
 
 function initOppoflife() {
 progressBar(max_health,max_health, $('#oppolife'));
+$('#oppolife >div').css({
+                    'color': 'chocolate'
+                });
   
 }
 
 function initSelflife() {
 progressBar(max_health,max_health, $('#selflife'));
+$('#selflife >div').css({
+                    'color': 'blue'
+                });
 }
 function callOppoAI() {
     

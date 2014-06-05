@@ -76,14 +76,7 @@ function restart(){
             if(oppo_AI&&oppo_turn)callOppoAI();
         }
 function initTimer() {
-    $("#battletext").progressbar({
-        value: 100
-    }).children('.ui-progressbar-value').html("<div id='cdt' class='gridnum'>" + turn_interval / 1000 + "</div>").css({
-        "display": "block",
-        "text-align": "center",
-        "padding-top": "5px",
-        "font-size": "30px"
-    });
+
    newTimer();
 }
 
