@@ -78,15 +78,20 @@ function restart(){
   
         if (rt_enable) {
             if(oppo_turn){
-                $(".gridnum").addClass("rotatetext");
-                $(".scorenum").addClass("rotatetext");
-                 $(".barnum").addClass("rotatetext");
+                $(".gridnum").transition({rotate:'180deg'},1000);
+                $(".scorenum").transition({rotate:'180deg'},1000);
+                 $(".barnum").transition({rotate:'180deg'},1000);
             }
             if(self_turn){
-                 $(".gridnum").removeClass("rotatetext");
-            $(".scorenum").removeClass("rotatetext");
-             $(".barnum").removeClass("rotatetext");
+                  $(".gridnum").transition({rotate:'0deg'},1000);
+                $(".scorenum").transition({rotate:'0deg'},1000);
+                 $(".barnum").transition({rotate:'0deg'},1000);
             }
+        }else{
+            $(".gridnum").transition({rotate:'0deg'},1000);
+                $(".scorenum").transition({rotate:'0deg'},1000);
+                 $(".barnum").transition({rotate:'0deg'},1000);
+            
         }
       
            
@@ -166,16 +171,16 @@ function newTimer() {
             oppo_turn = !oppo_turn;
 
 
- if (rt_enable) {
+  if (rt_enable) {
             if(oppo_turn){
-                $(".gridnum").addClass('rotatetext');
-                $(".scorenum").addClass('rotatetext');
-                 $(".barnum").addClass("rotatetext");
+                $(".gridnum").transition({rotate:'180deg'},1000);
+                $(".scorenum").transition({rotate:'180deg'},1000);
+                 $(".barnum").transition({rotate:'180deg'},1000);
             }
             if(self_turn){
-                 $(".gridnum").removeClass('rotatetext');
-            $(".scorenum").removeClass('rotatetext');
-             $(".barnum").removeClass("rotatetext");
+                  $(".gridnum").transition({rotate:'0deg'},1000);
+                $(".scorenum").transition({rotate:'0deg'},1000);
+                 $(".barnum").transition({rotate:'0deg'},1000);
             }
         }
             if (self_turn && self_AI) {
