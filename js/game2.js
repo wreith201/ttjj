@@ -36,7 +36,7 @@ var ai_reset=false;
 function progressBar(value,max, $element) {
    var progressBarWidth = value/max * $element.width();
     var selector=$element.find('div');
-    selector.stop(true).transition({ width: progressBarWidth }, 500,'easeOutExpo' ).html(value + "&nbsp;");
+    selector.stop(true).transition({ width: progressBarWidth }, 500,'easeOutExpo' ).find('.barnum').html(value + "&nbsp;");
     if(max>100){
      if (value < 0.1 * max_health) {
                 selector.css({
@@ -83,12 +83,14 @@ function restart(){
   
         if (rt_enable) {
             if(oppo_turn){
-                $(".gridnum").transition({ perspective: '100px',  rotate:'180deg' }, 500 );
-                $(".scorenum").transition({ perspective: '100px',  rotate:'180deg' }, 500 );
+                $(".gridnum").addClass("rotatetext");
+                $(".scorenum").addClass("rotatetext");
+                 $(".barnum").addClass("rotatetext");
             }
             if(self_turn){
-                 $(".gridnum").transition({ perspective: '100px',  rotate:'0deg' }, 500 );
-            $(".scorenum").transition({ perspective: '100px',  rotate:'0deg' }, 500 );
+                 $(".gridnum").removeClass("rotatetext");
+            $(".scorenum").removeClass("rotatetext");
+             $(".barnum").removeClass("rotatetext");
             }
         }
       
@@ -171,12 +173,14 @@ function newTimer() {
 
  if (rt_enable) {
             if(oppo_turn){
-                $(".gridnum").transition({ perspective: '100px',  rotate:'180deg' }, 500 );
-                $(".scorenum").transition({ perspective: '100px',  rotate:'180deg'}, 500 );
+                $(".gridnum").addClass('rotatetext');
+                $(".scorenum").addClass('rotatetext');
+                 $(".barnum").addClass("rotatetext");
             }
             if(self_turn){
-                 $(".gridnum").transition({ perspective: '100px',  rotate:'0deg' }, 500 );
-            $(".scorenum").transition({ perspective: '100px',  rotate:'0deg' }, 500 );
+                 $(".gridnum").removeClass('rotatetext');
+            $(".scorenum").removeClass('rotatetext');
+             $(".barnum").removeClass("rotatetext");
             }
         }
             if (self_turn && self_AI) {
@@ -199,7 +203,7 @@ function newTimer() {
 
 function initOppoflife() {
 progressBar(max_health,max_health, $('#oppolife'));
-$('#oppolife >div').css({
+$('#oppolife >div').find('.barnum').css({
                     'color': 'chocolate'
                 });
   
@@ -207,7 +211,7 @@ $('#oppolife >div').css({
 
 function initSelflife() {
 progressBar(max_health,max_health, $('#selflife'));
-$('#selflife >div').css({
+$('#selflife >div').find('.barnum').css({
                     'color': 'blue'
                 });
 }
