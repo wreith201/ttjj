@@ -360,14 +360,14 @@ body {
    src: url('AgentOrange.ttf');
 }
 .gridnum{
-   padding-top: 6px;
+  margin-top: 5px;
    text-align: center;
    vertical-align: text-bottom;
 font-size: 22px;
 font-family: AgentOrange;
 }
 .scorenum{
-  padding-top: 6px;
+   margin-top: 5px;
    text-align: center;
    vertical-align: text-bottom;
 font-size: 22px;
@@ -376,8 +376,17 @@ color:red;
 font-weight:900;
 
 }
+.barnum{
+     margin-top: -5px;
+   text-align: center;
+   vertical-align: text-bottom;
+font-size: 22px;
+font-family: AgentOrange;
+color:red;
+font-weight:900;
+}
 .ai{
-  padding-top: 6px;
+  margin-top:5px;
    text-align: center;
    vertical-align: text-bottom;
 font-size: 22px;
@@ -684,5 +693,72 @@ width: 0;
 z-index: 0;
 bottom: -20px;
 left: 224px;
+}
+.barnum{
+   -webkit-transform: rotate(0deg);
+-o-transform: rotate(0deg);
+-moz-transform: rotate(0deg);
+transform: rotate(0deg);
+   -webkit-transition: 0.5s ease-in;
+    -moz-transition: 0.5s ease-in;
+    -o-transition: 0.5s ease-in;
+    transition: 0.5s ease-in;
+}
+.barnum.rotatetext{
+-webkit-transform: rotate(180deg);
+-o-transform: rotate(180deg);
+-moz-transform: rotate(180deg);
+transform: rotate(180deg);
+    -webkit-transition: 0.5s ease-in;
+    -moz-transition: 0.5s ease-in;
+    -o-transition: 0.5s ease-in;
+    transition: 0.5s ease-in;
+}
+.gridnum{
+  -webkit-transform: rotate(0deg);
+-o-transform: rotate(0deg);
+-moz-transform: rotate(0deg);
+transform: rotate(0deg);
+   -webkit-transition: 0.5s ease-in;
+    -moz-transition: 0.5s ease-in;
+    -o-transition: 0.5s ease-in;
+    transition: 0.5s ease-in;
+}
+.gridnum.rotatetext{
+-webkit-transform: rotate(180deg);
+-o-transform: rotate(180deg);
+-moz-transform: rotate(180deg);
+transform: rotate(180deg);
+    -webkit-transition: 0.5s ease-in;
+    -moz-transition: 0.5s ease-in;
+    -o-transition: 0.5s ease-in;
+    transition: 0.5s ease-in;
+}
+
+.scorenum{
+  -webkit-transform: rotate(0deg);
+-o-transform: rotate(0deg);
+-moz-transform: rotate(0deg);
+transform: rotate(0deg);
+   -webkit-transition: 0.5s ease-in;
+    -moz-transition: 0.5s ease-in;
+    -o-transition: 0.5s ease-in;
+    transition: 0.5s ease-in;
+}
+.scorenum.rotatetext{
+-webkit-transform: rotate(180deg);
+-o-transform: rotate(180deg);
+-moz-transform: rotate(180deg);
+transform: rotate(180deg);
+    -webkit-transition: 0.5s ease-in;
+    -moz-transition: 0.5s ease-in;
+    -o-transition: 0.5s ease-in;
+    transition: 0.5s ease-in;
+}
+.rtfixed{
+  -webkit-transform: rotate(180deg);
+-o-transform: rotate(180deg);
+-moz-transform: rotate(180deg);
+transform: rotate(180deg);
 }
 
