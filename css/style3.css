@@ -49,15 +49,7 @@ user-select: none;
     
 }
 .acceleration{
-   -webkit-transform: translateZ(0);
-   -moz-transform: translateZ(0);
-   -ms-transform: translateZ(0);
-   -o-transform: translateZ(0);
-   transform: translateZ(0);
-     -webkit-backface-visibility: hidden;
-   -moz-backface-visibility: hidden;
-   -ms-backface-visibility: hidden;
-   backface-visibility: hidden;
+
 }
 .game:hover {
   cursor: default;
@@ -692,88 +684,5 @@ width: 0;
 z-index: 0;
 bottom: -20px;
 left: 224px;
-}
-.gridnum{
-  -webkit-transform: rotate(0deg);
--o-transform: rotate(0deg);
--moz-transform: rotate(0deg);
-transform: rotate(0deg);
-   -webkit-transition: 0.5s ease-in;
-    -moz-transition: 0.5s ease-in;
-    -o-transition: 0.5s ease-in;
-    transition: 0.5s ease-in;
-}
-.gridnum.rotatetext{
--webkit-transform: rotate(180deg);
--o-transform: rotate(180deg);
--moz-transform: rotate(180deg);
-transform: rotate(180deg);
-    -webkit-transition: 0.5s ease-in;
-    -moz-transition: 0.5s ease-in;
-    -o-transition: 0.5s ease-in;
-    transition: 0.5s ease-in;
-}
-
-.scorenum{
-  -webkit-transform: rotate(0deg);
--o-transform: rotate(0deg);
--moz-transform: rotate(0deg);
-transform: rotate(0deg);
-   -webkit-transition: 0.5s ease-in;
-    -moz-transition: 0.5s ease-in;
-    -o-transition: 0.5s ease-in;
-    transition: 0.5s ease-in;
-}
-.scorenum.rotatetext{
--webkit-transform: rotate(180deg);
--o-transform: rotate(180deg);
--moz-transform: rotate(180deg);
-transform: rotate(180deg);
-    -webkit-transition: 0.5s ease-in;
-    -moz-transition: 0.5s ease-in;
-    -o-transition: 0.5s ease-in;
-    transition: 0.5s ease-in;
-}
-.rtfixed{
-  -webkit-transform: rotate(180deg);
--o-transform: rotate(180deg);
--moz-transform: rotate(180deg);
-transform: rotate(180deg);
-}
-
-.grid.animate {
-  animation-name: attackOppo;
-  animation-duration: 1s;
-  animation-timing-function: ease;
-  animation-iteration-count: 1; 
-  animation-direction: normal;
-  animation-delay: 0;
-  animation-play-state: running;
-  animation-fill-mode: forwards;
-}
-@-webkit-keyframes attackOppo {
-
-  0% {
-    
-   
-  }
-  
-  33% {
-    color:white;
-    width:56px;
-    background: orangered;
-  }
-
-  66% {
-
-    margin-top: -100px;
-        
-   
-  }
-
-  100% {
-    opacity: 0.1;
-  }
-
 }
 
