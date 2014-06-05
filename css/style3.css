@@ -24,7 +24,9 @@
 .progressbar .innerbar {
   height:100%;
     font-size: 25px;
-   
+   border-radius: 5pt;
+-moz-border-radius:5px;
+-webkit-border-radius:5px;
     font-family: AgentOrange;
   background: orange; 
 
