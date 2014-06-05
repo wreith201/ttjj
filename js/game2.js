@@ -599,7 +599,7 @@ function initGridListner(){
     $('.grid.self').each(function() {
       
         var selfvalue = parseInt($(this).text());
-        $(this).click(sum);
+        $(this).bind('tap',sum);
         function sum() {
             if (ui_lock) return;
             if(pause)return;
@@ -777,7 +777,7 @@ function initGridListner(){
     $('.grid.oppo').each(function() {
         
         var selfvalue = parseInt($(this).text());
-        $(this).click(sum);
+        $(this).bind('tap',sum);
         function sum() {
             if (ui_lock) return;
             if(pause)return;
@@ -922,7 +922,7 @@ function initGridListner(){
 function initAIButton() {
     var oppoAIbtn = $('.leftcol1');
     var selfAIbtn = $('.leftcol7');
-    oppoAIbtn.click(function() {
+    oppoAIbtn.bind('tap',function() {
         oppo_AI = !oppo_AI;
         if (oppo_AI) {
             oppoAIbtn.empty().append("<div class='ai'>AI</div>");
@@ -930,7 +930,7 @@ function initAIButton() {
             oppoAIbtn.empty().append("<div class='ai'>P2</div>");
         }
     });
-    selfAIbtn.click(function() {
+    selfAIbtn.bind('tap',function() {
         self_AI = !self_AI;
         if (self_AI) {
             selfAIbtn.empty().append("<div class='ai'>AI</div>");
@@ -956,10 +956,10 @@ function initAIButton() {
 function initResetButton(){
 var resetbtn1 = $(".leftcol4");
 var resetbtn2 = $(".rightcol4");
-resetbtn1.click(function(){
+resetbtn1.bind('tap',function(){
    restart();
 });
-resetbtn2.click(function(){
+resetbtn2.bind('tap',function(){
   restart();
 
 });
@@ -967,7 +967,7 @@ resetbtn2.click(function(){
 function initHelpButton() {
     var helpbtn = $(".rightcol1");
     var helpwindow = $(".helpwindow");
-    helpbtn.click(function(e) {
+    helpbtn.bind('tap',function(e) {
         if (!helpwindow.hasClass("on")) {
             helpwindow.addClass("on");
             pause=true;
@@ -986,18 +986,18 @@ function initHelpButton() {
 }
 function setupHelpwindow() {
 
-    $("#sideshow").click(function() {
+    $("#sideshow").bind('tap',function() {
 
         $(".side").addClass("show");
         $(".mid").addClass("off");
     });
-    $("#sideshow2").click(function() {
+    $("#sideshow2").bind('tap',function() {
 
         $(".side").addClass("show");
         $(".mid").addClass("off");
     });
 
-    $("#midshow").click(function() {
+    $("#midshow").bind('tap',function() {
 
         $(".side").removeClass("show");
         $(".mid").removeClass("off");
@@ -1006,7 +1006,7 @@ function setupHelpwindow() {
 function initMenuButton() {
     var menubtn = $(".rightcol7");
     var menuwindow = $(".menuwindow");
-    menubtn.click(function(e) {
+    menubtn.bind('tap',function(e) {
 
         if (!menuwindow.hasClass("on")) {
             menuwindow.addClass("on");
@@ -1040,14 +1040,14 @@ function setupMenuWindow(){
    
    
         $("#mode").html(duel_mode?"n Move/Turn":"1 Move/Turn");
-    gamemodebtn.click(function(){
+    gamemodebtn.bind('tap',function(){
         duel_mode=!duel_mode;
         $("#mode").html(duel_mode?"n Move/Turn":"1 Move/Turn");
         setting_changed=true;
     });
 
         $("#ts").html(turn_interval/1000);
-timersettingbtn.click(function(){
+timersettingbtn.bind('tap',function(){
         turn_interval+=10000;
     if(turn_interval>30000){
         turn_interval=10000;
@@ -1058,7 +1058,7 @@ timersettingbtn.click(function(){
 
 
     $("#rota").html(rt_enable?"On":"Off");
-    rotationbtn.click(function(){
+    rotationbtn.bind('tap',function(){
        
            
             rt_enable=!rt_enable;
@@ -1092,3 +1092,114 @@ timersettingbtn.click(function(){
         return classes;
     };
 })(jQuery);
+
+
+/*! Tappy! - a lightweight normalized tap event. Copyright 2013 @scottjehl, Filament Group, Inc. Licensed MIT */
+(function( w, $, undefined ){
+
+    // handling flag is true when an event sequence is in progress (thx androood)
+    w.tapHandling = false;
+
+    var tap = function( $els ){
+        return $els.each(function(){
+
+            var $el = $( this ),
+                resetTimer,
+                startY,
+                startX,
+                cancel,
+                scrollTolerance = 10;
+
+            function trigger( e ){
+                $( e.target ).trigger( "tap", [ e, $( e.target ).attr( "href" ) ] );
+                e.stopImmediatePropagation();
+            }
+
+            function getCoords( e ){
+                var ev = e.originalEvent || e,
+                    touches = ev.touches || ev.targetTouches;
+
+                if( touches ){
+                    return [ touches[ 0 ].pageX, touches[ 0 ].pageY ];
+                }
+                else {
+                    return null;
+                }
+            }
+
+            function start( e ){
+                if( e.touches && e.touches.length > 1 || e.targetTouches && e.targetTouches.length > 1 ){
+                    return false;
+                }
+
+                var coords = getCoords( e );
+                startX = coords[ 0 ];
+                startY = coords[ 1 ];
+            }
+
+            // any touchscroll that results in > tolerance should cancel the tap
+            function move( e ){
+                if( !cancel ){
+                    var coords = getCoords( e );
+                    if( coords && ( Math.abs( startY - coords[ 1 ] ) > scrollTolerance || Math.abs( startX - coords[ 0 ] ) > scrollTolerance ) ){
+                        cancel = true;
+                    }
+                }
+            }
+
+            function end( e ){
+                clearTimeout( resetTimer );
+                resetTimer = setTimeout( function(){
+                    w.tapHandling = false;
+                    cancel = false;
+                }, 1000 );
+
+                if( e.ctrlKey || e.metaKey ){
+                    return;
+                }
+
+                e.preventDefault();
+
+                // this part prevents a double callback from touch and mouse on the same tap
+
+                // if a scroll happened between touchstart and touchend
+                if( cancel || w.tapHandling && w.tapHandling !== e.type ){
+                    cancel = false;
+                    return;
+                }
+
+                w.tapHandling = e.type;
+                trigger( e );
+            }
+
+            $el
+                .bind( "touchstart MSPointerDown", start )
+                .bind( "touchmove MSPointerMove", move )
+                .bind( "touchend MSPointerUp", end )
+                .bind( "click", end );
+        });
+    };
+
+    // use special events api
+    if( $.event && $.event.special ){
+        $.event.special.tap = {
+            add: function( handleObj ) {
+                tap( $( this ), true );
+            },
+            remove: function( handleObj ) {
+                tap( $( this ), false );
+            }
+        };
+    }
+    else{
+        // monkeybind
+        var oldBind = $.fn.bind;
+        $.fn.bind = function( evt ){
+            if( /(^| )tap( |$)/.test( evt ) ){
+                tap( this );
+            }
+            return oldBind.apply( this, arguments );
+        };
+    }
+
+}( this, jQuery ));
