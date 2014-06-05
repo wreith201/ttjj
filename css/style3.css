@@ -24,7 +24,11 @@
 }
 .game{
     margin:0 auto; width:455px; height:615px; 
-   
+     -webkit-transform: translateZ(0);
+   -moz-transform: translateZ(0);
+   -ms-transform: translateZ(0);
+   -o-transform: translateZ(0);
+   transform: translateZ(0);
         background: #eee;
    -webkit-touch-callout: none;
 -webkit-user-select: none;
