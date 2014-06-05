@@ -78,19 +78,19 @@ function restart(){
   
         if (rt_enable) {
             if(oppo_turn){
-                $(".gridnum").transition({rotate:'180deg'},1000);
-                $(".scorenum").transition({rotate:'180deg'},1000);
-                 $(".barnum").transition({rotate:'180deg'},1000);
+                $(".gridnum").transition({rotate:'180deg'},1000,'ease');
+                $(".scorenum").transition({rotate:'180deg'},1000,'ease');
+                 $(".barnum").transition({rotate:'180deg'},1000,'ease');
             }
             if(self_turn){
-                  $(".gridnum").transition({rotate:'0deg'},1000);
-                $(".scorenum").transition({rotate:'0deg'},1000);
-                 $(".barnum").transition({rotate:'0deg'},1000);
+                  $(".gridnum").transition({rotate:'0deg'},1000,'ease');
+                $(".scorenum").transition({rotate:'0deg'},1000,'ease');
+                 $(".barnum").transition({rotate:'0deg'},1000,'ease');
             }
         }else{
-            $(".gridnum").transition({rotate:'0deg'},1000);
-                $(".scorenum").transition({rotate:'0deg'},1000);
-                 $(".barnum").transition({rotate:'0deg'},1000);
+            $(".gridnum").transition({rotate:'0deg'},1000,'ease');
+                $(".scorenum").transition({rotate:'0deg'},1000,'ease');
+                 $(".barnum").transition({rotate:'0deg'},1000,'ease');
             
         }
       
@@ -173,14 +173,14 @@ function newTimer() {
 
   if (rt_enable) {
             if(oppo_turn){
-                $(".gridnum").transition({rotate:'180deg'},1000);
-                $(".scorenum").transition({rotate:'180deg'},1000);
-                 $(".barnum").transition({rotate:'180deg'},1000);
+                $(".gridnum").transition({rotate:'180deg'},1000,'ease');
+                $(".scorenum").transition({rotate:'180deg'},1000,'ease');
+                 $(".barnum").transition({rotate:'180deg'},1000,'ease');
             }
             if(self_turn){
-                  $(".gridnum").transition({rotate:'0deg'},1000);
-                $(".scorenum").transition({rotate:'0deg'},1000);
-                 $(".barnum").transition({rotate:'0deg'},1000);
+                  $(".gridnum").transition({rotate:'0deg'},1000,'ease');
+                $(".scorenum").transition({rotate:'0deg'},1000,'ease');
+                 $(".barnum").transition({rotate:'0deg'},1000,'ease');
             }
         }
             if (self_turn && self_AI) {
