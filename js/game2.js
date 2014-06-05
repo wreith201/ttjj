@@ -83,12 +83,12 @@ function restart(){
   
         if (rt_enable) {
             if(oppo_turn){
-                $(".gridnum").transition({ perspective: '100px',  rotateY:'180deg',rotateX: '180deg' }, 500 );
-                $(".scorenum").transition({ perspective: '100px',  rotateY:'180deg',rotateX: '180deg' }, 500 );
+                $(".gridnum").transition({ perspective: '100px',  rotate:'180deg' }, 500 );
+                $(".scorenum").transition({ perspective: '100px',  rotate:'180deg' }, 500 );
             }
             if(self_turn){
-                 $(".gridnum").transition({ perspective: '100px',  rotateY:'0deg',rotateX: '0deg' }, 500 );
-            $(".scorenum").transition({ perspective: '100px',  rotateY:'0deg',rotateX: '0deg' }, 500 );
+                 $(".gridnum").transition({ perspective: '100px',  rotate:'0deg' }, 500 );
+            $(".scorenum").transition({ perspective: '100px',  rotate:'0deg' }, 500 );
             }
         }
       
@@ -171,12 +171,12 @@ function newTimer() {
 
  if (rt_enable) {
             if(oppo_turn){
-                $(".gridnum").transition({ perspective: '100px',  rotateY:'180deg',rotateX: '180deg' }, 500 );
-                $(".scorenum").transition({ perspective: '100px',  rotateY:'180deg',rotateX: '180deg' }, 500 );
+                $(".gridnum").transition({ perspective: '100px',  rotate:'180deg' }, 500 );
+                $(".scorenum").transition({ perspective: '100px',  rotate:'180deg'}, 500 );
             }
             if(self_turn){
-                 $(".gridnum").transition({ perspective: '100px',  rotateY:'0deg',rotateX: '0deg' }, 500 );
-            $(".scorenum").transition({ perspective: '100px',  rotateY:'0deg',rotateX: '0deg' }, 500 );
+                 $(".gridnum").transition({ perspective: '100px',  rotate:'0deg' }, 500 );
+            $(".scorenum").transition({ perspective: '100px',  rotate:'0deg' }, 500 );
             }
         }
             if (self_turn && self_AI) {
