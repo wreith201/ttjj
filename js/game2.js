@@ -76,7 +76,7 @@ function restart(){
       curr_oppo_hp = max_health;
       curr_self_hp = max_health;
       $("#battletext > div").empty().html("Resetting");
-  progressBar(turn_interval/1000,turn_interval/1000, $('#battletext'));
+
       progressBar(curr_self_hp,max_health, $('#selflife'));
   
 
@@ -119,6 +119,7 @@ function newTimer() {
         if(reset_timer){
             i=0;
             reset_timer=false;
+            pVal=turn_interval/1000;
         }
        
         if(!pause)
@@ -184,6 +185,7 @@ function newTimer() {
             newTimer();
         } else {
              progressBar(pCnt,turn_interval/1000, $('#battletext'));
+
           
         }
     },
