@@ -360,14 +360,14 @@ body {
    src: url('AgentOrange.ttf');
 }
 .gridnum{
-  margin-top: 5px;
+line-height: 50px;
    text-align: center;
    vertical-align: text-bottom;
 font-size: 22px;
 font-family: AgentOrange;
 }
 .scorenum{
-   margin-top: 5px;
+line-height: 50px;
    text-align: center;
    vertical-align: text-bottom;
 font-size: 22px;
@@ -377,7 +377,7 @@ font-weight:900;
 
 }
 .barnum{
-     margin-top: -5px;
+line-height: 50px;
    text-align: center;
    vertical-align: text-bottom;
 font-size: 22px;
