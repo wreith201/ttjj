@@ -14,7 +14,7 @@ h1 {
 h2 {
   padding-bottom: 10px;
   font-size: 32px;
-  background: url('../images/bg_hr.png') repeat-x bottom;
+  
 }
 
 h3 {
@@ -81,20 +81,6 @@ strong {
   margin: 0 auto;
 }
 
-#forkme_banner {
-  display: block;
-  position: absolute;
-  top:0;
-  right: 10px;
-  z-index: 10;
-  padding: 10px 50px 10px 10px;
-  color: #fff;
-  background: url('../images/blacktocat.png') #0090ff no-repeat 95% 50%;
-  font-weight: 700;
-  box-shadow: 0 0 10px rgba(0,0,0,.5);
-  border-bottom-left-radius: 2px;
-  border-bottom-right-radius: 2px;
-}
 
 #header_wrap {
   background: #212121;
@@ -609,7 +595,7 @@ body {
    background-color: #e7e7de;
    text-align:center;
    overflow:hidden;
-     box-sizing: border-box;
+    
   color:#373737;
   background: #212121;
   font-size: 16px;
