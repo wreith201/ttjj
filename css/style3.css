@@ -562,19 +562,17 @@ font-weight:900;
 .overlay{
 
   position: absolute;
- font-family: 'Myriad Pro', Calibri, Helvetica, Arial, sans-serif;
+ font-family: AgentOrange;
    text-align: center;
    vertical-align: text-bottom;
-font-size: 28px;
+font-size: 18px;
+line-height: 50px;
+color:black;
 
-color:white;
-
--webkit-text-shadow: 0px 0px 5px orange;
--moz-text-shadow: 0px 0px 5px orange;
-text-shadow: 0px 0px 5px orange;
 }
 .descr{
-border: 2px solid white;
+border: 1px solid white;
+
  border-radius: 5pt;
    -moz-border-radius:5px;
    -webkit-border-radius:5px;
@@ -585,6 +583,7 @@ border: 2px solid white;
   z-index: -1;
 }
 .mid{
+
  display: block;
   z-index: 1001;
 }
@@ -597,11 +596,13 @@ border: 2px solid white;
     z-index: -1;
 }
 .menuoption{
-  background: rgba(0, 155, 255, 0.6);
+background: rgba(254, 245, 202, 0.8);
 z-index:1001;
 }
 
-
+#reset, #timersetting{
+   background: rgba(224, 238, 238, 0.8);
+}
 #aiswitch{
 
   
@@ -641,8 +642,10 @@ z-index:1001;
   top:560px;
   width:330px;
   height:48px;
+background:rgba(254, 245, 202, 0.8);
   }
   #hpbar2{
+background:rgba(254, 245, 202, 0.8);
     left:60px;
   top:5px;
   width:330px;
@@ -689,39 +692,43 @@ z-index:1001;
   top:282px;
   width:330px;
   height:48px;
+  background:rgba(254, 245, 202, 0.8);
 }
 #numberpad{
   left:60px;
   top:340px;
   width:330px;
   height:211px;
+ background: rgba(224, 238, 238, 0.8);
   }
 #numberpad2{
   left:60px;
   top:62px;
   width:330px;
   height:211px;
+  background: rgba(224, 238, 238, 0.8);
   }
   #sideshow{
     left:5px;
   top:5px;
   width:46px;
   height:600px;
-  border:dotted;
+  border: white dotted;
   }
   #sideshow2{
     left:400px;
   top:5px;
   width:46px;
   height:600px;
-  border:dotted;
+  border: white dotted;
   }
   #midshow{
       left:60px;
   top:5px;
   width:330px;
   height:600px;
-  border:dotted;
+  border: white dotted;
+
   }
 #gamemode{
         left:45px;
@@ -752,20 +759,21 @@ z-index:1001;
 
 }
 
-
 .rightbubble 
 {
 
   margin-left: 52px;
 position: relative;
-width: 250px;
+width: 300px;
 height: 50px;
 padding: 0px;
-background: rgba(0, 0, 0, 0.5);
--webkit-border-radius: 10px;
--moz-border-radius: 10px;
-border-radius: 10px;
-border: #F6B579 solid 2px;
+ background: rgba(224, 238, 238, 0.8);
+-webkit-border-radius: 5px;
+-moz-border-radius: 5px;
+border-radius: 5px;
+
+border: 1px solid white;
+-moz-box-shadow:0px 0px 8px yellow; -webkit-box-shadow:0px 0px 8px yellow; box-shadow:0px 0px 8px yellow;
 }
 
 .rightbubble:after 
@@ -774,7 +782,7 @@ content: '';
 position: absolute;
 border-style: solid;
 border-width: 10px 27px 10px 0;
-border-color: transparent rgba(0, 0, 0, 0.8);
+border-color: transparent rgba(224, 238, 238, 0.8);
 display: block;
 width: 0;
 z-index: 1;
@@ -788,7 +796,8 @@ content: '';
 position: absolute;
 border-style: solid;
 border-width: 11px 28px 11px 0;
-border-color: transparent #F6B579;
+border-color: transparent white;;
+
 display: block;
 width: 0;
 z-index: 0;
@@ -801,11 +810,12 @@ position: relative;
 width: 250px;
 height: 50px;
 padding: 0px;
-background: rgba(0, 0, 0, 0.8);
--webkit-border-radius: 10px;
--moz-border-radius: 10px;
-border-radius: 10px;
-border: #F6B579 solid 2px;
+background: rgba(254, 245, 202, 0.8);
+-webkit-border-radius: 5px;
+-moz-border-radius: 5px;
+border-radius: 5px;
+border: white solid 1px;
+-moz-box-shadow:0px 0px 8px yellow; -webkit-box-shadow:0px 0px 8px yellow; box-shadow:0px 0px 8px yellow;
 }
 
 .leftbubble:after 
@@ -814,7 +824,7 @@ content: '';
 position: absolute;
 border-style: solid;
 border-width: 17px 6px 0;
-border-color: rgba(0, 0, 0, 0.8) transparent;
+border-color: rgba(254, 245, 202, 0.8) transparent;
 display: block;
 width: 0;
 z-index: 1;
@@ -828,14 +838,13 @@ content: '';
 position: absolute;
 border-style: solid;
 border-width: 18px 7px 0;
-border-color: #F6B579 transparent;
+border-color: white transparent;
 display: block;
 width: 0;
 z-index: 0;
 bottom: -20px;
 left: 224px;
 }
-
 
 .gridnum{
   -webkit-transform: rotate(0deg);
@@ -889,6 +898,8 @@ transform: rotate(180deg);
 -webkit-border-radius:5px;
  background: rgba(254, 245, 202, 0.8);
 z-index:1001;
+border: 1px white solid;
+-moz-box-shadow:0px 0px 5px yellow; -webkit-box-shadow:0px 0px 5px yellow; box-shadow:0px 0px 5px yellow;
 }
 #sscb{
   left:55px;
@@ -901,6 +912,8 @@ z-index:1001;
 -moz-border-radius:5px;
 -webkit-border-radius:5px;
 z-index:1001;
+border: 1px white solid;
+-moz-box-shadow:0px 0px 5px yellow; -webkit-box-shadow:0px 0px 5px yellow; box-shadow:0px 0px 5px yellow;
 }
 .scbtext{
   font-size: 20px;
