@@ -637,30 +637,6 @@ function selfAIOperation() {
   
                 }
                progressBar(curr_oppo_hp,max_health, $('#oppolife'));
-  
-
-                /*
-             curr_self_hp -= sum;
-                if (curr_self_hp < 0) {
-                    curr_self_hp = max_health;
-                    curr_oppo_hp += 150;
-                    if (curr_oppo_hp > max_health) {
-                        curr_oppo_hp = max_health;
-                    }
-                    oppo_score++;
-                    $(".leftcol4").empty().append("<div class='scorenum'>" + oppo_score + "</div>");
-                    $("#oppolife").progressbar({
-                        value: curr_oppo_hp
-                    });
-                    $("#oppolifevalue").empty().html(curr_oppo_hp);
-                }
-                $("#selflife").progressbar({
-                    value: curr_self_hp
-                });
-                $("#selflifevalue").empty().html(curr_self_hp);
-
-        }
-*/          
        
 
 }
@@ -825,28 +801,7 @@ function initGridListner(){
               progressBar(curr_oppo_hp,max_health, $('#oppolife'));
   
 
-                /*
-             curr_self_hp -= sum;
-                if (curr_self_hp < 0) {
-                    curr_self_hp = max_health;
-                    curr_oppo_hp += 150;
-                    if (curr_oppo_hp > max_health) {
-                        curr_oppo_hp = max_health;
-                    }
-                    oppo_score++;
-                    $(".leftcol4").empty().append("<div class='scorenum'>" + oppo_score + "</div>");
-                    $("#oppolife").progressbar({
-                        value: curr_oppo_hp
-                    });
-                    $("#oppolifevalue").empty().html(curr_oppo_hp);
-                }
-                $("#selflife").progressbar({
-                    value: curr_self_hp
-                });
-                $("#selflifevalue").empty().html(curr_self_hp);
-
-        }
-*/          
+              
         }
     });
 
@@ -1011,10 +966,11 @@ function initAIButton() {
         } else {
             oppoAIbtn.empty().append("<div class='ai'>P2</div>");
         }
-       
-        //restart after switch AI/player
-        /*
+         //restart after switch AI/player
+        
        if(pause)setting_changed=true;
+     
+        /*
         else 
             restart();
 
@@ -1029,9 +985,9 @@ function initAIButton() {
         }
 
          //restart after switch AI/player
-        /*
+       
        if(pause)setting_changed=true;
-        else 
+       /*  else 
             restart();
 
         */
