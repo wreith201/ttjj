@@ -1005,12 +1005,20 @@ function initAIButton() {
     var selfAIbtn = $('.leftcol7');
     oppoAIbtn.bind('tap',function() {
         oppo_AI = !oppo_AI;
-        rt_enable=oppo_AI;
+       
         if (oppo_AI) {
             oppoAIbtn.empty().append("<div class='ai'>AI</div>");
         } else {
             oppoAIbtn.empty().append("<div class='ai'>P2</div>");
         }
+       
+        //restart after switch AI/player
+        /*
+       if(pause)setting_changed=true;
+        else 
+            restart();
+
+        */
     });
     selfAIbtn.bind('tap',function() {
         self_AI = !self_AI;
@@ -1019,6 +1027,14 @@ function initAIButton() {
         } else {
             selfAIbtn.empty().append("<div class='ai'>P1</div>");
         }
+
+         //restart after switch AI/player
+        /*
+       if(pause)setting_changed=true;
+        else 
+            restart();
+
+        */
     });
 
     if (self_AI) {

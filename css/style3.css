@@ -882,7 +882,7 @@ transform: rotate(180deg);
    position: absolute;
  left:55px;
   top:5px;
-  width:340px;
+  width:345px;
   height:265px;
  border-radius: 5pt;
 -moz-border-radius:5px;
@@ -893,7 +893,7 @@ z-index:1001;
 #sscb{
   left:55px;
   top:335px;
-  width:340px;
+  width:345px;
   height:265px;
    position: absolute;
  background: rgba(224, 238, 238, 0.8);
