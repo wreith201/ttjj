@@ -562,7 +562,7 @@ function selfAIOperation() {
             curr_grid.transition({
             	scale:(1+Math.floor(sum/10)/10),
                
-            }, 300).transition({ marginTop: margin_value},700,'snap').transition({scale:0},500,
+            }, 500).transition({ marginTop: margin_value},500,'snap').transition({scale:0},500,
             function() {
 
                 curr_grid.css({
