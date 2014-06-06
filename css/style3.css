@@ -440,7 +440,7 @@ border: 2px solid white;
     z-index: -1;
 }
 .menuoption{
-  background: rgba(0, 155, 255, 0.6);
+  background: rgba(254, 245, 202, 0.8);
 z-index:1001;
 }
 
@@ -483,6 +483,7 @@ z-index:1001;
   top:560px;
   width:330px;
   height:48px;
+   background: rgba(254, 245, 202, 0.8);
   }
   #hpbar2{
     left:60px;
