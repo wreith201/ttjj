@@ -45,14 +45,14 @@ function tokenswitch(token){
 
     switch(token){
         case 0:token0++;return 'orangered';
-        case 1:token0++;return 'orangered';
-        case 2:token0++;return 'orangered';
-        case 3:token0++;return 'darkgreen';
-        case 4:token0++;return 'darkgreen';
-        case 5:token0++;return 'darkgreen';
-        case 6:token0++;return 'mediumblue';
-        case 7:token0++;return 'mediumblue';
-        case 8:token0++;return '#800080';
+        case 1:token1++;return 'orangered';
+        case 2:token2++;return 'orangered';
+        case 3:token3++;return 'darkgreen';
+        case 4:token4++;return 'darkgreen';
+        case 5:token5++;return 'darkgreen';
+        case 6:token6++;return 'mediumblue';
+        case 7:token7++;return 'mediumblue';
+        case 8:token8++;return '#800080';
     }
 }
 function progressBar(value,max, $element) {
@@ -988,6 +988,9 @@ function initAIButton() {
     } else {
         oppoAIbtn.empty().append("<div class='ai'>P2</div>");
     }
+}
+function updateScb(){
+
 }
 function initScoreButton(){
 var resetbtn1 = $(".leftcol4");
