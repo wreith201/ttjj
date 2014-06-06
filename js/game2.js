@@ -422,9 +422,8 @@ function oppoAIOperation() {
 
             curr_grid.transition({
             	scale:(1+Math.floor(sum/10)/10),
-                marginTop: margin_value
-            },
-            1000,"snap").transition({scale:0},500,
+                
+              }, 500).transition({ marginTop: margin_value},500,'snap').transition({scale:0},500,
             function() {
 
                 curr_grid.css({
@@ -562,9 +561,8 @@ function selfAIOperation() {
             curr_grid.css('z-index', '998');
             curr_grid.transition({
             	scale:(1+Math.floor(sum/10)/10),
-                marginTop: margin_value
-            },
-            1000,'snap').transition({scale:0},500,
+               
+            }, 300).transition({ marginTop: margin_value},700,'snap').transition({scale:0},500,
             function() {
 
                 curr_grid.css({
@@ -740,9 +738,7 @@ function initGridListner(){
             curr_grid.css('z-index', '998');
             curr_grid.transition({
             	scale:(1+Math.floor(sum/10)/10),
-                marginTop: margin_value
-            },
-            1000,'snap').transition({scale:0},500,
+                }, 500).transition({ marginTop: margin_value},500,'snap').transition({scale:0},500,
             function() {
 
                 curr_grid.css({
@@ -917,9 +913,7 @@ function initGridListner(){
             curr_grid.css('z-index', '998');
             curr_grid.transition({
             	scale:(1+Math.floor(sum/10)/10),
-                marginTop: margin_value
-            },
-            1000,'snap').transition({scale:0},500,
+                 }, 500).transition({ marginTop: margin_value},500,'snap').transition({scale:0},500,
             function() {
 
                 curr_grid.css({
