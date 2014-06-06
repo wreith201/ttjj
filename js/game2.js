@@ -26,33 +26,60 @@ var self_AI = false;
 var self_first = true;
 var switch_turn = false;
 var duel_mode = false;
-var rt_enable = true;
+var rt_enable = false;
 var reset_timer=false;
 var pause=false;
 var setting_changed=false;
 var ai_reset=false;
 var logic_time=0;
-var token0=0;
-var token1=0;
-var token2=0;
-var token3=0;
-var token4=0;
-var token5=0;
-var token6=0;
-var token7=0;
-var token8=0;
+var otoken0=0;
+var otoken1=0;
+var otoken2=0;
+var otoken3=0;
+var otoken4=0;
+var otoken5=0;
+var otoken6=0;
+var otoken7=0;
+var otoken8=0;
+var stoken0=0;
+var stoken1=0;
+var stoken2=0;
+var stoken3=0;
+var stoken4=0;
+var stoken5=0;
+var stoken6=0;
+var stoken7=0;
+var stoken8=0;
 function tokenswitch(token){
 
     switch(token){
-        case 0:token0++;return 'orangered';
-        case 1:token1++;return 'orangered';
-        case 2:token2++;return 'orangered';
-        case 3:token3++;return 'darkgreen';
-        case 4:token4++;return 'darkgreen';
-        case 5:token5++;return 'darkgreen';
-        case 6:token6++;return 'mediumblue';
-        case 7:token7++;return 'mediumblue';
-        case 8:token8++;return '#800080';
+        case 0: if(self_turn)stoken0++;
+                if(oppo_turn)otoken0++;
+                return 'orangered';
+        case 1:if(self_turn)stoken1++;
+                if(oppo_turn)otoken1++;
+                return 'orangered';
+        case 2:if(self_turn)stoken2++;
+                if(oppo_turn)otoken2++;
+                return 'orangered';
+        case 3:if(self_turn)stoken3++;
+                if(oppo_turn)otoken3++;
+                return 'darkgreen';
+        case 4:if(self_turn)stoken4++;
+                if(oppo_turn)otoken4++;
+                return 'darkgreen';
+        case 5:if(self_turn)stoken5++;
+                if(oppo_turn)otoken5++;
+                return 'darkgreen';
+        case 6:if(self_turn)stoken6++;
+                if(oppo_turn)otoken6++;
+                return 'mediumblue';
+        case 7:if(self_turn)stoken7++;
+                if(oppo_turn)otoken7++;
+                return 'mediumblue';
+        case 8:if(self_turn)stoken8++;
+                if(oppo_turn)otoken8++;
+                return '#800080';
     }
 }
 function progressBar(value,max, $element) {
@@ -82,6 +109,24 @@ function progressBar(value,max, $element) {
 
 }
 function restart(){
+    otoken0=0;
+    otoken1=0;
+    otoken2=0;
+    otoken3=0;
+    otoken4=0;
+    otoken5=0;
+    otoken6=0;
+    otoken7=0;
+    otoken8=0;
+    stoken0=0;
+    stoken1=0;
+    stoken2=0;
+    stoken3=0;
+    stoken4=0;
+    stoken5=0;
+    stoken6=0;
+    stoken7=0;
+    stoken8=0;
     logic_time++;
     pause=true;
     reset_timer=true;
@@ -960,6 +1005,7 @@ function initAIButton() {
     var selfAIbtn = $('.leftcol7');
     oppoAIbtn.bind('tap',function() {
         oppo_AI = !oppo_AI;
+        rt_enable=oppo_AI;
         if (oppo_AI) {
             oppoAIbtn.empty().append("<div class='ai'>AI</div>");
         } else {
@@ -990,43 +1036,60 @@ function initAIButton() {
     }
 }
 function updateScb(){
-
+    var o80v=otoken8;
+    var o60v=otoken7+otoken6;
+    var o30v=otoken5+otoken4+otoken3;
+    var o0v=otoken2+otoken1+otoken0;
+    var s80v=stoken8;
+    var s60v=stoken7+stoken6;
+    var s30v=stoken5+stoken4+stoken3;
+    var s0v=stoken2+stoken1+stoken0;
+    $('#o80v').empty().html(o80v);
+    $('#o60v').empty().html(o60v);
+    $('#o30v').empty().html(o30v);
+    $('#o0v').empty().html(o0v);
+    $('#s80v').empty().html(s80v);
+    $('#s60v').empty().html(s60v);
+    $('#s30v').empty().html(s30v);
+    $('#s0v').empty().html(s0v);
 }
 function initScoreButton(){
-var resetbtn1 = $(".leftcol4");
-var resetbtn2 = $(".rightcol4");
+var scorebtn1 = $(".leftcol4");
+var scorebtn2 = $(".rightcol4");
 var scboard=$(".scoreboard");
-resetbtn1.bind('tap',function(){
+scorebtn1.bind('tap',function(){
  if (!scboard.hasClass("on")) {
             scboard.addClass("on");
             pause=true;
-            resetbtn1.css("z-index", "1002");
-            resetbtn1.addClass("active");
-            resetbtn2.css("z-index", "1002");
-            resetbtn2.addClass("active");
+            scorebtn1.css("z-index", "1002");
+            scorebtn1.addClass("active");
+            scorebtn2.css("z-index", "1002");
+            scorebtn2.addClass("active");
+            updateScb();
         } else {
             scboard.removeClass("on");
-            resetbtn1.css("z-index", "1");
-           resetbtn1.removeClass("active");
-            resetbtn2.css("z-index", "1");
-            resetbtn2.removeClass("active");
+            scorebtn1.css("z-index", "1");
+           scorebtn1.removeClass("active");
+            scorebtn2.css("z-index", "1");
+            scorebtn2.removeClass("active");
              pause=false;
         }
 });
-resetbtn2.bind('tap',function(){
+scorebtn2.bind('tap',function(){
  if (!scboard.hasClass("on")) {
             scboard.addClass("on");
             pause=true;
-            resetbtn1.css("z-index", "1002");
-            resetbtn1.addClass("active");
-            resetbtn2.css("z-index", "1002");
-            resetbtn2.addClass("active");
+            scorebtn1.css("z-index", "1002");
+            scorebtn1.addClass("active");
+            scorebtn2.css("z-index", "1002");
+            scorebtn2.addClass("active");
+             updateScb();
         } else {
             scboard.removeClass("on");
-            resetbtn1.css("z-index", "1");
-           resetbtn1.removeClass("active");
-            resetbtn2.css("z-index", "1");
-            resetbtn2.removeClass("active");
+            scorebtn1.css("z-index", "1");
+           scorebtn1.removeClass("active");
+            scorebtn2.css("z-index", "1");
+            scorebtn2.removeClass("active");
              pause=false;
         }
 });
