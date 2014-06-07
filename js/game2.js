@@ -205,7 +205,7 @@ function restart(){
 function initTimer() {
     progressBar(turn_interval/1000,turn_interval/1000, $('#battletext'));
     var pVal = turn_interval/1000;
-
+    var done_ai=false;
     var i = 0;
     var pGress = setInterval(function() {
         if(reset_timer){
@@ -224,11 +224,18 @@ function initTimer() {
                 if(i%2==1&&i<turn_interval/1000)oppoAIOperation();
             }
     }else{
+       
         if (self_turn && self_AI) {
-               if(i==1)selfAIOperation();
+               if(i%2==1&&i<turn_interval/1000&&!done_ai){
+                    selfAIOperation();
+                    done_ai=true;
+                }
             }
             if (oppo_turn && oppo_AI) {
-                if(i==1)oppoAIOperation();
+                if(i%2==1&&i<turn_interval/1000&&!done_ai){
+                    oppoAIOperation();
+                    done_ai=true;
+                }
             }
         }
         var pCnt = !isNaN(pVal) ? (pVal - i) : 1;
