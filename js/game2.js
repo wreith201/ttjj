@@ -85,7 +85,8 @@ function tokenswitch(token){
 function progressBar(value,max, $element) {
    var progressBarWidth = value/max * $element.width();
     var selector=$element.children('.innerbar');
-    selector.stop(true).transition({ width: progressBarWidth }, 500,'easeOutExpo' ).children('.barnum').html(value + "&nbsp;");
+    var text=pause&&max<100?'Paused':value;
+    selector.stop(true).transition({ width: progressBarWidth }, 500,'easeOutExpo' ).children('.barnum').html(text + "&nbsp;");
     if(max>100){
      if (value < 0.1 * max_health) {
                 selector.css({
@@ -108,6 +109,34 @@ function progressBar(value,max, $element) {
     
 
 }
+function win(text){
+    var wintext='Player'+text+' Wins!';
+    $('#winboard').empty().html(wintext);
+    
+    pause=true;
+    var winscreen= $('.winscreen');
+    winscreen.addClass('on');
+    $('#continue').bind('click',function(){
+        pause=false;
+       reset_timer=true;
+
+        $('.gridnum').each(function(){
+     var num = Math.floor((Math.random() * 10));
+        $(this).empty().html( num );
+    });
+        winscreen.removeClass('on');
+    });
+    $('#reset2').bind('click',function(e){
+       
+      
+        if( winscreen.hasClass('on')){
+            restart();
+            winscreen.removeClass('on');
+        }
+      e.stopPropagation();
+    });
+
+}
 function restart(){
     otoken0=0;
     otoken1=0;
@@ -127,7 +156,7 @@ function restart(){
     stoken6=0;
     stoken7=0;
     stoken8=0;
-    logic_time++;
+   
     pause=true;
     reset_timer=true;
     ai_reset=true;
@@ -137,7 +166,7 @@ function restart(){
         $(".rightcol4").empty().append("<div class='scorenum'>" + self_score + "</div>");
       curr_oppo_hp = max_health;
       curr_self_hp = max_health;
-      $("#battletext").children('.barnum').empty().html("Resetting");
+     
 
       progressBar(curr_self_hp,max_health, $('#selflife'));
   
@@ -162,27 +191,22 @@ function restart(){
             
         }
       
-           
+            $("#battletext").children('.barnum').empty().html("Resetting");
 
        
         
-
-        setTimeout("resetAI()", 1900);
+            setTimeout("resetAI()", 1900);
       
 }
  function resetAI(){
            pause=false;
             ai_reset=false;
-            if(self_AI&&self_turn)callSelfAI();
+            if(self_AI&&self_turn) callSelfAI();
             if(oppo_AI&&oppo_turn)callOppoAI();
         }
-function initTimer() {
-   progressBar(turn_interval/1000,turn_interval/1000, $('#battletext'));
-  
-   newTimer();
-}
 
-function newTimer() {
+
+function initTimer() {
     progressBar(turn_interval/1000,turn_interval/1000, $('#battletext'));
     var pVal = turn_interval/1000;
 
@@ -252,12 +276,12 @@ function newTimer() {
             }
         }
             if (self_turn && self_AI) {
-                setTimeout("callSelfAI()", 500);
+               if(!pause) setTimeout("callSelfAI()", 500);
             }
             if (oppo_turn && oppo_AI) {
-                setTimeout("callOppoAI()", 500);
+                if(!pause)setTimeout("callOppoAI()", 500);
             }
-            newTimer();
+            initTimer();
         } else {
              progressBar(pCnt,turn_interval/1000, $('#battletext'));
 
@@ -284,7 +308,7 @@ $('#selflife').find('.barnum').css({
                 });
 }
 function callOppoAI() {
-    
+     logic_time++;
     if (duel_mode) {
         var i = turn_interval / 2000-1;
         var my_time=logic_time;
@@ -324,7 +348,7 @@ function callOppoAI() {
     }
 }
 function callSelfAI() {
-    
+     logic_time++;
     if (duel_mode) {
         var i = turn_interval / 2000-1;
          var my_time=logic_time;
@@ -486,13 +510,13 @@ function oppoAIOperation() {
             curr_self_hp -= sum;
                 if (curr_self_hp <= 0) {
                     curr_self_hp = max_health;
-                    curr_oppo_hp += 150;
-                    if (curr_oppo_hp > max_health) {
-                        curr_oppo_hp = max_health;
-                    }
+                    curr_oppo_hp = max_health;
+                   
                     oppo_score++;
-                    $(".leftcol4").children(".scorenum").html(oppo_score);
+                    $(".leftcol4").children(".scorenum").empty().html(oppo_score);
                   progressBar(curr_oppo_hp,max_health, $('#oppolife'));
+                  
+                 if(!duel_mode) win(2);
   
                 }
                progressBar(curr_self_hp,max_health, $('#selflife'));
@@ -626,15 +650,13 @@ function selfAIOperation() {
             curr_oppo_hp -= sum;
                 if (curr_oppo_hp <= 0) {
                     curr_oppo_hp = max_health;
-
-                    curr_self_hp += 150;
-                    if (curr_self_hp > max_health) {
-                        curr_self_hp = max_health;
-                    }
+                    curr_self_hp = max_health;
+                    
                     self_score++;
                     $(".rightcol4").children('.scorenum').empty().html(self_score);
                    progressBar(curr_self_hp,max_health, $('#selflife'));
-  
+                    
+                  if(!duel_mode)  win(1);
                 }
                progressBar(curr_oppo_hp,max_health, $('#oppolife'));
        
@@ -653,7 +675,7 @@ function initGridListner(){
     $('.grid.self').each(function() {
       
         var selfvalue = parseInt($(this).text());
-        $(this).bind('tap',sum);
+        $(this).bind('click',sum);
         function sum() {
             if (ui_lock) return;
             if(pause)return;
@@ -748,10 +770,11 @@ function initGridListner(){
                         
                     }
                 });
-
+              
              var c=tokenswitch(Math.floor(sum/10));
+         
             curr_grid.css({
-                
+           
                 'background': c,
                'border':'2px solid white'
             }).children('.gridnum').css({'color': 'white',}).empty().html(sum);
@@ -788,15 +811,14 @@ function initGridListner(){
             curr_oppo_hp -= sum;
                 if (curr_oppo_hp <= 0) {
                     curr_oppo_hp = max_health;
-
-                    curr_self_hp += 150;
-                    if (curr_self_hp > max_health) {
                         curr_self_hp = max_health;
-                    }
+                   
                     self_score++;
                     $(".rightcol4").children('.scorenum').empty().html(self_score);
                    progressBar(curr_self_hp,max_health, $('#selflife'));
-  
+                      
+                  if(!duel_mode)  win(1);
+                
                 }
               progressBar(curr_oppo_hp,max_health, $('#oppolife'));
   
@@ -809,7 +831,7 @@ function initGridListner(){
     $('.grid.oppo').each(function() {
         
         var selfvalue = parseInt($(this).text());
-        $(this).bind('tap',sum);
+        $(this).bind('click',sum);
         function sum() {
             if (ui_lock) return;
             if(pause)return;
@@ -938,14 +960,14 @@ function initGridListner(){
             curr_self_hp -= sum;
                 if (curr_self_hp <= 0) {
                     curr_self_hp = max_health;
-                    curr_oppo_hp += 150;
-                    if (curr_oppo_hp > max_health) {
-                        curr_oppo_hp = max_health;
-                    }
+                    curr_oppo_hp = max_health;
+                    
                     oppo_score++;
-                    $(".leftcol4").children('.scorenum').html(oppo_score);
+                    $(".leftcol4").children('.scorenum').empty().html(oppo_score);
                   progressBar(curr_oppo_hp,max_health, $('#oppolife'));
-  
+                      
+                  if(!duel_mode)  win(2);
+                
                 }
              progressBar(curr_self_hp,max_health, $('#selflife'));
   
@@ -958,7 +980,7 @@ function initGridListner(){
 function initAIButton() {
     var oppoAIbtn = $('.leftcol1');
     var selfAIbtn = $('.leftcol7');
-    oppoAIbtn.bind('tap',function() {
+    oppoAIbtn.bind('click',function() {
         oppo_AI = !oppo_AI;
        
         if (oppo_AI) {
@@ -976,7 +998,7 @@ function initAIButton() {
 
         */
     });
-    selfAIbtn.bind('tap',function() {
+    selfAIbtn.bind('click',function() {
         self_AI = !self_AI;
         if (self_AI) {
             selfAIbtn.empty().append("<div class='ai'>AI</div>");
@@ -1029,7 +1051,7 @@ function initScoreButton(){
 var scorebtn1 = $(".leftcol4");
 var scorebtn2 = $(".rightcol4");
 var scboard=$(".scoreboard");
-scorebtn1.bind('tap',function(){
+scorebtn1.bind('click',function(){
  if (!scboard.hasClass("on")) {
             scboard.addClass("on");
             pause=true;
@@ -1047,7 +1069,7 @@ scorebtn1.bind('tap',function(){
              pause=false;
         }
 });
-scorebtn2.bind('tap',function(){
+scorebtn2.bind('click',function(){
  if (!scboard.hasClass("on")) {
             scboard.addClass("on");
             pause=true;
@@ -1069,7 +1091,7 @@ scorebtn2.bind('tap',function(){
 function initHelpButton() {
     var helpbtn = $(".rightcol1");
     var helpwindow = $(".helpwindow");
-    helpbtn.bind('tap',function(e) {
+    helpbtn.bind('click',function(e) {
         if (!helpwindow.hasClass("on")) {
             helpwindow.addClass("on");
             pause=true;
@@ -1088,27 +1110,28 @@ function initHelpButton() {
 }
 function setupHelpwindow() {
 
-    $("#sideshow").bind('tap',function() {
+    $("#sideshow").bind('click',function() {
 
         $(".side").addClass("show");
         $(".mid").addClass("off");
     });
-    $("#sideshow2").bind('tap',function() {
+    $("#sideshow2").bind('click',function() {
 
         $(".side").addClass("show");
         $(".mid").addClass("off");
     });
 
-    $("#midshow").bind('tap',function() {
+    $("#midshow").bind('click',function() {
 
         $(".side").removeClass("show");
         $(".mid").removeClass("off");
     });
 }
+
 function initMenuButton() {
     var menubtn = $(".rightcol7");
     var menuwindow = $(".menuwindow");
-    menubtn.bind('tap',function(e) {
+    menubtn.bind('click',function(e) {
 
         if (!menuwindow.hasClass("on")) {
             menuwindow.addClass("on");
@@ -1142,14 +1165,14 @@ function setupMenuWindow(){
    var resetbtn=$("#reset");
    
         $("#mode").html(duel_mode?"n Move/Turn":"1 Move/Turn");
-    gamemodebtn.bind('tap',function(){
+    gamemodebtn.bind('click',function(){
         duel_mode=!duel_mode;
         $("#mode").html(duel_mode?"n Move/Turn":"1 Move/Turn");
         setting_changed=true;
     });
 
         $("#ts").html(turn_interval/1000);
-timersettingbtn.bind('tap',function(){
+timersettingbtn.bind('click',function(){
         turn_interval+=10000;
     if(turn_interval>30000){
         turn_interval=10000;
@@ -1160,7 +1183,7 @@ timersettingbtn.bind('tap',function(){
 
 
     $("#rota").html(rt_enable?"On":"Off");
-    rotationbtn.bind('tap',function(){
+    rotationbtn.bind('click',function(){
        
            
             rt_enable=!rt_enable;
@@ -1168,7 +1191,7 @@ timersettingbtn.bind('tap',function(){
         $("#rota").html(rt_enable?"On":"Off");
         setting_changed=true;
     });
-     resetbtn.bind('tap',function(){
+     resetbtn.bind('click',function(){
         setting_changed=true;
          $(".menuwindow").removeClass("on");
           
@@ -1204,113 +1227,3 @@ timersettingbtn.bind('tap',function(){
     };
 })(jQuery);
 
-
-/*! Tappy! - a lightweight normalized tap event. Copyright 2013 @scottjehl, Filament Group, Inc. Licensed MIT */
-(function( w, $, undefined ){
-
-    // handling flag is true when an event sequence is in progress (thx androood)
-    w.tapHandling = false;
-
-    var tap = function( $els ){
-        return $els.each(function(){
-
-            var $el = $( this ),
-                resetTimer,
-                startY,
-                startX,
-                cancel,
-                scrollTolerance = 10;
-
-            function trigger( e ){
-                $( e.target ).trigger( "tap", [ e, $( e.target ).attr( "href" ) ] );
-                e.stopImmediatePropagation();
-            }
-
-            function getCoords( e ){
-                var ev = e.originalEvent || e,
-                    touches = ev.touches || ev.targetTouches;
-
-                if( touches ){
-                    return [ touches[ 0 ].pageX, touches[ 0 ].pageY ];
-                }
-                else {
-                    return null;
-                }
-            }
-
-            function start( e ){
-                if( e.touches && e.touches.length > 1 || e.targetTouches && e.targetTouches.length > 1 ){
-                    return false;
-                }
-
-                var coords = getCoords( e );
-                startX = coords[ 0 ];
-                startY = coords[ 1 ];
-            }
-
-            // any touchscroll that results in > tolerance should cancel the tap
-            function move( e ){
-                if( !cancel ){
-                    var coords = getCoords( e );
-                    if( coords && ( Math.abs( startY - coords[ 1 ] ) > scrollTolerance || Math.abs( startX - coords[ 0 ] ) > scrollTolerance ) ){
-                        cancel = true;
-                    }
-                }
-            }
-
-            function end( e ){
-                clearTimeout( resetTimer );
-                resetTimer = setTimeout( function(){
-                    w.tapHandling = false;
-                    cancel = false;
-                }, 1000 );
-
-                if( e.ctrlKey || e.metaKey ){
-                    return;
-                }
-
-                e.preventDefault();
-
-                // this part prevents a double callback from touch and mouse on the same tap
-
-                // if a scroll happened between touchstart and touchend
-                if( cancel || w.tapHandling && w.tapHandling !== e.type ){
-                    cancel = false;
-                    return;
-                }
-
-                w.tapHandling = e.type;
-                trigger( e );
-            }
-
-            $el
-                .bind( "touchstart MSPointerDown", start )
-                .bind( "touchmove MSPointerMove", move )
-                .bind( "touchend MSPointerUp", end )
-                .bind( "click", end );
-        });
-    };
-
-    // use special events api
-    if( $.event && $.event.special ){
-        $.event.special.tap = {
-            add: function( handleObj ) {
-                tap( $( this ), true );
-            },
-            remove: function( handleObj ) {
-                tap( $( this ), false );
-            }
-        };
-    }
-    else{
-        // monkeybind
-        var oldBind = $.fn.bind;
-        $.fn.bind = function( evt ){
-            if( /(^| )tap( |$)/.test( evt ) ){
-                tap( this );
-            }
-            return oldBind.apply( this, arguments );
-        };
-    }
-
-}( this, jQuery ));
