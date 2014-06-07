@@ -30,8 +30,8 @@ var rt_enable = false;
 var reset_timer=false;
 var pause=false;
 var setting_changed=false;
-var ai_reset=false;
-var logic_time=0;
+
+
 var otoken0=0;
 var otoken1=0;
 var otoken2=0;
@@ -117,9 +117,9 @@ function win(text){
     var winscreen= $('.winscreen');
     winscreen.addClass('on');
     $('#continue').bind('click',function(){
-        pause=false;
+       
        reset_timer=true;
-
+       pause=false;
         $('.gridnum').each(function(){
      var num = Math.floor((Math.random() * 10));
         $(this).empty().html( num );
@@ -128,10 +128,11 @@ function win(text){
     });
     $('#reset2').bind('click',function(e){
        
-      
+       pause=false;
         if( winscreen.hasClass('on')){
             restart();
             winscreen.removeClass('on');
+
         }
       e.stopPropagation();
     });
@@ -157,9 +158,9 @@ function restart(){
     stoken7=0;
     stoken8=0;
    
-    pause=true;
+    
     reset_timer=true;
-    ai_reset=true;
+ 
      self_score = 0;
       oppo_score = 0;
        $(".leftcol4").empty().append("<div class='scorenum'>" + oppo_score + "</div>");
@@ -195,15 +196,10 @@ function restart(){
 
        
         
-            setTimeout("resetAI()", 1900);
+          
       
 }
- function resetAI(){
-           pause=false;
-            ai_reset=false;
-            if(self_AI&&self_turn) callSelfAI();
-            if(oppo_AI&&oppo_turn)callOppoAI();
-        }
+
 
 
 function initTimer() {
@@ -220,6 +216,21 @@ function initTimer() {
        
         if(!pause)
         i++;
+    if(duel_mode){
+        if (self_turn && self_AI) {
+               if(i%2==1&&i<turn_interval/1000)selfAIOperation();
+            }
+            if (oppo_turn && oppo_AI) {
+                if(i%2==1&&i<turn_interval/1000)oppoAIOperation();
+            }
+    }else{
+        if (self_turn && self_AI) {
+               if(i==1)selfAIOperation();
+            }
+            if (oppo_turn && oppo_AI) {
+                if(i==1)oppoAIOperation();
+            }
+        }
         var pCnt = !isNaN(pVal) ? (pVal - i) : 1;
         if (pCnt < 0) switch_turn = true;
         if (switch_turn) {
@@ -275,12 +286,7 @@ function initTimer() {
                  $(".barnum.rotatetext").removeClass('rotatetext');
             }
         }
-            if (self_turn && self_AI) {
-               if(!pause) setTimeout("callSelfAI()", 500);
-            }
-            if (oppo_turn && oppo_AI) {
-                if(!pause)setTimeout("callOppoAI()", 500);
-            }
+           
             initTimer();
         } else {
              progressBar(pCnt,turn_interval/1000, $('#battletext'));
@@ -307,97 +313,20 @@ $('#selflife').find('.barnum').css({
                     'color': 'blue'
                 });
 }
-function callOppoAI() {
-     logic_time++;
-    if (duel_mode) {
-        var i = turn_interval / 2000-1;
-        var my_time=logic_time;
-        var oAI = setInterval(function() {
-            if(my_time<logic_time)clearInterval(oAI);
-            if(!pause&&oppo_AI){
-             oppoAIOperation();
-            i--;
-        }
-        if(ai_reset)clearInterval(oAI);
-            if (i < 0) clearInterval(oAI);
-             
-        },
-        1800);
-    } else {
 
-   var i =0;
-   var my_time=logic_time;
-        var oAI = setInterval(function() {
-           if(my_time<logic_time)clearInterval(oAI);
-           if(!pause&&oppo_AI){
-            oppoAIOperation();
-            i--;
-        }
-        if(ai_reset)clearInterval(oAI);
-            if (i < 0) 
-                {
-                    clearInterval(oAI);
-                      setTimeout("switch_turn=true;", 1000);
-           }
-        },
-        1800);
-      
-       
-       
-        
-    }
-}
-function callSelfAI() {
-     logic_time++;
-    if (duel_mode) {
-        var i = turn_interval / 2000-1;
-         var my_time=logic_time;
-        var oAI = setInterval(function() {
-           if(my_time<logic_time)clearInterval(oAI);
-           if(!pause&&self_AI){
-            selfAIOperation();
-            i--;
-        }
-       
-            if (i < 0) clearInterval(oAI);
-            if(ai_reset)clearInterval(oAI);
-        },
-        1800);
-    } else {
-   var i =0;
-    var my_time=logic_time;
-        var oAI = setInterval(function() {
-           if(my_time<logic_time)clearInterval(oAI);
-           if(!pause&&self_AI){
-            selfAIOperation();
-            i--;
-        }
-        if(ai_reset)clearInterval(oAI);
-            if (i < 0) 
-                {
-                    clearInterval(oAI);
-                    setTimeout("switch_turn=true;", 1000);
-           }
-        },
-        1800);
-      
-       
-    }
-    
-}
-function oppoAIOperation() {
-    var colnum = Math.floor((Math.random() * 6)) + 1;
-    var rownum = Math.floor((Math.random() * 4)) + 1 ;
-    var curr_grid = $(".col" + colnum + ".row" + rownum);
+function triggered($element){
+            if (ui_lock) return;
+            if(pause)return;
+    curr_grid=$element;
      var selfvalue = parseInt(curr_grid.text());
-
-           
-          
             var sum = 0;
-            
             var classes = curr_grid.classes();
             var margin_value = 0;
-           
+            if(self_turn){
+                if(classes[3]!='self')return;
+            }else{
+                if(classes[3]!='oppo')return;
+            }   
             switch (classes[1]) {
             case 'row1':
                 margin_value = 495;
@@ -432,13 +361,8 @@ function oppoAIOperation() {
                
                 break;
             }
-            
-        
-            
-          
-
-                //oppo col +++
-                    $(".oppo." + classes[0]).each(function() {
+            ui_lock = true;
+                    $("."+classes[3]+"." + classes[0]).each(function() {
                         var this_num = parseInt($(this).text());
                         $(this).children(".gridnum").empty().html("+" + this_num );
                         sum += this_num;
@@ -449,7 +373,6 @@ function oppoAIOperation() {
                         }
                     });
 
-                //row +++
                     $("."+classes[1]).each(function() {
                         var this_num = parseInt($(this).text());
                         $(this).children('.gridnum').empty().html("+" + this_num);
@@ -460,16 +383,11 @@ function oppoAIOperation() {
 
                         }
                     });
-                //self col ---
+                
             sum = sum - selfvalue;
              curr_grid.stop(true);
-          
-           
-
-          
-               $(".self."+classes[0])
-          
-               .each(function() {
+                var op=self_turn?'oppo':'self';
+               $("."+op+"."+classes[0]).each(function() {
                     var this_num = parseInt($(this).text());
                     $(this).transition({scale:1.1,delay: 300},400).transition({ scale: 0},300,callback).transition({ scale: 1},500);
                     $(this).children('.gridnum').empty().html("-" + this_num );
@@ -480,6 +398,7 @@ function oppoAIOperation() {
                 }
                });
                 var c=tokenswitch(Math.floor(sum/10));
+                  var gridbg=self_turn?'#e0eeee':'#fef5ca';
             curr_grid.css({
                 'background': c,
                 'border':'2px solid white'
@@ -490,24 +409,42 @@ function oppoAIOperation() {
             curr_grid.css('z-index', '998');
 
             curr_grid.transition({
-            	scale:(1+Math.floor(sum/10)/10),
+                scale:(1+Math.floor(sum/10)/10),
                 
               }, 500).transition({ marginTop: margin_value},500,'snap').transition({scale:0},500,
             function() {
 
                 curr_grid.css({
-                	'border':'0',
-                    'background': '#fef5ca',
+                    'border':'0',
+                    'background': gridbg,
                     'margin-top': '0',
                     'z-index': '0'
                 }).children('.gridnum').css({ 'color': 'black',}).empty().html(Math.floor((Math.random() * 10)));
                 
                    curr_grid.transition({ scale: 1},300)
-               
+                if (!duel_mode) {
+                        switch_turn = true;
+                    } else {
+                         setTimeout("ui_lock = false;",500);
+                    }
 
             });
-
-            curr_self_hp -= sum;
+              if(self_turn){
+                curr_oppo_hp -= sum;
+                if (curr_oppo_hp <= 0) {
+                    curr_oppo_hp = max_health;
+                    curr_self_hp = max_health;
+                    
+                    self_score++;
+                    $(".rightcol4").children('.scorenum').empty().html(self_score);
+                   progressBar(curr_self_hp,max_health, $('#selflife'));
+                    
+                  if(!duel_mode)  win(1);
+                }
+               progressBar(curr_oppo_hp,max_health, $('#oppolife'));
+                   
+           }else{
+                curr_self_hp -= sum;
                 if (curr_self_hp <= 0) {
                     curr_self_hp = max_health;
                     curr_oppo_hp = max_health;
@@ -520,6 +457,15 @@ function oppoAIOperation() {
   
                 }
                progressBar(curr_self_hp,max_health, $('#selflife'));
+           }
+         
+
+}
+function oppoAIOperation() {
+    var colnum = Math.floor((Math.random() * 6)) + 1;
+    var rownum = Math.floor((Math.random() * 4)) + 1 ;
+    var curr_grid = $(".col" + colnum + ".row" + rownum);
+    triggered(curr_grid);
   
 
 }
@@ -527,139 +473,7 @@ function selfAIOperation() {
         var colnum = Math.floor((Math.random() * 6)) + 1;
     var rownum = Math.floor((Math.random() * 4)) + 1 + 4;
     var curr_grid = $(".col" + colnum + ".row" + rownum);
-     var selfvalue = parseInt(curr_grid.text());
-            
-
-           
-        
-            var sum = 0;
-            
-            var classes = curr_grid.classes();
-            var margin_value = 0;
-          
-
-            switch (classes[1]) {
-            case 'row1':
-                margin_value = 495;
-               
-                break;
-            case 'row2':
-                margin_value = 445;
-               
-                break;
-            case 'row3':
-                margin_value = 390;
-               
-                break;
-            case 'row4':
-                margin_value = 335;
-              
-                break;
-            case 'row5':
-                margin_value = -335;
-                
-                break;
-            case 'row6':
-                margin_value = -390;
-             
-                break;
-            case 'row7':
-                margin_value = -445;
-              
-                break;
-            case 'row8':
-                margin_value = -495;
-               
-                break;
-            }
-            
-          
-           
-          
-            //self col +++
-                    $(".self." + classes[0]).each(function() {
-                        var this_num = parseInt($(this).text());
-                        $(this).children('.gridnum').empty().html("+" + this_num);
-                        sum += this_num;
-                         $(this).transition({scale:1.1,delay: 300},400).transition({ scale: 0},300,callback).transition({ scale: 1},500);
-                        function callback() {
-                            $(this).children('.gridnum').empty().html(Math.floor((Math.random() * 10)));
-
-                        }
-                    });
-
-            //row +++
-                     $("."+classes[1]).each(function() {
-                        var this_num = parseInt($(this).text());
-                        $(this).children('.gridnum').empty().html("+" + this_num);
-                        sum += this_num;
-                        $(this).transition({scale:1.1,delay: 300},400).transition({ scale: 0},300,callback).transition({ scale: 1},500);
-                        function callback() {
-                            $(this).children('.gridnum').empty().html(Math.floor((Math.random() * 10)));
-
-                        }
-                    });
-           
-            sum = sum - selfvalue;
-            //change current grid
-           
-            curr_grid.stop(true);
-            //oppo col ---
-            $(".oppo."+classes[0])
-          
-               .each(function() {
-                    var this_num = parseInt($(this).text());
-                    $(this).transition({scale:1.1,delay: 300},400).transition({ scale: 0},300,callback).transition({ scale: 1},500);
-                    $(this).children('.gridnum').empty().html("-" + this_num );
-                    sum -= this_num;
-                    if (sum < 0) sum = 0
-                    function callback() {
-                        $(this).children('.gridnum').empty().html(Math.floor((Math.random() * 10)));
-             
-                    }
-                });
-             var c=tokenswitch(Math.floor(sum/10));
-            curr_grid.css({
-               
-                'background': c,
-               'border':'2px solid white'
-            }).children('.gridnum').css({
-                'color': 'white',
-            }).empty().html(sum);
-
-            curr_grid.css('z-index', '998');
-            curr_grid.transition({
-            	scale:(1+Math.floor(sum/10)/10),
-               
-            }, 500).transition({ marginTop: margin_value},500,'snap').transition({scale:0},500,
-            function() {
-
-                curr_grid.css({
-                	'border':'0',
-                    'background': '#e0eeee',
-                    'margin-top': '0',
-                    'z-index': '0'
-
-                }).children('.gridnum').css({ 'color': 'black',}).empty().html( Math.floor((Math.random() * 10)));
-                 curr_grid.transition({ scale: 1},300)
-               
-                  
-               
-
-            });
-            curr_oppo_hp -= sum;
-                if (curr_oppo_hp <= 0) {
-                    curr_oppo_hp = max_health;
-                    curr_self_hp = max_health;
-                    
-                    self_score++;
-                    $(".rightcol4").children('.scorenum').empty().html(self_score);
-                   progressBar(curr_self_hp,max_health, $('#selflife'));
-                    
-                  if(!duel_mode)  win(1);
-                }
-               progressBar(curr_oppo_hp,max_health, $('#oppolife'));
-       
+      triggered(curr_grid);
 
 }
 function initNumbers() {
@@ -672,315 +486,26 @@ function initNumbers() {
 }
 function initGridListner(){
 
-    $('.grid.self').each(function() {
-      
-        var selfvalue = parseInt($(this).text());
-        $(this).bind('click',sum);
-        function sum() {
-            if (ui_lock) return;
-            if(pause)return;
-            if (self_AI) return;
-            if (!self_turn)  return;
-            var sum = 0;
-            var curr_grid = $(this);
-            var classes = curr_grid.classes();
-            var margin_value = 0;
-          
+    $('.grid').each(function() {
+        var curr_grid=$(this);
+       
+        $(this).bind('click',function(){
 
-            switch (classes[1]) {
-            case 'row1':
-                margin_value = 495;
-               
-                break;
-            case 'row2':
-                margin_value = 445;
-               
-                break;
-            case 'row3':
-                margin_value = 390;
-               
-                break;
-            case 'row4':
-                margin_value = 335;
-              
-                break;
-            case 'row5':
-                margin_value = -335;
-                
-                break;
-            case 'row6':
-                margin_value = -390;
-             
-                break;
-            case 'row7':
-                margin_value = -445;
-              
-                break;
-            case 'row8':
-                margin_value = -495;
-               
-                break;
-            }
-            
-          
-           
-            ui_lock = true;
-            //self col +++
-                    $(".self." + classes[0]).each(function() {
-                        var this_num = parseInt($(this).text());
-                        $(this).children('.gridnum').empty().html("+" + this_num);
-                        sum += this_num;
-                           $(this).transition({scale:1.1,delay: 300},400).transition({ scale: 0},300,callback).transition({ scale: 1},500);
-                        function callback() {
-                            $(this).children('.gridnum').empty().html(Math.floor((Math.random() * 10)));
-
-                        }
-                    });
-
-            //row +++
-                     $("."+classes[1]).each(function() {
-                        var this_num = parseInt($(this).text());
-                        $(this).children('.gridnum').empty().html("+" + this_num);
-                        sum += this_num;
-                            $(this).transition({scale:1.1,delay: 300},400).transition({ scale: 0},300,callback).transition({ scale: 1},500);
-                        function callback() {
-                            $(this).children('.gridnum').empty().html(Math.floor((Math.random() * 10)));
-
-                        }
-                    });
-           
-            sum = sum - selfvalue;
-            //change current grid
-          
-            curr_grid.stop(true);
-            //oppo col ---
-            $(".oppo."+classes[0])
-          
-               .each(function() {
-                var cogrid=$(this);
-                    var this_num = parseInt($(this).text());
-                       $(this).transition({scale:1.1,delay: 300},400).transition({ scale: 0},300,callback).transition({ scale: 1},500);
-                     cogrid.children('.gridnum').empty().html("-" + this_num );
-                    sum -= this_num;
-                    if (sum < 0) sum = 0
-                    function callback() {
-                        
-              $(this).children('.gridnum').empty().html(Math.floor((Math.random() * 10)));
-                     
-                        
-                    }
-                });
-              
-             var c=tokenswitch(Math.floor(sum/10));
-         
-            curr_grid.css({
-           
-                'background': c,
-               'border':'2px solid white'
-            }).children('.gridnum').css({'color': 'white',}).empty().html(sum);
-
-            curr_grid.css('z-index', '998');
-            curr_grid.transition({
-            	scale:(1+Math.floor(sum/10)/10),
-                }, 500).transition({ marginTop: margin_value},500,'snap').transition({scale:0},500,
-            function() {
-
-                curr_grid.css({
-                	 'border':'0',
-                      'background': '#e0eeee',
-                    'margin-top': '0',
-                    'z-index': '0'
-                }).children('.gridnum').css({'color': 'black',}).empty().html( Math.floor((Math.random() * 10)));
-                
-                curr_grid.transition({ scale: 1},300)
-                    if (!duel_mode) {
-                      
-                        switch_turn = true;
-                    } else {
-                        setTimeout("ui_lock = false;",500);
-                      
-                    }
-                  
-               
-
-            });
-               
-               
-
-            
-            curr_oppo_hp -= sum;
-                if (curr_oppo_hp <= 0) {
-                    curr_oppo_hp = max_health;
-                        curr_self_hp = max_health;
-                   
-                    self_score++;
-                    $(".rightcol4").children('.scorenum').empty().html(self_score);
-                   progressBar(curr_self_hp,max_health, $('#selflife'));
-                      
-                  if(!duel_mode)  win(1);
-                
-                }
-              progressBar(curr_oppo_hp,max_health, $('#oppolife'));
-  
-
-              
-        }
-    });
-
-
-    $('.grid.oppo').each(function() {
+            if (self_turn&&self_AI) return;
+            if (oppo_turn&&oppo_AI)return;
+           triggered(curr_grid);
+        });
         
-        var selfvalue = parseInt($(this).text());
-        $(this).bind('click',sum);
-        function sum() {
-            if (ui_lock) return;
-            if(pause)return;
-            if (oppo_AI) return;
-            if(!oppo_turn)return;
-            var sum = 0;
-            var curr_grid = $(this);
-            var classes = curr_grid.classes();
-            var margin_value = 0;
-           
-            switch (classes[1]) {
-            case 'row1':
-                margin_value = 495;
-              
-                break;
-            case 'row2':
-                margin_value = 445;
-                
-                break;
-            case 'row3':
-                margin_value = 390;
-               
-                break;
-            case 'row4':
-                margin_value = 335;
-               
-                break;
-            case 'row5':
-                margin_value = -335;
-               
-                break;
-            case 'row6':
-                margin_value = -390;
-               
-                break;
-            case 'row7':
-                margin_value = -445;
-               
-                break;
-            case 'row8':
-                margin_value = -495;
-               
-                break;
-            }
-            
-            ui_lock = true;
-            
-          
-
-                //oppo col +++
-                    $(".oppo." + classes[0]).each(function() {
-                        var this_num = parseInt($(this).text());
-                        $(this).children(".gridnum").empty().html("+" + this_num );
-                        sum += this_num;
-                        $(this).transition({scale:1.1,delay: 300},400).transition({ scale: 0},300,callback).transition({ scale: 1},500);
-                        function callback() {
-                            $(this).children(".gridnum").empty().html(Math.floor((Math.random() * 10)));
-
-                        }
-                    });
-
-                //row +++
-                    $("."+classes[1]).each(function() {
-                        var this_num = parseInt($(this).text());
-                        $(this).children('.gridnum').empty().html("+" + this_num);
-                        sum += this_num;
-                        $(this).transition({scale:1.1,delay: 300},400).transition({ scale: 0},300,callback).transition({ scale: 1},500);
-                        function callback() {
-                            $(this).children('.gridnum').empty().html(Math.floor((Math.random() * 10)));
-
-                        }
-                    });
-                //self col ---
-            sum = sum - selfvalue;
-         
-            curr_grid.stop(true);
-
-          
-               $(".self."+classes[0])
-          
-               .each(function() {
-                    var this_num = parseInt($(this).text());
-                   $(this).transition({scale:1.1,delay: 300},400).transition({ scale: 0},300,callback).transition({ scale: 1},500);
-                    $(this).children('.gridnum').empty().html("-" + this_num );
-                    sum -= this_num;
-                    if (sum < 0) sum = 0
-                    function callback() {
-                        $(this).children('.gridnum').empty().html(Math.floor((Math.random() * 10)));
-             
-                }
-               });
-                  var c=tokenswitch(Math.floor(sum/10));
-            curr_grid.css({
-                'border':'2px solid white',
-                'background': c,
-               
-            }).children('.gridnum').css({
-                'color': 'white',
-            }).empty().html(sum );
-
-            curr_grid.css('z-index', '998');
-            curr_grid.transition({
-            	scale:(1+Math.floor(sum/10)/10),
-                 }, 500).transition({ marginTop: margin_value},500,'snap').transition({scale:0},500,
-            function() {
-
-                curr_grid.css({
-                	'border':'0',
-                    'background': '#fef5ca',
-                    'margin-top': '0',
-                    'z-index': '0'
-                }).children('.gridnum').css({
-                'color': 'black',
-               
-            }).empty().html(Math.floor((Math.random() * 10)));
-                 curr_grid.transition({ scale: 1},300)
-                    if (!duel_mode) {
-                        switch_turn = true;
-                    } else {
-                         setTimeout("ui_lock = false;",500);
-                    }
-               
-
-            });
-
-            curr_self_hp -= sum;
-                if (curr_self_hp <= 0) {
-                    curr_self_hp = max_health;
-                    curr_oppo_hp = max_health;
-                    
-                    oppo_score++;
-                    $(".leftcol4").children('.scorenum').empty().html(oppo_score);
-                  progressBar(curr_oppo_hp,max_health, $('#oppolife'));
-                      
-                  if(!duel_mode)  win(2);
-                
-                }
-             progressBar(curr_self_hp,max_health, $('#selflife'));
-  
-
-        }
-
     });
+
+
 
 }
 function initAIButton() {
     var oppoAIbtn = $('.leftcol1');
     var selfAIbtn = $('.leftcol7');
     oppoAIbtn.bind('click',function() {
+       
         oppo_AI = !oppo_AI;
        
         if (oppo_AI) {
@@ -999,6 +524,7 @@ function initAIButton() {
         */
     });
     selfAIbtn.bind('click',function() {
+        
         self_AI = !self_AI;
         if (self_AI) {
             selfAIbtn.empty().append("<div class='ai'>AI</div>");
@@ -1016,14 +542,14 @@ function initAIButton() {
     });
 
     if (self_AI) {
-        if (self_first) setTimeout("callSelfAI()", 500);
+        
 
         selfAIbtn.empty().append("<div class='ai'>AI</div>");
     } else {
         selfAIbtn.empty().append("<div class='ai'>P1</div>");
     }
     if (oppo_AI) {
-        if (!self_first) setTimeout("callSelfAI()", 500);
+        
         oppoAIbtn.empty().append("<div class='ai'>AI</div>");
     } else {
         oppoAIbtn.empty().append("<div class='ai'>P2</div>");

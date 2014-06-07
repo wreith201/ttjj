@@ -1134,6 +1134,14 @@ z-index:1001;
 font-family: AgentOrange;
   font-size: 20px;
   line-height: 50px;
+   -webkit-box-shadow: 
+        0 2px 5px rgba(0,0,0,0.5); 
+
+  -moz-box-shadow: 
+       0 2px 5px rgba(0,0,0,0.5); 
+        
+  box-shadow: 
+        0 2px 5px rgba(0,0,0,0.5);
 }
 #reset2{
   position: absolute;
@@ -1151,6 +1159,14 @@ z-index:1001;
 font-family: AgentOrange;
   font-size: 20px;
   line-height: 50px;
+   -webkit-box-shadow: 
+        0 2px 5px rgba(0,0,0,0.5); 
+
+  -moz-box-shadow: 
+       0 2px 5px rgba(0,0,0,0.5); 
+        
+  box-shadow: 
+        0 2px 5px rgba(0,0,0,0.5);
 }
 #oscb{
    position: absolute;
