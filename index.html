@@ -17,6 +17,7 @@ $(function(){
 if( /Android|webOS|iPhone|iPad|iPod|BlackBerry/i.test(navigator.userAgent) ) {
   var ww = ( $(window).width() < window.screen.width ) ? $(window).width() : window.screen.width; //get proper width
   var mw = 455; // min width of site
+  alert(ww);
   var ratio =  ww / mw; //calculate ratio
   if( ww < mw){ //smaller than minimum size
    $('#Viewport').attr('content', 'initial-scale=' + ratio + ', maximum-scale=' + ratio + ', minimum-scale=' + ratio + ', user-scalable=yes, width=' + ww);
