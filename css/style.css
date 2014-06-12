@@ -276,8 +276,9 @@ strong {
 .grid {
 	display: block;
 	float:left;
-	margin-top: 1%;
+	margin-top: .5%;
 	width:14.33%;
+	height:93%;
 	border-radius: 10pt;
 	-moz-border-radius: 10px;
 	-webkit-border-radius: 10px;
