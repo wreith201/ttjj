@@ -1,0 +1,346 @@
+
+#css-texture {
+width: 100%;
+height: 100%;
+ 
+}
+
+
+
+
+	body {
+		margin: 0; 
+		font-family: "'Open Sans Condensed","微软雅黑",Tahoma,Verdana,Arial,sans-serif;
+		overflow: hidden;
+	}
+	.header{
+		position: relative;
+		
+		width: 100%;
+	height: 120px;
+  z-index: 1000;
+
+	}
+.hd1{
+ z-index: 1001;
+color: color: rgba(200, 74, 33, 1);
+	-webkit-mask-image: -webkit-linear-gradient(top, rgba(0, 0, 0,1), rgba(0, 0, 0,.35) 45%, rgba(0, 0, 0,1) 100%);
+	-webkit-mask-image: linear-gradient(top,   rgba(0, 0, 0,1), rgba(0, 0, 0,.35) 45%,  rgba(0, 0, 0,1)  100%);
+	  font-family: 'HeiTi';
+
+	  font-size: 55px;
+	  line-height: 125px;
+	  text-align: center;
+	  font-weight: 800;
+
+
+text-shadow: 0 1px 0 rgba(255,255,255,.5), 
+
+               0 2px 0 rgba(255,255,255,.4),
+
+               0 3px 0 rgba(255,255,255,.3),
+
+               0 4px 0 rgba(255,255,255,.2),
+
+               0 5px 0 rgba(255,255,255,.1),
+
+               0 6px 1px rgba(0,0,0,.1),
+
+               0 0 5px rgba(0,0,0,.1),
+
+               0 1px 3px rgba(0,0,0,.3),
+
+               0 3px 5px rgba(0,0,0,.2),
+
+               0 5px 10px rgba(0,0,0,.25),
+
+               0 10px 10px rgba(0,0,0,.2),
+
+               0 20px 20px rgba(0,0,0,.15);
+           }
+.hd2{
+
+	top: 50px;
+ font-family:"KaiTi";
+	 font-size: 30px;
+margin-top:-15px;
+	  text-align: center;
+	  z-index: 1001;
+	  font-weight: 600;
+	  text-shadow: 0 1px 0 rgba(255,255,255,.5), 
+
+               0 2px 0 rgba(255,255,255,.4),
+
+               0 3px 0 rgba(255,255,255,.3),
+
+               0 4px 0 rgba(255,255,255,.2),
+
+               0 5px 0 rgba(255,255,255,.1),
+
+               0 6px 1px rgba(0,0,0,.1),
+
+               0 0 5px rgba(0,0,0,.1),
+
+               0 1px 3px rgba(0,0,0,.3),
+
+               0 3px 5px rgba(0,0,0,.2),
+
+               0 5px 10px rgba(0,0,0,.25),
+
+               0 10px 10px rgba(0,0,0,.2),
+
+               0 20px 20px rgba(0,0,0,.15);
+}
+.img1{
+	position: absolute;
+	top: 15px;
+	left:30px;
+}
+.img2{
+	position: absolute;
+	top: 50px;
+	left:150px;
+}
+.theme{
+
+	position: relative;
+
+background:url(../anniversary.jpg);
+width: 100%;
+height:400px;
+
+	}
+.cover{
+
+     width: 100%;
+height:400px;
+ background-image: -webkit-gradient(linear,  top,
+      rgba(255,255,255,1) 0px,
+      rgba(255,255,255,0.2) 120px
+  );
+  background-image: -webkit-linear-gradient(   top,
+      rgba(255,255,255,1) 0px,
+      rgba(255,255,255,0.2) 120px );
+  background-image: -moz-linear-gradient( top,
+      rgba(255,255,255,1) 0px,
+      rgba(255,255,255,0.2) 120px);
+  background-image: -ms-linear-gradient( top,
+      rgba(255,255,255,1) 0px,
+      rgba(255,255,255,0.2) 120px );
+  background-image: -o-linear-gradient( top,
+      rgba(255,255,255,1) 0px,
+      rgba(255,255,255,0.2) 120px );
+  background-image: linear-gradient( top,
+      rgba(255,255,255,1) 0px,
+      rgba(255,255,255,0.2) 120px );
+
+}
+.scroller{
+	position: relative;
+width: 100%;
+height:600px;
+overflow: hidden;
+	border:1px solid #CCCCCC;
+}
+
+.box { animation: moveSlideshow 30s  linear infinite; }
+	
+@keyframes moveSlideshow {
+
+0% {
+        transform: translateY(0);
+    }
+    100% {
+        transform: translateY(-100%);}
+}
+	
+@-webkit-keyframes moveSlideshow {
+
+0% {
+        transform: translateY(0);
+    }
+    100% {
+        transform: translateY(-100%);}
+}
+@-moz-keyframes moveSlideshow {
+
+0% {
+        transform: translateY(0);
+    }
+    100% {
+        transform: translateY(-100%);}
+}
+@-o-keyframes moveSlideshow {
+
+0% {
+        transform: translateY(0);
+    }
+    100% {
+        transform: translateY(-100%);}
+}
+
+.box {
+	margin: 0;
+	
+}
+
+.msg{
+	font-size:25px;
+	line-height: 35px;
+	width: 100%;
+	height: 50px;
+	border-bottom: 1px dashed #CCCCCC; 
+	text-align: center;
+
+}
+#topwrapper{
+	position: relative;
+	width: 100%;
+	height: 100px;
+border-bottom: 2px solid black;
+}
+#labeltop{
+	position: absolute;
+	top: 25px;
+	width: 500px;
+	font-size: 35px;
+	line-height: 35px;
+	height: 50px;
+	left: 50%;
+	margin-left: -300px;
+	z-index: 900;
+}
+#inputotal{
+	position: absolute;
+	top: 25px;
+	width: 500px;
+	height: 50px;
+	left: 50%;
+	margin-left: -100px;
+	z-index: 900;
+}
+.txt_input{ width:295px; height:36px; border:1px solid #5a5a5a;   padding:0 5px; -moz-border-radius:5px; -webkit-border-radius:5px; border-radius:5px; line-height:36px; margin-bottom:10px; font-size:14px; color:#717171; font-family:Arial;}
+.txt_input2{ margin-bottom:20px;}
+.txt_input:focus{ transition:border linear .2s,box-shadow linear .2s; -moz-transition:border linear .2s,-moz-box-shadow linear .2s; -webkit-transition:border linear .2s,-webkit-box-shadow linear .2s; outline:none;border-color:rgba(173,173,173.75); box-shadow:0 0 8px rgba(173,173,173,.5); -moz-box-shadow:0 0 8px rgba(173,173,173,.5); -webkit-box-shadow:0 0 8px rgba(173,173,173,3); border:1px solid #6192c8;}
+#msgwrapper{
+	position: relative;
+	width: 100%;
+}
+#entermsgwrapper{
+position: relative;
+	width: 100%;
+	top: 15px;
+	height: 200px;
+	z-index: 900;
+	border-bottom: 1px solid black;
+}
+#lbmsg1{
+	position: absolute;
+	width: 100px;
+	left: 50%;
+	margin-left: -200px;
+}
+#entermsg1{
+	position: absolute;
+	width: 200px;
+	left: 50%;
+	margin-left: -100px;
+
+}
+
+#entermsg2{
+	position: absolute;
+	width: 300px;
+	left: 50%;
+	margin-left: -100px;
+	top: 50px;
+}
+#lbmsg2{
+	position: absolute;
+	width: 100px;
+	left: 50%;
+	margin-left: -200px;
+	top: 50px;
+}
+#entermsg3{
+	position: absolute;
+	width: 300px;
+	left: 50%;
+	margin-left: -100px;
+	top: 100px;
+}
+#lbmsg3{
+	position: absolute;
+	width: 100px;
+	left: 50%;
+	margin-left: -200px;
+	top: 100px;
+}
+#entermsg4{
+	position: absolute;
+	width: 300px;
+	left: 50%;
+	margin-left: -100px;
+	top: 150px;
+}
+#lbmsg4{
+	position: absolute;
+	width: 100px;
+	left: 50%;
+	margin-left: -200px;
+	top: 150px;
+}
+#addmsgdiv{
+position: absolute;
+	width: 100px;
+	height: 40px;
+	left: 50%;
+	margin-left: 220px;
+}
+#addmsg{
+width:100px;height: 40px; 
+position: absolute;;
+}
+#previewtitle{
+	position: relative;
+	width: 100%;
+	text-align: center;
+	height: 50px;
+	line-height: 50px;
+		font-size:25px;
+		border-bottom: 1px dotted black;
+}
+
+#uploaddiv{
+position: absolute;
+	top: 25px;
+	width: 100px;
+	height: 40px;
+	left: 50%;
+	margin-left: 220px;
+	z-index: 900;
+	
+}
+.deldiv{
+	position: absolute;
+	width:50px;height:30px;
+	left: 10px;
+	margin-top:10px;
+
+}
+#msgtxt1{
+	color: orange;
+	font-size: 30px;
+}
+#msgtxt2{
+	color: purple;
+	font-size: 30px;
+}
+#msgtxt3{
+	color: blue;
+	font-size: 30px;
+}
+#msgtxt4{
+	color: green;
+	font-size: 30px;
+}
