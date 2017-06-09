@@ -12,85 +12,19 @@ height: 100%;
 		margin: 0; 
 		font-family: "'Open Sans Condensed","微软雅黑",Tahoma,Verdana,Arial,sans-serif;
 		overflow: hidden;
+		background: #ececec;
+		
+background-image: url("./flowers.png");
+/* This is mostly intended for prototyping; please download the pattern and re-host for production environments. Thank you! */
 	}
 	.header{
 		position: relative;
 		
 		width: 100%;
-	height: 120px;
-  z-index: 1000;
+  z-index: 10;
 
 	}
-.hd1{
- z-index: 1001;
-color: color: rgba(200, 74, 33, 1);
-	-webkit-mask-image: -webkit-linear-gradient(top, rgba(0, 0, 0,1), rgba(0, 0, 0,.35) 45%, rgba(0, 0, 0,1) 100%);
-	-webkit-mask-image: linear-gradient(top,   rgba(0, 0, 0,1), rgba(0, 0, 0,.35) 45%,  rgba(0, 0, 0,1)  100%);
-	  font-family: 'HeiTi';
 
-	  font-size: 55px;
-	  line-height: 125px;
-	  text-align: center;
-	  font-weight: 800;
-
-
-text-shadow: 0 1px 0 rgba(255,255,255,.5), 
-
-               0 2px 0 rgba(255,255,255,.4),
-
-               0 3px 0 rgba(255,255,255,.3),
-
-               0 4px 0 rgba(255,255,255,.2),
-
-               0 5px 0 rgba(255,255,255,.1),
-
-               0 6px 1px rgba(0,0,0,.1),
-
-               0 0 5px rgba(0,0,0,.1),
-
-               0 1px 3px rgba(0,0,0,.3),
-
-               0 3px 5px rgba(0,0,0,.2),
-
-               0 5px 10px rgba(0,0,0,.25),
-
-               0 10px 10px rgba(0,0,0,.2),
-
-               0 20px 20px rgba(0,0,0,.15);
-           }
-.hd2{
-
-	top: 50px;
- font-family:"KaiTi";
-	 font-size: 30px;
-margin-top:-15px;
-	  text-align: center;
-	  z-index: 1001;
-	  font-weight: 600;
-	  text-shadow: 0 1px 0 rgba(255,255,255,.5), 
-
-               0 2px 0 rgba(255,255,255,.4),
-
-               0 3px 0 rgba(255,255,255,.3),
-
-               0 4px 0 rgba(255,255,255,.2),
-
-               0 5px 0 rgba(255,255,255,.1),
-
-               0 6px 1px rgba(0,0,0,.1),
-
-               0 0 5px rgba(0,0,0,.1),
-
-               0 1px 3px rgba(0,0,0,.3),
-
-               0 3px 5px rgba(0,0,0,.2),
-
-               0 5px 10px rgba(0,0,0,.25),
-
-               0 10px 10px rgba(0,0,0,.2),
-
-               0 20px 20px rgba(0,0,0,.15);
-}
 .img1{
 	position: absolute;
 	top: 15px;
@@ -104,33 +38,54 @@ margin-top:-15px;
 .theme{
 
 	position: relative;
+
+
 width: 100%;
-height:400px;
+height:280px;
 
 	}
 .cover{
-
-     width: 100%;
-height:400px;
- background-image: -webkit-gradient(linear,  top,
-      rgba(255,255,255,1) 0px,
-      rgba(255,255,255,0.2) 120px
+	position: absolute;
+	bottom: 0px;
+background-image: -webkit-gradient(linear,  top,
+    rgba(255,255,255,0) 0px,
+      rgba(255,255,255,0.2) 20px,
+      rgba(255,255,255,0.4) 30px,
+      rgba(255,255,255,0.6) 40px
   );
-  background-image: -webkit-linear-gradient(   top,
-      rgba(255,255,255,1) 0px,
-      rgba(255,255,255,0.2) 120px );
-  background-image: -moz-linear-gradient( top,
-      rgba(255,255,255,1) 0px,
-      rgba(255,255,255,0.2) 120px);
-  background-image: -ms-linear-gradient( top,
-      rgba(255,255,255,1) 0px,
-      rgba(255,255,255,0.2) 120px );
-  background-image: -o-linear-gradient( top,
-      rgba(255,255,255,1) 0px,
-      rgba(255,255,255,0.2) 120px );
-  background-image: linear-gradient( top,
-      rgba(255,255,255,1) 0px,
-      rgba(255,255,255,0.2) 120px );
+  background-image: -webkit-linear-gradient(    top,
+       rgba(255,255,255,0) 0px,
+      rgba(255,255,255,0.2) 20px,
+      rgba(255,255,255,0.4) 30px,
+      rgba(255,255,255,0.6) 40px
+        );
+  background-image: -moz-linear-gradient(   top,
+    rgba(255,255,255,0) 0px,
+      rgba(255,255,255,0.2) 20px,
+      rgba(255,255,255,0.4) 30px,
+      rgba(255,255,255,0.6) 40px
+        );
+  background-image: -ms-linear-gradient(   top,
+    rgba(255,255,255,0) 0px,
+      rgba(255,255,255,0.2) 20px,
+      rgba(255,255,255,0.4) 30px,
+      rgba(255,255,255,0.6) 40px
+        );
+  background-image: -o-linear-gradient(  top,
+    rgba(255,255,255,0) 0px,
+      rgba(255,255,255,0.2) 20px,
+      rgba(255,255,255,0.4) 30px,
+      rgba(255,255,255,0.6) 40px
+        );
+  background-image: linear-gradient(  top,
+    rgba(255,255,255,0) 0px,
+      rgba(255,255,255,0.2) 20px,
+      rgba(255,255,255,0.4) 30px,
+      rgba(255,255,255,0.6) 40px
+        );
+     width: 100%;
+height:40px;
+
 
 }
 .scroller{

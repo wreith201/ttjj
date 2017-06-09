@@ -4,26 +4,22 @@
     position:absolute;
     display:block;
     left:50%;
-    top:200px;
+    top:140px;
     margin-left: -600px;
     width:1200px;
 
-    height:80px;
+    height:50px;
     padding:10px 10px;
-    border-bottom:1px solid rgba(255,255,255,0.25);
-    border-radius:16px;
-     -webkit-border-radius:16px;
-    -webkit-box-shadow: 0px 4px 4px -4px rgba(255, 255, 255, 0.4),0px -3px 3px -3px rgba(255, 255, 255, 0.25),inset 0px 0px 12px 0px rgba(0, 0, 0, 0.5);
-    box-shadow: 0px 4px 4px -4px rgba(255, 255, 255, 0.4),0px -3px 3px -3px rgba(255, 255, 255, 0.25),inset 0px 0px 12px 0px rgba(0, 0, 0, 0.5);
+
     z-index: 100;
 }
 .lablecount{
 
   position:absolute;
-  font-size: 55px;
+  font-size: 50px;
   left:50%;
-    top:50px;
-    margin-left: -708px;
+    top:0px;
+    margin-left: -660px;
 height: 65px;
 width: 600px;
 text-align: center;
@@ -60,16 +56,16 @@ text-shadow: 0 1px 0 rgba(255,255,255,.5),
   position:absolute;
   font-size: 38px;
   left:50%;
-    top:50px;
-    margin-left: -308px;
-height: 55px;
+    top:0px;
+    margin-left: -300px;
+height: 50px;
 width: 600px;
 text-align: center;
 z-index: 999;
 
 }
 .digit{
-  font: 55px/1.5 'Open Sans Condensed',sans-serif;
+  font: 50px/1.5 'Open Sans Condensed',sans-serif;
   position:relative;
   display:inline-block;
   width:1em;
@@ -117,38 +113,19 @@ text-shadow: 0 1px 0 rgba(255,255,255,.5),
 
                0 20px 20px rgba(0,0,0,.15);
                 background-image: -webkit-gradient(linear,  top,
-      rgba(255,255,255,0.1) 0,
-      rgba(255,255,255,0.5) 50%,
-      rgba(255,255,255,0.1) 100%);
+      rgba(255,255,255,0.9) 0,
+      rgba(255,255,255,0.1) 50%,
+      rgba(255,255,255,0.9) 100%);
   );
-  background-image: -webkit-linear-gradient(   top,
-       rgba(255,255,255,0.1) 0,
-      rgba(255,255,255,0.5) 50%,
-      rgba(255,255,255,0.1) 100%);
-  background-image: -moz-linear-gradient( top,
-     rgba(255,255,255,0.1) 0,
-      rgba(255,255,255,0.5) 50%,
-      rgba(255,255,255,0.1) 100%);
-  background-image: -ms-linear-gradient( top,
-     rgba(255,255,255,0.1) 0,
-      rgba(255,255,255,0.5) 50%,
-      rgba(255,255,255,0.1) 100%);
-  background-image: -o-linear-gradient( top,
-     rgba(255,255,255,0.1) 0,
-      rgba(255,255,255,0.5) 50%,
-      rgba(255,255,255,0.1) 100%);
-  background-image: linear-gradient( top,
-      rgba(255,255,255,0.1) 0px,
-      rgba(255,255,255,0.5) 50%,
-      rgba(255,255,255,0.1) 100%);
+
 
 }
 .sep1{
 position:absolute;
   left:50%;
-    top:150px;
+    top:100px;
   width: 4px;
-  height: 200px;
+  height: 150px;
   background-color: #e8f400; 
   margin-left: -115px;
   z-index: 999;
@@ -158,10 +135,10 @@ position:absolute;
 .sep2{
  position:absolute;
   left:50%;
-    top:150px;
+    top:100px;
     margin-left: 125px;
   background-color:  #f9d000 ;
-height: 200px;
+height: 150px;
 width: 4px;
 z-index: 999;
 border: 1px solid rgba(255, 255, 190, 0.9);
@@ -170,10 +147,10 @@ border: 1px solid rgba(255, 255, 190, 0.9);
 .sep3{
   position:absolute;
   left:50%;
-    top:150px;
+    top:100px;
     margin-left: 365px;
 background:  #f24c00;
-height: 200px;
+height:150px;
 width: 4px;
 z-index: 999;
 border: 1px solid rgba(255, 255, 190, 0.9);
@@ -210,14 +187,14 @@ border: 1px solid rgba(255, 255, 190, 0.9);
 -moz-box-shadow: 0px 0px 15px 5px rgba(255, 255, 190, .75);
 box-shadow: 0px 0px 15px 5px rgba(255, 255, 190, .75);
 
-
+border: 1px solid rgba(0, 0, 0, 0.1);
    
 }
 
 .labelup1{
   position:absolute;
   left:50%;
-    top:150px;
+    top:100px;
     margin-left: -100px;
 width: 200px;
 text-align: center;
@@ -228,17 +205,17 @@ color:  #e8f400;
   color: #f9d000 ;
   position:absolute;
   left:50%;
-    top:150px;
+    top:100px;
     margin-left: 140px;
 width: 200px;
 text-align: center;
 z-index: 999;
 }
 .labelup3{
-  color: orange;
+  color: #f24c00;
   position:absolute;
   left:50%;
-    top:150px;
+    top:100px;
     margin-left: 380px;
 width: 200px;
 text-align: center;
@@ -248,8 +225,8 @@ z-index: 999;
   color:  #e8f400;
   position:absolute;
   left:50%;
-    top:300px;
-    margin-left: -102px;
+    top:200px;
+    margin-left: -100px;
 width:200px;
 text-align: center;
 }
@@ -257,17 +234,17 @@ text-align: center;
     color: #f9d000 ;
   position:absolute;
   left:50%;
-    top:300px;
-    margin-left: 138px;
+    top:200px;
+    margin-left: 140px;
 width:200px;
 text-align: center;
 }
 .labeldown3{
-  color:  orange;
+  color:  #f24c00;
   position:absolute;
   left:50%;
-    top:300px;
-    margin-left: 378px;
+    top:200px;
+    margin-left: 380px;
 width:200px;
 text-align: center;
 }
@@ -276,21 +253,21 @@ text-align: center;
     display:block;
     content:"";
     width:1198px;
-    height:78px;
+    height:48px;
     top:10px;
     left:10px;
   -webkit-border-radius:16px;
     border-radius:16px;
-    background:rgba(255, 255, 255, 0.35);
-  -webkit-box-shadow: inset 0px 0px 6px 0px rgba(255, 255, 255, 0.85);;
-    box-shadow: inset 0px 0px 6px 0px rgba(255, 255, 255, 0.85);
-  border:1px solid rgba(255,255,255,0.8);
+    background:rgba(0, 0, 0, 0.15);
+  -webkit-box-shadow: inset 0px 0px 6px 0px rgba(0, 0, 0, 0.35);;
+    box-shadow: inset 0px 0px 6px 0px rgba(0, 0, 0, 0.35);
+  border:1px solid rgba(0,0,0,0.1);
 }
 .bar {
   position:absolute;
   display:block;
   width:0px;
-  height:76px;
+  height:46px;
   top:12px;
   left:12px;
   background: rgb(126,234,25);
