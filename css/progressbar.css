@@ -4,22 +4,55 @@
     position:absolute;
     display:block;
     left:50%;
-    top:140px;
+    top:200px;
     margin-left: -600px;
     width:1200px;
 
-    height:50px;
+    height:80px;
     padding:10px 10px;
-
+    border-bottom:1px solid rgba(255,255,255,0.25);
+    border-radius:16px;
+     -webkit-border-radius:16px;
+    -webkit-box-shadow: 0px 4px 4px -4px rgba(255, 255, 255, 0.4),0px -3px 3px -3px rgba(255, 255, 255, 0.25),inset 0px 0px 12px 0px rgba(0, 0, 0, 0.5);
+    box-shadow: 0px 4px 4px -4px rgba(255, 255, 255, 0.4),0px -3px 3px -3px rgba(255, 255, 255, 0.25),inset 0px 0px 12px 0px rgba(0, 0, 0, 0.5);
     z-index: 100;
+}
+.zhijiang{
+   position:absolute;
+  font-size: 45px;
+  left:50%;
+    top:60px;
+    margin-left:220px;
+height: 55px;
+width: 400px;
+text-align: right;
+z-index: 999;
+font-family:'KaiTi';
+color:yellow;
+font-weight: 800;
+text-shadow: 0 1px 0 rgba(255,255,255,.5), 
+
+               0 6px 1px rgba(0,0,0,.1),
+
+               0 0 5px rgba(0,0,0,.1),
+
+               0 1px 3px rgba(0,0,0,.3),
+
+               0 3px 5px rgba(0,0,0,.2),
+
+               0 5px 10px rgba(0,0,0,.25),
+
+               0 10px 10px rgba(0,0,0,.2),
+
+               0 20px 20px rgba(0,0,0,.15);
 }
 .lablecount{
 
   position:absolute;
-  font-size: 50px;
+  font-size: 55px;
   left:50%;
-    top:0px;
-    margin-left: -660px;
+    top:50px;
+    margin-left: -708px;
 height: 65px;
 width: 600px;
 text-align: center;
@@ -56,16 +89,16 @@ text-shadow: 0 1px 0 rgba(255,255,255,.5),
   position:absolute;
   font-size: 38px;
   left:50%;
-    top:0px;
-    margin-left: -300px;
-height: 50px;
+    top:50px;
+    margin-left: -308px;
+height: 55px;
 width: 600px;
 text-align: center;
 z-index: 999;
 
 }
 .digit{
-  font: 50px/1.5 'Open Sans Condensed',sans-serif;
+  font: 55px/1.5 'Open Sans Condensed',sans-serif;
   position:relative;
   display:inline-block;
   width:1em;
@@ -113,19 +146,38 @@ text-shadow: 0 1px 0 rgba(255,255,255,.5),
 
                0 20px 20px rgba(0,0,0,.15);
                 background-image: -webkit-gradient(linear,  top,
-      rgba(255,255,255,0.9) 0,
-      rgba(255,255,255,0.1) 50%,
-      rgba(255,255,255,0.9) 100%);
+      rgba(255,255,255,0.1) 0,
+      rgba(255,255,255,0.5) 50%,
+      rgba(255,255,255,0.1) 100%);
   );
-
+  background-image: -webkit-linear-gradient(   top,
+       rgba(255,255,255,0.1) 0,
+      rgba(255,255,255,0.5) 50%,
+      rgba(255,255,255,0.1) 100%);
+  background-image: -moz-linear-gradient( top,
+     rgba(255,255,255,0.1) 0,
+      rgba(255,255,255,0.5) 50%,
+      rgba(255,255,255,0.1) 100%);
+  background-image: -ms-linear-gradient( top,
+     rgba(255,255,255,0.1) 0,
+      rgba(255,255,255,0.5) 50%,
+      rgba(255,255,255,0.1) 100%);
+  background-image: -o-linear-gradient( top,
+     rgba(255,255,255,0.1) 0,
+      rgba(255,255,255,0.5) 50%,
+      rgba(255,255,255,0.1) 100%);
+  background-image: linear-gradient( top,
+      rgba(255,255,255,0.1) 0px,
+      rgba(255,255,255,0.5) 50%,
+      rgba(255,255,255,0.1) 100%);
 
 }
 .sep1{
 position:absolute;
   left:50%;
-    top:100px;
+    top:150px;
   width: 4px;
-  height: 150px;
+  height: 200px;
   background-color: #e8f400; 
   margin-left: -115px;
   z-index: 999;
@@ -135,10 +187,10 @@ position:absolute;
 .sep2{
  position:absolute;
   left:50%;
-    top:100px;
+    top:150px;
     margin-left: 125px;
   background-color:  #f9d000 ;
-height: 150px;
+height: 200px;
 width: 4px;
 z-index: 999;
 border: 1px solid rgba(255, 255, 190, 0.9);
@@ -147,10 +199,10 @@ border: 1px solid rgba(255, 255, 190, 0.9);
 .sep3{
   position:absolute;
   left:50%;
-    top:100px;
+    top:150px;
     margin-left: 365px;
 background:  #f24c00;
-height:150px;
+height: 200px;
 width: 4px;
 z-index: 999;
 border: 1px solid rgba(255, 255, 190, 0.9);
@@ -187,14 +239,14 @@ border: 1px solid rgba(255, 255, 190, 0.9);
 -moz-box-shadow: 0px 0px 15px 5px rgba(255, 255, 190, .75);
 box-shadow: 0px 0px 15px 5px rgba(255, 255, 190, .75);
 
-border: 1px solid rgba(0, 0, 0, 0.1);
+
    
 }
 
 .labelup1{
   position:absolute;
   left:50%;
-    top:100px;
+    top:150px;
     margin-left: -100px;
 width: 200px;
 text-align: center;
@@ -205,17 +257,17 @@ color:  #e8f400;
   color: #f9d000 ;
   position:absolute;
   left:50%;
-    top:100px;
+    top:150px;
     margin-left: 140px;
 width: 200px;
 text-align: center;
 z-index: 999;
 }
 .labelup3{
-  color: #f24c00;
+  color: orange;
   position:absolute;
   left:50%;
-    top:100px;
+    top:150px;
     margin-left: 380px;
 width: 200px;
 text-align: center;
@@ -225,8 +277,8 @@ z-index: 999;
   color:  #e8f400;
   position:absolute;
   left:50%;
-    top:200px;
-    margin-left: -100px;
+    top:300px;
+    margin-left: -102px;
 width:200px;
 text-align: center;
 }
@@ -234,17 +286,17 @@ text-align: center;
     color: #f9d000 ;
   position:absolute;
   left:50%;
-    top:200px;
-    margin-left: 140px;
+    top:300px;
+    margin-left: 138px;
 width:200px;
 text-align: center;
 }
 .labeldown3{
-  color:  #f24c00;
+  color:  orange;
   position:absolute;
   left:50%;
-    top:200px;
-    margin-left: 380px;
+    top:300px;
+    margin-left: 378px;
 width:200px;
 text-align: center;
 }
@@ -253,21 +305,21 @@ text-align: center;
     display:block;
     content:"";
     width:1198px;
-    height:48px;
+    height:78px;
     top:10px;
     left:10px;
   -webkit-border-radius:16px;
     border-radius:16px;
-    background:rgba(0, 0, 0, 0.15);
-  -webkit-box-shadow: inset 0px 0px 6px 0px rgba(0, 0, 0, 0.35);;
-    box-shadow: inset 0px 0px 6px 0px rgba(0, 0, 0, 0.35);
-  border:1px solid rgba(0,0,0,0.1);
+    background:rgba(255, 255, 255, 0.35);
+  -webkit-box-shadow: inset 0px 0px 6px 0px rgba(255, 255, 255, 0.85);;
+    box-shadow: inset 0px 0px 6px 0px rgba(255, 255, 255, 0.85);
+  border:1px solid rgba(255,255,255,0.8);
 }
 .bar {
   position:absolute;
   display:block;
   width:0px;
-  height:46px;
+  height:76px;
   top:12px;
   left:12px;
   background: rgb(126,234,25);

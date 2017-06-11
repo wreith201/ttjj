@@ -9,22 +9,88 @@ height: 100%;
 
 
 	body {
-		margin: 0; 
-		font-family: "'Open Sans Condensed","微软雅黑",Tahoma,Verdana,Arial,sans-serif;
-		overflow: hidden;
-		background: #ececec;
-		
-background-image: url("./flowers.png");
-/* This is mostly intended for prototyping; please download the pattern and re-host for production environments. Thank you! */
+		margin: 0; font-family: Georgia, "Times New Roman", "FangSong", "仿宋", STFangSong, "华文仿宋", serif;overflow: hidden;
+
+
 	}
 	.header{
 		position: relative;
 		
 		width: 100%;
-  z-index: 10;
+	height: 120px;
+  z-index: 1000;
 
 	}
+.hd1{
+ z-index: 1001;
+color: color: rgba(200, 74, 33, 1);
+	-webkit-mask-image: -webkit-linear-gradient(top, rgba(0, 0, 0,1), rgba(0, 0, 0,.35) 45%, rgba(0, 0, 0,1) 100%);
+	-webkit-mask-image: linear-gradient(top,   rgba(0, 0, 0,1), rgba(0, 0, 0,.35) 45%,  rgba(0, 0, 0,1)  100%);
+	  font-family: 'HeiTi';
 
+	  font-size: 55px;
+	  line-height: 125px;
+	  text-align: center;
+	  font-weight: 800;
+
+
+text-shadow: 0 1px 0 rgba(255,255,255,.5), 
+
+               0 2px 0 rgba(255,255,255,.4),
+
+               0 3px 0 rgba(255,255,255,.3),
+
+               0 4px 0 rgba(255,255,255,.2),
+
+               0 5px 0 rgba(255,255,255,.1),
+
+               0 6px 1px rgba(0,0,0,.1),
+
+               0 0 5px rgba(0,0,0,.1),
+
+               0 1px 3px rgba(0,0,0,.3),
+
+               0 3px 5px rgba(0,0,0,.2),
+
+               0 5px 10px rgba(0,0,0,.25),
+
+               0 10px 10px rgba(0,0,0,.2),
+
+               0 20px 20px rgba(0,0,0,.15);
+           }
+.hd2{
+
+	top: 50px;
+ font-family:"KaiTi";
+	 font-size: 30px;
+margin-top:-15px;
+	  text-align: center;
+	  z-index: 1001;
+	  font-weight: 600;
+	  text-shadow: 0 1px 0 rgba(255,255,255,.5), 
+
+               0 2px 0 rgba(255,255,255,.4),
+
+               0 3px 0 rgba(255,255,255,.3),
+
+               0 4px 0 rgba(255,255,255,.2),
+
+               0 5px 0 rgba(255,255,255,.1),
+
+               0 6px 1px rgba(0,0,0,.1),
+
+               0 0 5px rgba(0,0,0,.1),
+
+               0 1px 3px rgba(0,0,0,.3),
+
+               0 3px 5px rgba(0,0,0,.2),
+
+               0 5px 10px rgba(0,0,0,.25),
+
+               0 10px 10px rgba(0,0,0,.2),
+
+               0 20px 20px rgba(0,0,0,.15);
+}
 .img1{
 	position: absolute;
 	top: 15px;
@@ -38,62 +104,84 @@ background-image: url("./flowers.png");
 .theme{
 
 	position: relative;
-
-
+/* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#ff3019+0,cf0404+100;Red+3D */
+background: #ff3019; /* Old browsers */
+background: -moz-radial-gradient(center, ellipse cover, #ff3019 0%, #cf0404 100%); /* FF3.6-15 */
+background: -webkit-radial-gradient(center, ellipse cover, #ff3019 0%,#cf0404 100%); /* Chrome10-25,Safari5.1-6 */
+background: radial-gradient(ellipse at center, #ff3019 0%,#cf0404 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ff3019', endColorstr='#cf0404',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
 width: 100%;
-height:280px;
+height:400px;
+z-index: 100;
+ box-shadow: 0 1px 0 rgba(255,255,255,.5), 
 
+               0 2px 0 rgba(255,255,255,.4),
+
+               0 3px 0 rgba(255,255,255,.3),
+
+               0 4px 0 rgba(255,255,255,.2),
+
+               0 5px 0 rgba(255,255,255,.1),
+
+               0 6px 1px rgba(0,0,0,.1),
+
+               0 0 5px rgba(0,0,0,.1),
+
+               0 1px 3px rgba(0,0,0,.3),
+
+               0 3px 5px rgba(0,0,0,.2),
+
+               0 5px 10px rgba(0,0,0,.25),
+
+               0 10px 10px rgba(0,0,0,.2),
+
+               0 20px 20px rgba(0,0,0,.15);
 	}
 .cover{
-	position: absolute;
-	bottom: 0px;
-background-image: -webkit-gradient(linear,  top,
-    rgba(255,255,255,0) 0px,
-      rgba(255,255,255,0.2) 20px,
-      rgba(255,255,255,0.4) 30px,
-      rgba(255,255,255,0.6) 40px
-  );
-  background-image: -webkit-linear-gradient(    top,
-       rgba(255,255,255,0) 0px,
-      rgba(255,255,255,0.2) 20px,
-      rgba(255,255,255,0.4) 30px,
-      rgba(255,255,255,0.6) 40px
-        );
-  background-image: -moz-linear-gradient(   top,
-    rgba(255,255,255,0) 0px,
-      rgba(255,255,255,0.2) 20px,
-      rgba(255,255,255,0.4) 30px,
-      rgba(255,255,255,0.6) 40px
-        );
-  background-image: -ms-linear-gradient(   top,
-    rgba(255,255,255,0) 0px,
-      rgba(255,255,255,0.2) 20px,
-      rgba(255,255,255,0.4) 30px,
-      rgba(255,255,255,0.6) 40px
-        );
-  background-image: -o-linear-gradient(  top,
-    rgba(255,255,255,0) 0px,
-      rgba(255,255,255,0.2) 20px,
-      rgba(255,255,255,0.4) 30px,
-      rgba(255,255,255,0.6) 40px
-        );
-  background-image: linear-gradient(  top,
-    rgba(255,255,255,0) 0px,
-      rgba(255,255,255,0.2) 20px,
-      rgba(255,255,255,0.4) 30px,
-      rgba(255,255,255,0.6) 40px
-        );
+
      width: 100%;
-height:40px;
+height:400px;
+ background-image: -webkit-gradient(linear,  top,
+      rgba(255,255,255,1) 0px,
+      rgba(255,255,255,0.1) 120px
+  );
+  background-image: -webkit-linear-gradient(   top,
+      rgba(255,255,255,1) 0px,
+      rgba(255,255,255,0.1) 120px );
+  background-image: -moz-linear-gradient( top,
+      rgba(255,255,255,1) 0px,
+      rgba(255,255,255,0.1) 120px);
+  background-image: -ms-linear-gradient( top,
+      rgba(255,255,255,1) 0px,
+      rgba(255,255,255,0.1) 120px );
+  background-image: -o-linear-gradient( top,
+      rgba(255,255,255,1) 0px,
+      rgba(255,255,255,0.1) 120px );
+  background-image: linear-gradient( top,
+      rgba(255,255,255,1) 0px,
+      rgba(255,255,255,0.1) 120px );
 
+}
+.cover2{
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	z-index: 99;
 
+background-image: url("https://www.transparenttextures.com/patterns/squared-metal.png");
+/* This is mostly intended for prototyping; please download the pattern and re-host for production environments. Thank you! */
+/* This is mostly intended for prototyping; please download the pattern and re-host for production environments. Thank you! */
 }
 .scroller{
 	position: relative;
 width: 100%;
 height:600px;
 overflow: hidden;
-	border:1px solid #CCCCCC;
+	border:1px solid #CCCCCC;			
+
+background-image: url("https://www.transparenttextures.com/patterns/flowers.png");
+/* This is mostly intended for prototyping; please download the pattern and re-host for production environments. Thank you! */
+
 }
 
 .box { animation: moveSlideshow 30s  linear infinite; }

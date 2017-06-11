@@ -1,280 +1,170 @@
-<html>
+<!DOCTYPE html>
+<!-- saved from url=(0019)http://ttjj.com.cn/ -->
+<html lang="zh"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<meta charset="utf-8">
+<meta id="Viewport" name="viewport" content="width=device-width,initial-scale=1.0, maximum-scale=1.2, minimum-scale=1.0, user-scalable=no">
+	<meta name="keywords" content="金隅 天坛 家具 官方网站 办公 家用 实木 板式 软体 金属">
+	<meta name="description" content="北京金隅天坛家具股份有限公司创建于1956年，是北京金隅集团旗下的核心公司之一。产品线以实木、板式、软体、金属、红木、排椅等各类民用、办公家具为主，带动发展酒店、橱柜、衣帽间、门窗等固装家具产品，同时承揽室内外装饰装修业务">
+	<title>北京金隅天坛家具股份有限公司</title>
+	
 
-<head>
 
-<meta http-equiv="Content-Type" content="text/html; charset=gbk">
+	<link rel="stylesheet" href="./css/index.css">
+	<link rel="stylesheet" href="./css/progressbar.css">
+	<style type="text/css">
+    .deldiv{ display: none;}
+</style>
 
-<link rel="stylesheet" href="css/style.css" type="text/css"></link>
-
-<script src="js/jquery.js"></script>
-
-<script src="js/jquery.transit.min.js"></script>
-<script src="js/game2-min.js"></script>
-<meta id="Viewport" name="viewport" content="width=device-width,initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no">
-
+	<script src="./jquery.js"></script>
 <script type="text/javascript">
-$(function(){
-if( /Android|webOS|iPhone|iPad|iPod|BlackBerry/i.test(navigator.userAgent) ) {
-  var ww = ( $(window).width() < window.screen.width ) ? $(window).width() : window.screen.width; //get proper width
-  var mw = 460; // min width of site
-  var ratio =  ww / mw; //calculate ratio
-  if( ww < mw){ //smaller than minimum size
-   $('#Viewport').attr('content', 'initial-scale=' + ratio + ', maximum-scale=' + ratio + ', minimum-scale=' + ratio + ', user-scalable=yes, width=' + ww);
-  }else{ //regular size
-   $('#Viewport').attr('content', 'initial-scale=1.0, maximum-scale=2, minimum-scale=1.0, user-scalable=yes, width=' + ww);
-  }
+var total=0;
+    function deleteDiv(tt){
+         $(tt).parent().remove();
+    }
+function loadjson(){
+
+         $.ajax({  
+             url: './post_Sched.json',  
+             type: 'GET',  
+             dataType: 'json',  
+             timeout: 1000,  
+             cache: false,  
+             beforeSend: LoadFunction, //加载执行方法    
+             error: erryFunction,  //错误执行方法    
+             success: succFunction //成功执行方法    
+         })  
+         function LoadFunction() {  
+             
+         }  
+         function erryFunction() {  
+            
+         }  
+         function succFunction(tt) {  
+            
+  
+             //eval将字符串转成对象数组  
+             //var json = { "id": "10086", "uname": "zhangsan", "email": "zhangsan@qq.com" };  
+             //json = eval(json);  
+             //alert("===json:id=" + json.id + ",uname=" + json.uname + ",email=" + json.email);  
+  
+             var json = eval(tt); //数组.
+             var num1=json.prop1;
+             var num2=json.prop2;
+             var num3=json.prop1;
+             if(num1){
+             	var tl=parseInt(num1);
+             	if(isNaN(tl)){
+
+             		num1=0+'';
+             	}else if(tl>25000000){
+             		
+             		num1=25000000+"";
+             	}
+             	if(tl>=10000000){
+             		$('.sep1').addClass('sep');
+             		if(tl>=15000000){
+             			$('.sep2').addClass('sep');
+             			if(tl>=20000000){
+             				$('.sep3').addClass('sep');
+
+             			}else{
+             				$('.sep3').removeClass('sep');
+             			}
+             		}else{
+             			$('.sep2').removeClass('sep');
+             			$('.sep3').removeClass('sep');
+             			
+             		}
+             	}else{
+             		$('.sep1').removeClass('sep');
+             		$('.sep2').removeClass('sep');
+             		$('.sep3').removeClass('sep');
+             	}
+
+
+             	$('.count').text("");
+           	if(num3){
+             	for (var k = 0, length = num3.length; k < length; k++) {
+             		
+					 $('.count').append("<div class='digit'>"+num3[k]+"</div>");
+					}
+             	}
+             	$('.progressbar').attr("data-perc",Math.round(parseInt(num1)/250000));
+             }
+          
+             if(num2){
+          	$('#box1').html(num2);
+          	$('#box2').html(num2);
+         }
+         	$('.progressbar').each(function(){
+		var t = $(this);
+		var dataperc = t.attr('data-perc');
+		var barperc = Math.round(dataperc*11.96);
+		t.find('.bar').animate({width:barperc}, dataperc*25);
+	
+		
+	});
+ 	}  
 }
+	$(function() {
+	
+  var ww = ( $(window).width() < window.screen.width ) ? $(window).width() : window.screen.width; //get proper width
+  var wh = ( $(window).height() < window.screen.height ) ? $(window).height() : window.screen.height;
+  var mw=1250;
+  if(ww<mw){
+  	 var ratio =  ww/mw; //calculate ratio
+  	  $('#Viewport').attr('content', 'initial-scale=' + ratio + ', maximum-scale=' + ratio + ', minimum-scale=' + ratio + ', user-scalable=yes, width=' + mw);
+  
+  }
+  		
+		loadjson();
+		setInterval(loadjson,3000);
+
 });
 </script>
-
-<title>81</title>
-<h1>Welcome to  &nbsp;<span class='floatgrid' style='height:50px;width:50px;font-size:25px;line-height:50px;-webkit-box-shadow: 0 1px 10px rgba(0,0,0,0.8);-moz-box-shadow: 0 1px 10px rgba(0,0,0,0.8);box-shadow: 0 1px 10px rgba(0,0,0,0.8); border-radius: 12pt;-moz-border-radius:12px;
--webkit-border-radius:12px; '>81</span></h1>
+<body id='css-texture'>
 
 
-</head>
+<div class="header">
+	<div class="hd1">拼千万超级大单</div>
+	<div class="hd2">贺天坛产业园投产
+		<div>
+			<a href="./upload.html"><img class="img1" src="./logo.png"  alt="天坛家具LOGO"></a>
+			
+			
+		</div>
+	</div>
+	<div class="hd3"></div>
+</div>
 
-<body >
-<div class="game">
-<div class='helpwindow'>
-	<div id="sideshow" class='overlay mid descr'></div>
-	<div id="sideshow2" class='overlay mid descr'></div>
-	<div id="midshow" class='overlay side descr'></div>
-
-	<div id="turnswitch" class='overlay descr side'><div class="rightbubble" style="top:50px">Player2's Turn State</div></div>
-	<div id="turnswitch2" class='overlay descr side'></div>
-	<div id="turnswitch3" class='overlay descr side'><div class="rightbubble" style="top:50px">Player1's Turn State</div></div>
-	<div id="turnswitch4" class='overlay descr side'></div>
-
-	<div id="aiswitch" class='overlay descr side'><div class="rightbubble" >AI/Player2 Switch</div></div>
-	<div id="aiswitch2" class='overlay descr side'><div class="rightbubble" >AI/Player1 Switch</div></div>
-	<div id="helpbtn" class='overlay descr side'></div>
-	<div id="menubtn" class='overlay descr side'><div class="leftbubble" style="top:-60px;left:-225px">MenuButton</div></div>
+<div class="theme">
+<div class='cover2'></div>
+<div class="cover"></div>
+<div class='lablecount'>拼单总金额：</div>
+<div class='zhijiang'>全城拼单直降40%</div>
+<div class='count'></div>
+<div class='sep1 shadow'></div>
+<div class='sep2 shadow'></div>
+<div class='sep3 shadow'></div>
+<div class='labelup1 heiti'>直降30%</div>
+<div class='labelup2 heiti'>直降35%</div>
+<div class='labelup3 heiti'>直降40%</div>
+<div class='labeldown1 heiti'>1000万</div>
+<div class='labeldown2 heiti'>1500万</div>
+<div class='labeldown3 heiti'>2000万</div>
+	<div class="progressbar" data-perc="0">
+		<div class="bar color2"><span></span></div>
+	</div>
+</div>
 	
 
-	<div id="score" class='overlay descr side'><div class="rightbubble">Player2's Score</div></div>
-	<div id="score2" class='overlay descr side'><div class="leftbubble" style="top:-60px;left:-225px">Player1's Score</div></div>
+
+<div class="scroller">
+<div class="box item1" id='box1'>
+    </div>
+    <div class="box item2" id='box2'>
+    </div>
 
 
-	<div id="timer" class='overlay descr mid'>Count Down Timer</div>
-	<div id="numberpad" class='overlay descr mid' >Player1's Number Pad</div>
-	<div id="numberpad2" class='overlay descr mid'>Player2's Number Pad</div>
-	<div id="hpbar" class='overlay descr mid'>Player1's Health Bar</div>
-	<div id="hpbar2" class='overlay descr mid'>Player2's Health Bar</div>
 
-</div>
-<div class='menuwindow'>
-	<div id="gamemode" class='overlay descr menuoption'>Game Mode: <span id="mode"></span></div>
-	<div id="rotationsetting" class='overlay descr menuoption'>Roatation: <span id="rota"></span></div>
-	<div id="timersetting" class='overlay descr menuoption'>Timer Setting: <span id="ts"></span></div>
-	<div id="reset" class='overlay descr menuoption'>Reset Game</div>
-</div>
-<div class='winscreen'>
-	<div id='winboard'>Player1 Wins!</div>
-	<div id="continue" >Continue</div>
-	<div id="reset2" >Reset</div>
-
-</div>
-<div class='scoreboard'>
-	<div id="oscb" class='scbtext'> AI/Player2 Collectables <span id="o80pv"></span></div>
-	<div id='o80l' class='floatgrid'>80</div>
-		<div  id='arrow1' class='floattext'>-></div>
-		<div  id='equal1' class='floattext'>=</div>
-		<div  id='o80v' class='floattext'>0</div>
-	<div id='o80u' class='floatgrid'>81</div>
-	<div id='o60l' class='floatgrid'>60</div>
-		<div  id='arrow2' class='floattext'>-></div>
-		<div  id='equal2' class='floattext'>=</div>
-		<div  id='o60v' class='floattext'>0</div>
-	<div id='o60u' class='floatgrid'>79</div>
-	<div id='o30l' class='floatgrid'>30</div>
-		<div  id='arrow3' class='floattext'>-></div>
-		<div  id='equal3' class='floattext'>=</div>
-		<div  id='o30v' class='floattext'>0</div>
-	<div id='o30u' class='floatgrid'>59</div>
-	<div id='o0l' class='floatgrid'>0</div>
-		<div  id='arrow4' class='floattext'>-></div>
-		<div  id='equal4' class='floattext'>=</div>
-		<div  id='o0v' class='floattext'>0</div>
-	<div id='o0u' class='floatgrid'>29</div>
-	<div id="sscb" class='scbtext'> AI/Player1 Collectables <span id="s80pv"></span></div>
-	<div id='s80l' class='floatgrid'>80</div>
-		<div  id='arrow5' class='floattext'>-></div>
-		<div  id='equal5' class='floattext'>=</div>
-		<div  id='s80v' class='floattext'>0</div>
-	<div id='s80u' class='floatgrid'>81</div>
-	<div id='s60l' class='floatgrid'>60</div>
-		<div  id='arrow6' class='floattext'>-></div>
-		<div  id='equal6' class='floattext'>=</div>
-		<div  id='s60v' class='floattext'>0</div>
-	<div id='s60u' class='floatgrid'>79</div>
-	<div id='s30l' class='floatgrid'>30</div>
-		<div  id='arrow7' class='floattext'>-></div>
-		<div  id='equal7' class='floattext'>=</div>
-		<div  id='s30v' class='floattext'>0</div>
-	<div id='s30u' class='floatgrid'>59</div>
-	<div id='s0l' class='floatgrid'>0</div>
-		<div  id='arrow8' class='floattext'>-></div>
-		<div  id='equal8' class='floattext'>=</div>
-		<div  id='s0v' class='floattext'>0</div>
-	<div id='s0u' class='floatgrid'>29</div>	
-</div>
-<div class='leftcol'>
-	<div class='leftcol1'></div>
-	<div class='leftcol2'></div>
-	
-	<div class='leftcol4'></div>
-	
-	<div class='leftcol6'></div>
-	<div class='leftcol7'></div>
-</div>
-<div class='gamepanel'>
-<div clss="outline"><div class="wrapper progressbar" id="oppolife" style="height:50px"><div class="innerbar"><div class='barnum'></div></div></div></div>
-<div class="outline">
-	<div class="wrapper oppo">
-	     <div class="col1 row1 grid oppo">
-	     </div>
-	     <div class="col2 row1 grid oppo">
-	     </div>
-	     <div class="col3 row1 grid oppo">
-	     </div>
-	     <div class="col4 row1 grid oppo">
-	     </div>
-	     <div class="col5 row1 grid oppo">
-	     </div>
-	     <div class="col6 row1 grid oppo">
-	     </div>
-	 </div> 
-</div>
-<div class="outline">
-	<div class="wrapper oppo">
-	     <div class="col1 row2 grid oppo">
-	     </div>
-	     <div class="col2 row2 grid oppo">
-	     </div>
-	     <div class="col3 row2 grid oppo">
-	     </div>
-	     <div class="col4 row2 grid oppo">
-	     </div>
-	     <div class="col5 row2 grid oppo">
-	     </div>
-	     <div class="col6 row2 grid oppo">
-	     </div>
-	 </div> 
-</div>
-<div class="outline">
-	<div class="wrapper oppo">
-	     <div class="col1 row3 grid oppo">
-	     </div>
-	     <div class="col2 row3 grid oppo">
-	     </div>
-	     <div class="col3 row3 grid oppo">
-	     </div>
-	     <div class="col4 row3 grid oppo">
-	     </div>
-	     <div class="col5 row3 grid oppo">
-	     </div>
-	     <div class="col6 row3 grid oppo">
-	     </div>
-	 </div> 
-</div>
-<div class="outline">
-	<div class="wrapper oppo">
-	     <div class="col1 row4 grid oppo">
-	     </div>
-	     <div class="col2 row4 grid oppo">
-	     </div>
-	     <div class="col3 row4 grid oppo">
-	     </div>
-	     <div class="col4 row4 grid oppo">
-	     </div>
-	     <div class="col5 row4 grid oppo">
-	     </div>
-	     <div class="col6 row4 grid oppo">
-	     </div>
-	 </div> 
-</div>
-<div clss="outline"><div class="wrapper progressbar" style="height:50px" id="battletext"><div  class="innerbar"><div class='barnum'></div></div></div></div>
-<div class="outline">
-	<div class="wrapper self">
-	     <div class="col1 row5 grid self">
-	     </div>
-	     <div class="col2 row5 grid self">
-	     </div>
-	     <div class="col3 row5 grid self">
-	     </div>
-	     <div class="col4 row5 grid self">
-	     </div>
-	     <div class="col5 row5 grid self">
-	     </div>
-	     <div class="col6 row5 grid self">
-	     </div>
-	 </div> 
-</div>
-<div class="outline">
-	<div class="wrapper self">
-	     <div class="col1 row6 grid self">
-	     </div>
-	     <div class="col2 row6 grid self">
-	     </div>
-	     <div class="col3 row6 grid self">
-	     </div>
-	     <div class="col4 row6 grid self">
-	     </div>
-	     <div class="col5 row6 grid self">
-	     </div>
-	     <div class="col6 row6 grid self">
-	     </div>
-	 </div> 
-</div>
-<div class="outline">
-	<div class="wrapper self">
-	     <div class="col1 row7 grid self">
-	     </div>
-	     <div class="col2 row7 grid self">
-	     </div>
-	     <div class="col3 row7 grid self">
-	     </div>
-	     <div class="col4 row7 grid self">
-	     </div>
-	     <div class="col5 row7 grid self">
-	     </div>
-	     <div class="col6 row7 grid self">
-	     </div>
-	 </div> 
-</div>
-<div class="outline">
-	<div class="wrapper self">
-	     <div class="col1 row8 grid self">
-	     </div>
-	     <div class="col2 row8 grid self">
-	     </div>
-	     <div class="col3 row8 grid self">
-	     </div>
-	     <div class="col4 row8 grid self">
-	     </div>
-	     <div class="col5 row8 grid self">
-	     </div>
-	     <div class="col6 row8 grid self">
-	     </div>
-	 </div> 
-</div>
-<div clss="outline">
-<div class="wrapper progressbar" id="selflife" style="height:50px"><div class="innerbar"><div class='barnum'></div></div></div></div>
-</div>
-<div class='rightcol'>
-		<div class='rightcol1'><div class='help'>?</div></div>
-	<div class='rightcol2'></div>
-	
-	<div class='rightcol4'></div>
-	
-	<div class='rightcol6'></div>
-	<div class='rightcol7'><div class='menu'>iii</div></div>
-</div>
-</div>
-
-
-<p>Created by Yu Xu (<a href="https://github.com/wreith201" class="user-mention">@wreith201</a>) on May 29th, 2014.  </p>
-</body>
-
-</html>
+</body></html>

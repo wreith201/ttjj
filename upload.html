@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<!-- saved from url=(0019)http://ttjj.com.cn/ -->
+<html lang="zh"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+<meta id="Viewport" name="viewport" content="width=device-width,initial-scale=1.0, maximum-scale=1.2, minimum-scale=1.0, user-scalable=no">
+    <link rel="stylesheet" href="./css/index.css">
+<script src="./jquery.js"></script>
+<script>
+
+    function addDiv(){
+        var str1="<a id='msgtxt1'>"+$('#message1').val()+"</a>";
+        var str2="<a id='msgtxt2'>"+$('#message2').val()+"</a>";
+        var str3="<a id='msgtxt3'>"+$('#message3').val()+"</a>";
+        var str4="<a id='msgtxt4'>"+$('#message4').val()+"</a>";
+        var btn='<input  type="submit" class="deldiv" value="删除" style="opacity: 0.7;" onclick="deleteDiv(this);">';
+        var str="<div class='msg'>"+btn+"门店: "+str1+", 顾客: "+str2+" , 联系方式: "+str3+" , 金额为： "+str4+" 元。</div>";
+      $('#preview').append(str);
+    }
+    function deleteDiv(tt){
+         $(tt).parent().remove();
+    }
+ function loadjson(){
+         $.ajax({  
+             url: './post_Sched.json',  
+             type: 'GET',  
+             dataType: 'json',  
+             timeout: 1000,  
+             cache: false,  
+             beforeSend: LoadFunction, //加载执行方法    
+             error: erryFunction,  //错误执行方法    
+             success: succFunction //成功执行方法    
+         })  
+         function LoadFunction() {  
+             
+         }  
+         function erryFunction() {  
+             
+         }  
+         function succFunction(tt) {  
+            
+  
+             //eval将字符串转成对象数组  
+             //var json = { "id": "10086", "uname": "zhangsan", "email": "zhangsan@qq.com" };  
+             //json = eval(json);  
+             //alert("===json:id=" + json.id + ",uname=" + json.uname + ",email=" + json.email);  
+  
+             var json = eval(tt); //数组.
+             var num1=json.prop1;
+             var num2=json.prop2;
+             if(num2){
+            $('#preview').html(num2);
+         }
+           
+    
+    }  
+}
+    function theFunction() {
+        console.log("about to post to post_Sched.php")
+
+        request = $.ajax({
+            url: "./post_Sched.php", // Take note the url was changed to same page, while I was working with this.
+            //dataType: "json", // Removing this resolved the client-side error
+            type: "post",
+            data: { // I strongly recommend having data be an object with key-value pairs.
+                post_Sched_jstringed: {
+                    prop1: $('#total').val(),
+                    prop2: $('#preview').html()
+                   
+                }
+            },
+
+            success: function (response) {
+                // response from php
+                console.log(response);
+            },
+            error: function (jqXHR, textStatus, errorThrown) {
+                console.log(textStatus, errorThrown);
+            }
+        });
+        console.log("just posted to post_Sched.php")
+    }
+
+$(function() {
+ var ww = ( $(window).width() < window.screen.width ) ? $(window).width() : window.screen.width; //get proper width
+  var wh = ( $(window).height() < window.screen.height ) ? $(window).height() : window.screen.height;
+  var mw=900;
+  if(ww<mw){
+     var ratio =  ww/mw; //calculate ratio
+      $('#Viewport').attr('content', 'initial-scale=' + ratio + ', maximum-scale=' + ratio + ', minimum-scale=' + ratio + ', user-scalable=yes, width=' + mw);
+  
+  }
+        loadjson();
+        
+
+});
+</script>
+<body style="overflow: scroll;">
+<div id='topwrapper'> <div id='labeltop'>拼单总金额</div>
+<div id='inputotal'>
+
+    <input type="text" id="total" name="totalamount" class="txt_input txt_input2" onfocus="if (value ==&#39;Your name&#39;){value =&#39;&#39;}" onblur="if (value ==&#39;&#39;){value=&#39;Your name&#39;}" value="0">
+
+  </div>
+  <div id='uploaddiv'><input style="width:100px;height: 40px;" type="submit" class="sub_button" id="upload" value="上传所有数据" style="opacity: 0.7;" onclick="theFunction();"></div>
+</div>
+
+
+<div id='msgwrapper'>
+
+<div id='entermsgwrapper'>
+<div id='lbmsg1'>门店:</div>
+<div id='lbmsg2'>顾客:</div>
+<div id='lbmsg3'>联系方式:</div>
+<div id='lbmsg4'>总金额:</div>
+<div id='entermsg1'><input class="txt_input txt_input2" type="text" id="message1" name="msg1" class="txt_input txt_input2"></div>
+<div id='entermsg2'><input class="txt_input txt_input2" type="text" id="message2" name="msg2" class="txt_input txt_input2"></div>
+<div id='entermsg3'><input class="txt_input txt_input2" type="text" id="message3" name="msg3" class="txt_input txt_input2"></div>
+<div id='entermsg4'><input class="txt_input txt_input2" type="text" id="message4" name="msg4" class="txt_input txt_input2"></div>
+<div id='addmsgdiv'><input type="submit" class="sub_button" id="addmsg" value="添加信息"  onclick="addDiv();"></div>
+</div>
+<div id='previewtitle'>信息滚动展示内容预览</div>
+<div id='preview'></div>
+
+  </div>
+
+
+
+
+
+</body>
+</html>
